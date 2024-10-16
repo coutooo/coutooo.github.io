@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Faceit Skill Rankings",
+        "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
+        "techStack": "JavaScript, MongoDB, Node.js, Vercel",
+        "mediaType": "video",
+        "mediaSrc": "path/to/faceit-skill-rankings-demo.mp4"
+    },
+    {
+        "title": "Dark Stories",
+        "description": "An interactive game with a mysterious onboarding screen and game logic for storytelling.",
+        "techStack": "TypeScript, Next.js, Tailwind CSS",
+        "mediaType": "image",
+        "mediaSrc": "path/to/dark-stories-demo.jpg"
+    },
+    {
+        "title": "Vinted Chrome Extension",
+        "description": "A browser extension for filtering items on Vinted by location, helping users find what they need more easily.",
+        "techStack": "JavaScript, Chrome API, HTML, CSS",
+        "mediaType": "video",
+        "mediaSrc": "path/to/vinted-chrome-extension-demo.mp4"
+    },
+    {
+        "title": "Futsal Management System",
+        "description": "A project focused on managing futsal tournaments and player statistics, with enhanced rules and logic.",
+        "techStack": "TypeScript, Next.js, MongoDB",
+        "mediaType": "image",
+        "mediaSrc": "path/to/futsal-management-system-demo.jpg"
+    }
+]

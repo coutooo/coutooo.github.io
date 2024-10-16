@@ -201,68 +201,62 @@
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-                width: 100%; /* Ensure it takes full width on mobile */
-                height: auto; /* Let the height adjust naturally on mobile */
-            }
+    main {
+        display: flex;  /* Stack columns vertically */
+        flex-direction: column;
+        width: 100%;    /* Full width on mobile */
+        height: auto;   /* Let height adjust naturally */
+    }
 
-            .left-column, .right-column {
-                width: 100%;
-                padding: 20px;
-                height: auto; /* Let columns adjust to content */
-            }
+    .left-column, .right-column {
+        padding: 20px;
+        height: auto;   /* Let columns adjust to content */
+        width: 94%;    /* Ensure full width */
+    }
 
-            .left-column h1 {
-                font-size: 2.5rem; /* Scale down the title */
-            }
+    .left-column h1 {
+        font-size: 2.5rem;  /* Reduce title font size */
+    }
 
-            .left-column p {
-                font-size: 1rem;
-            }
+    .left-column p {
+        font-size: 1rem;  /* Adjust paragraph font size */
+    }
 
-            .cv-button {
-                padding: 10px 20px; /* Reduce button size */
-            }
+    .cv-button {
+        padding: 10px 20px; /* Reduce button size */
+    }
 
-            .right-column {
-                padding: 20px;
-                height: auto; /* Let it expand naturally */
-                width: 100%;
-                overflow: visible; /* Disable scrolling for mobile */
-            }
+    .project {
+        padding: 15px; /* Reduce project padding */
+    }
 
-            .project {
-                padding: 15px;
-            }
+    .project h2 {
+        font-size: 1.5rem;  /* Reduce project title font size */
+    }
 
-            .project h2 {
-                font-size: 1.5rem; /* Reduce font size */
-            }
+    img, iframe {
+        max-width: 100%;  /* Ensure images and iframes don't overflow */
+    }
+}
+@media (max-width: 480px) {
+    .left-column h1 {
+        font-size: 2rem;  /* Further reduce title font size */
+    }
 
-            img, iframe {
-                max-width: 100%; /* Ensure media fits within the screen */
-            }
-        }
+    .profile img {
+        width: 120px;
+        height: 120px;  /* Adjust profile image size */
+    }
 
-        @media (max-width: 480px) {
-            .left-column h1 {
-                font-size: 2rem; /* Further reduce title on smaller devices */
-            }
+    .social-links a {
+        font-size: 1.2rem;  /* Adjust social link size */
+    }
 
-            .profile img {
-                width: 120px;
-                height: 120px; /* Adjust profile image size */
-            }
+    .cv-button {
+        font-size: 0.9rem;  /* Slightly smaller button text */
+    }
+}
 
-            .social-links a {
-                font-size: 1.2rem; /* Adjust link size */
-            }
-
-            .cv-button {
-                font-size: 0.9rem; /* Slightly smaller button text */
-            }
-        }
 
 
 

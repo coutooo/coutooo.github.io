@@ -6,255 +6,265 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manuel Couto</title>
     <style>
-:root {
-    --primary-color: #3E2723;      /* Very dark brown */
-    --secondary-color: #6D4C41;    /* Darker brown */
-    --accent-color: #4E342E;       /* Rich accent brown */
-    --background-color: #2D1B14;   /* Deep brown background */
-    --text-light-color: #D7CCC8;   /* Light beige for text */
-    --text-dark-color: #3E2723;    /* Dark brown for text */
-    --box-shadow-color: rgba(62, 39, 35, 0.15);  /* Shadow with a dark brown tone */
-}
+        :root {
+            --primary-color: #3E2723;      /* Very dark brown */
+            --secondary-color: #6D4C41;    /* Darker brown */
+            --accent-color: #4E342E;       /* Rich accent brown */
+            --background-color: #2D1B14;   /* Deep brown background */
+            --text-light-color: #D7CCC8;   /* Light beige for text */
+            --text-dark-color: #3E2723;    /* Dark brown for text */
+            --box-shadow-color: rgba(62, 39, 35, 0.15);  /* Shadow with a dark brown tone */
+        }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-dark-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  /* Ensure body takes full height */
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-dark-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: auto;
+            min-width: auto;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    width: 90%;
-    max-width: 1200px;
-    height: 90vh; /* Set a fixed height for the main container */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
-    box-shadow: 0 8px 30px var(--box-shadow-color);
-    overflow: hidden;
-}
+        main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh; /* Set a fixed height for the main container */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 8px 30px var(--box-shadow-color);
+            overflow: hidden;
+        }
 
-.left-column {
-    background-color: var(--secondary-color);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
+        .left-column {
+            background-color: var(--secondary-color);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-.left-column h1 {
-    font-size: 3rem;
-    color: var(--text-light-color);
-}
+        .left-column h1 {
+            font-size: 3rem;
+            color: var(--text-light-color);
+        }
 
-.left-column p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    color: var(--text-light-color);
-    opacity: 0.8;
-}
+        .left-column p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: var(--text-light-color);
+            opacity: 0.8;
+        }
 
-.profile img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 3px solid var(--accent-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    object-fit: cover;
-    margin-top: 20px;
-}
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            margin-top: 20px;
+        }
 
-.social-links a {
-    font-size: 1.5rem;
-    color: var(--text-light-color);
-    transition: color 0.3s;
-}
+        .social-links a {
+            font-size: 1.5rem;
+            color: var(--text-light-color);
+            transition: color 0.3s;
+        }
 
-.social-links a:hover {
-    color: var(--accent-color);
-}
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
 
-.cv-button {
-    margin-top: 30px;
-    padding: 12px 24px;
-    background: var(--accent-color);
-    color: var(--text-light-color);
-    border: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
-}
+        .cv-button {
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: var(--text-light-color);
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
 
-.cv-button:hover {
-    background: var (--text-light-color);
-    color: var(--accent-color);
-    border: 2px solid var(--accent-color);
-    transform: translateY(-3px);
-}
+        .cv-button:hover {
+            background: var(--text-light-color);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            transform: translateY(-3px);
+        }
 
-.right-column {
-    padding: 40px;
-    background-color: var(--background-color);
-    overflow-y: auto; /* Make right column scrollable */
-    height: 100%; /* Ensure it takes full height */
-}
+        .right-column {
+            padding: 40px;
+            background-color: var(--background-color);
+            overflow-y: auto; /* Make right column scrollable */
+            height: 100%; /* Ensure it takes full height */
+        }
 
-.project {
-    background-color: var(--secondary-color);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 20px var(--box-shadow-color);
-    color: var(--text-light-color);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .project {
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px var(--box-shadow-color);
+            color: var(--text-light-color);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.project:hover {
-    transform: translateY(-10px);
-}
+        .project:hover {
+            transform: translateY(-10px);
+        }
 
-.project p {
-    margin: 0;
-    opacity: 0.85;
-    text-align: center; /* Center-align the description text */
-}
+        .project p {
+            margin: 0;
+            opacity: 0.85;
+            text-align: center; /* Center-align the description text */
+        }
 
-.project h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: var(--accent-color);
-}
+        .project h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
 
-.tech-stack {
-    font-style: italic;
-    margin-top: 10px;
-    opacity: 0.8;
-}
+        .tech-stack {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
 
-.demo-media {
-    display: block;
-    margin-top: 20px;
-    max-width: 100%;
-    border-radius: 15px;
-    border: 3px solid var(--accent-color);
-}
+        .demo-media {
+            display: block;
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 15px;
+            border: 3px solid var(--accent-color);
+        }
 
-.right-column::-webkit-scrollbar {
-    width: 6px;
-}
+        .right-column::-webkit-scrollbar {
+            width: 6px;
+        }
 
-.right-column::-webkit-scrollbar-thumb {
-    background-color: var(--accent-color);
-    border-radius: 10px;
-}
+        .right-column::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 10px;
+        }
 
-.project-link {
-    display: block;
-    margin-top: 10px;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-}
+        .project-link {
+            display: block;
+            margin-top: 10px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
 
-.project-link:hover {
-    text-decoration: underline;
-}
+        .project-link:hover {
+            text-decoration: underline;
+        }
 
-footer {
-    margin-top: auto;
-    padding: 20px;
-    background-color: var(--secondary-color);
-    color: var(--text-light-color);
-    text-align: center;
-    width: 100%;
-}
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-light-color);
+            text-align: center;
+            width: 100%;
+        }
 
-footer a {
-    color: var(--text-light-color);
-    text-decoration: none;
-    font-weight: bold;
-}
+        footer a {
+            color: var(--text-light-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-footer a:hover {
-    text-decoration: underline;
-}
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    main {
-        grid-template-columns: 1fr;
-        height: auto; /* Let the height adjust naturally on mobile */
-    }
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                width: 100%; /* Ensure it takes full width on mobile */
+                height: auto; /* Let the height adjust naturally on mobile */
+            }
 
-    .left-column, .right-column {
-        width: 100%;
-        padding: 20px;
-        height: auto; /* Let columns adjust to content */
-    }
+            .left-column, .right-column {
+                width: 100%;
+                padding: 20px;
+                height: auto; /* Let columns adjust to content */
+            }
 
-    .left-column h1 {
-        font-size: 2.5rem; /* Scale down the title */
-    }
+            .left-column h1 {
+                font-size: 2.5rem; /* Scale down the title */
+            }
 
-    .left-column p {
-        font-size: 1rem;
-    }
+            .left-column p {
+                font-size: 1rem;
+            }
 
-    .cv-button {
-        padding: 10px 20px; /* Reduce button size */
-    }
+            .cv-button {
+                padding: 10px 20px; /* Reduce button size */
+            }
 
-    .right-column {
-        padding: 20px;
-        height: auto; /* Let it expand naturally */
-        overflow: visible; /* Disable scrolling for mobile */
-    }
+            .right-column {
+                padding: 20px;
+                height: auto; /* Let it expand naturally */
+                width: 100%;
+                overflow: visible; /* Disable scrolling for mobile */
+            }
 
-    .project {
-        padding: 15px;
-    }
+            .project {
+                padding: 15px;
+            }
 
-    .project h2 {
-        font-size: 1.5rem; /* Reduce font size */
-    }
-}
+            .project h2 {
+                font-size: 1.5rem; /* Reduce font size */
+            }
 
-@media (max-width: 480px) {
-    .left-column h1 {
-        font-size: 2rem; /* Further reduce title on smaller devices */
-    }
+            img, iframe {
+                max-width: 100%; /* Ensure media fits within the screen */
+            }
+        }
 
-    .profile img {
-        width: 120px;
-        height: 120px; /* Adjust profile image size */
-    }
+        @media (max-width: 480px) {
+            .left-column h1 {
+                font-size: 2rem; /* Further reduce title on smaller devices */
+            }
 
-    .social-links a {
-        font-size: 1.2rem; /* Adjust link size */
-    }
+            .profile img {
+                width: 120px;
+                height: 120px; /* Adjust profile image size */
+            }
 
-    .cv-button {
-        font-size: 0.9rem; /* Slightly smaller button text */
-    }
-}
+            .social-links a {
+                font-size: 1.2rem; /* Adjust link size */
+            }
+
+            .cv-button {
+                font-size: 0.9rem; /* Slightly smaller button text */
+            }
+        }
+
+
 
     </style>
 </head>

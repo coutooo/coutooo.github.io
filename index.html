@@ -182,10 +182,14 @@
         }
 
         .demo-media {
+            display: block;
             margin-top: 20px;
-            max-width: 100%;
-            border-radius: 20px;
+            max-width: 90%; /* Prevents images/videos from being too wide */
+            max-height: 400px; /* Limits the maximum height */
+            min-width: 250px; /* Ensures a minimum size for smaller content */
+            border-radius: 15px;
             border: 3px solid var(--accent-color);
+            object-fit: cover; /* Ensures media scales proportionally */
             transition: transform 0.3s;
         }
 

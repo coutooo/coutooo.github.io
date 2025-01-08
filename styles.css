@@ -1,25 +1,36 @@
-@keyframes scroll {
-    0% {
-        transform: translateX(100%);
+    .scroll-container {
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
     }
-    100% {
+    
+    .scroll-content {
+        display: inline-flex;
+        animation: scroll 60s linear infinite; /* Increased duration to 120s */
+    }
+    
+    .scroll-item {
+      display: inline-block;
+      padding: 0 10px;
+    }
+    
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
         transform: translateX(-100%);
+      }
     }
-    }
-
-    .animate-scroll {
-    display: inline-flex;
-    animation: scroll 15s linear infinite;
-    }
-
+    
     #medtracking-description,
     #v2x-description {
-    max-height: 4.5em; /* Adjust this value to fit approximately 4 lines */
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+      max-height: 4.5em; /* Adjust this value to fit approximately 4 lines */
+      overflow: hidden;
+      transition: max-height 0.3s ease;
     }
-
+    
     #medtracking-description.expanded,
     #v2x-description.expanded {
-    max-height: none;
+      max-height: none;
     }

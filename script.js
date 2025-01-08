@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var scrollContent = document.querySelector('.scroll-content');
+  var items = scrollContent.innerHTML;
+  scrollContent.innerHTML += items; // Duplicate the items
+});
+
 document.getElementById('read-more-btn').addEventListener('click', function() {
   var description = document.getElementById('medtracking-description');
   if (description.classList.contains('expanded')) {

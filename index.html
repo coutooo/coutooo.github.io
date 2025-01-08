@@ -1,524 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Manuel Couto</title>
-    <style>
-        :root {
-            --primary-color: #3E2723;      /* Very dark brown */
-            --secondary-color: #6D4C41;    /* Darker brown */
-            --accent-color: #4E342E;       /* Rich accent brown */
-            --background-color: #2D1B14;   /* Deep brown background */
-            --text-light-color: #D7CCC8;   /* Light beige for text */
-            --text-dark-color: #3E2723;    /* Dark brown for text */
-            --box-shadow-color: rgba(62, 39, 35, 0.15);  /* Shadow with a dark brown tone */
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-light-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Ensure full viewport height */
-            overflow-x: hidden;
-            transition: background 0.3s ease; /* Smooth transition */
-        }
-
-        main {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
-            width: 90%;
-            max-width: 1200px;
-            height: 90vh;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            box-shadow: 0 10px 40px var(--box-shadow-color);
-            overflow: hidden;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .left-column {
-            background-color: var(--secondary-color);
-            padding: 30px 20px; /* Reduced padding for more space */
-            display: flex;
-            flex-direction: column;
-            justify-content: start; /* Align content to the top */
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow-y: auto; /* Enable vertical scrolling */
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-            max-height: 100%; /* Ensure it takes full height */
-        }
-
-        .left-column::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-            border-radius: 10px;
-        }
-
-
-        .left-column h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--text-light-color);
-        }
-
-        .left-column p {
-            font-size: 1.3rem;
-            margin-top: 15px;
-            color: var(--text-light-color);
-            opacity: 0.85;
-            line-height: 1.5;
-        }
-
-        .profile img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            object-fit: cover;
-            margin-top: 25px;
-            transition: transform 0.3s ease;
-        }
-
-        .profile img:hover {
-            transform: scale(1.05);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            font-size: 1.8rem;
-            color: var(--text-light-color);
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        .cv-button {
-            margin-top: 35px;
-            padding: 14px 28px;
-            background: var(--accent-color);
-            color: var(--text-light-color);
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .cv-button:hover {
-            background: var(--text-light-color);
-            color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            transform: translateY(-5px);
-        }
-
-
-        .right-column {
-            padding: 40px;
-            background-color: var(--background-color);
-            overflow-y: auto;
-            height: 100%;
-            animation: slideIn 1.2s ease-in-out;
-        }
-
-        .project {
-            background-color: var(--secondary-color);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 25px var(--box-shadow-color);
-            color: var(--text-light-color);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .project:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 35px var(--box-shadow-color);
-        }
-
-        .project h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
-
-        .project p {
-            margin: 0;
-            opacity: 0.85;
-            text-align: center;
-        }
-
-        .tech-stack {
-            font-style: italic;
-            margin-top: 10px;
-            opacity: 0.8;
-        }
-
-        .demo-media {
-            display: block;
-            margin-top: 20px;
-            max-width: 90%; /* Prevents images/videos from being too wide */
-            max-height: 400px; /* Limits the maximum height */
-            min-width: 250px; /* Ensures a minimum size for smaller content */
-            border-radius: 15px;
-            border: 3px solid var(--accent-color);
-            object-fit: cover; /* Ensures media scales proportionally */
-            transition: transform 0.3s;
-        }
-
-        .demo-media:hover {
-            transform: scale(1.03);
-        }
-
-        .right-column::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .right-column::-webkit-scrollbar-thumb {
-            background-color: var(--accent-color);
-            border-radius: 15px;
-        }
-
-        .project-link {
-            display: block;
-            margin-top: 10px;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            background-color: var(--secondary-color);
-            color: var(--text-light-color);
-            text-align: center;
-            width: 100%;
-        }
-
-        footer a {
-            color: var(--text-light-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            0% { opacity: 0; transform: translateX(20px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-    main {
-        display: flex;  /* Stack columns vertically */
-        flex-direction: column;
-        width: 100%;    /* Full width on mobile */
-        height: auto;   /* Let height adjust naturally */
-    }
-
-    .left-column, .right-column {
-        padding: 20px;
-        height: auto;   /* Let columns adjust to content */
-        width: auto;    /* Ensure full width */
-    }
-
-    .left-column h1 {
-        font-size: 2.5rem;  /* Reduce title font size */
-    }
-
-    .left-column p {
-        font-size: 1rem;  /* Adjust paragraph font size */
-    }
-
-    .cv-button {
-        padding: 10px 20px; /* Reduce button size */
-    }
-
-    .project {
-        padding: 15px; /* Reduce project padding */
-    }
-
-    .project h2 {
-        font-size: 1.5rem;  /* Reduce project title font size */
-    }
-
-    img, iframe {
-        max-width: 100%;  /* Ensure images and iframes don't overflow */
-    }
-}
-@media (max-width: 480px) {
-    .left-column h1 {
-        font-size: 2rem;  /* Further reduce title font size */
-    }
-
-    .profile img {
-        width: 120px;
-        height: 120px;  /* Adjust profile image size */
-    }
-
-    .social-links a {
-        font-size: 1.2rem;  /* Adjust social link size */
-    }
-
-    .cv-button {
-        font-size: 0.9rem;  /* Slightly smaller button text */
-    }
-}
-
-
-
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manuel Couto</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js" defer></script>
 </head>
-<body>
-    <main>
-        <!-- Left Side -->
-        <div class="left-column">
-            <h1>Manuel Couto</h1>
-            <p>
-                I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.            </p>
-            <p>
-            Explore my projects and demos.
-    </p>
-            <div class="profile">
-                <img src="public/image 1.jfif" alt="Your Profile Photo">
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header Section -->
+  <header class="bg-white shadow-md py-6">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Manuel Couto</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#about" class="text-blue-600 hover:underline">About</a></li>
+          <li><a href="#projects" class="text-blue-600 hover:underline">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-12 bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+      <img src="public/me.jfif" alt="Your Name" class="w-32 h-32 mx-auto rounded-full border-4 border-blue-600">
+      <h2 class="text-2xl font-semibold mt-4">Manuel Couto</h2>
+      <p class="text-gray-600">I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.</p>
+      <div class="flex justify-center space-x-6 mt-6">
+        <a href="https://www.linkedin.com/in/coutooo/" class="text-blue-600 hover:underline">LinkedIn</a>
+        <a href="https://github.com/coutooo" class="text-blue-600 hover:underline">GitHub</a>
+        <a href="public/CV Manuel Couto.pdf" download class="text-blue-600 hover:underline">Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+<section id="tech-stack" class="py-12 bg-gray-50"></section>
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">What I learned in the process</h2>
+        <div class="relative overflow-hidden rounded-lg p-1 backdrop-blur-md bg-white/50 shadow-md">
+            <div class="flex space-x-4 animate-scroll justify-center">
+                <!-- Text for Tech Stacks -->
+                <span class="text-align font-semibold min-w-[100px] text-center">Swift</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Xcode</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">CoreData</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">SwiftUI</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">WidgetKit</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">AI</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Flutter</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">MongoDB</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">OpenAI</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Google Admob</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Android</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">TypeScript</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Next.js</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">JavaScript</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Dart</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Python</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Tesseract Js</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">OCR detection</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Chrome API</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">HTML</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">CSS</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">FFMPEG wasm</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">FFMPEG</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Webassembly</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Stripe</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Mailgun</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Flask</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">mqtt</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">InfluxDB</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">SQL</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">RSUs</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">CAMs</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">DENMs</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">SocketiO</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Java</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Android Studio</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">NFC</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Bluetooth</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Firebase</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Blockchain</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Hyperledger Sawtooth</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">C++</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">NS-3</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">hive</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">Biometric sensors</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">qr code scanners</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">gps</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">pedometers</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">maps</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">IPFS</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">VANETZA</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">VRUs</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">VAMs</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">MQTT brokers</span>
+                <span class="text-align font-semibold min-w-[100px] text-center">CID Tracker Database</span>
             </div>
+        </div>
+    </div>
+</section>
+  
 
-            <div class="social-links">
-                <a href="https://github.com/coutooo" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/coutooo/" target="_blank">LinkedIn</a>
+  <!-- Projects Section -->
+  <section id="projects" class="py-12">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <!-- Project Cards -->
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">LensesBuddy</h3>
+              <p class="text-gray-600 mt-2">LensesBuddy is the ultimate contact lens tracker designed to help you manage your lens usage and maintain a healthy eye care routine. Whether you wear daily, weekly, or monthly lenses, this app helps you track your lenses effortlessly, ensuring you never forget when to replace them.</p>
+              <a href="https://apps.apple.com/pt/app/lensesbuddy/id6738940136?l=en-GB" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
             </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Enigmas of Dark Stories</h3>
+              <p class="text-gray-600 mt-2">The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI...</p>
+              <a href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/bdaywidget.png" alt="B-day Widget" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">B-day Widget</h3>
+              <p class="text-gray-600 mt-2">Keep track of all your friends' special dates with ease! iOS app + Widget...</p>
+              <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Faceit Skill Rankings</h3>
+              <p class="text-gray-600 mt-2">A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes...</p>
+              <a href="https://faceitskill.com" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/redflag.jpg" alt="RedFlags Detector" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">RedFlags Detector</h3>
+              <p class="text-gray-600 mt-2">Webapp + Mobile App that uses AI to detect red flags in printed messages, also as a automated blog post generator using AI.</p>
+              <a href="https://www.findredflags.today/" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Vinted Chrome Extension</h3>
+              <p class="text-gray-600 mt-2">A browser extension for filtering items on Vinted by location...</p>
+              <a href="https://chromewebstore.google.com/detail/vinted-filter-by-location/ndeeghnjilpjgaphgfjaoioflnpijhkm" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <video src="public/videobulk.mp4" alt="Video Bulk" class="w-full h-40 object-cover rounded-md" controls></video>
+              <h3 class="text-xl font-semibold mt-4">Video Bulk</h3>
+              <p class="text-gray-600 mt-2">Automate your short-form content with a script to save time and boost consistency...</p>
+              <a href="https://www.videobulk.pro/" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <video src="public/cronos.mp4" alt="Cronos" class="w-full h-40 object-cover rounded-md" controls></video>
+              <h3 class="text-xl font-semibold mt-4">Cronos</h3>
+              <p class="text-gray-600 mt-2">Perpetuate your words even if you're not here. A way of leaving messages or important data for post-mortem situations or just to leave a message for the future...</p>
+              <a href="https://cronosgram.com/" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <video src="public/Video promocional Projeto ARC.mp4" alt="V2X: Medical Emergency Service" class="w-full h-40 object-cover rounded-md" controls></video>
+              <h3 class="text-xl font-semibold mt-4">V2X: Medical Emergency Service</h3>
+              <p id="v2x-description" class="text-gray-600 mt-2">
+                V2X communication is an emerging and innovative technology that enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment. This type of communication makes it possible to connect a vehicle not only to other vehicles, but also to infrastructure, the cellular/cloud network, and vulnerable road users (such as motorcyclists, cyclists and/or pedestrians), thus covering a wide range of applications from traditional infotainment cases to the most advanced cooperative and assisted driving functions.
+              </p>
+              <button id="read-more-btn-v2x" class="text-blue-600 hover:underline mt-4 block">Read More</button>
+              <a href="https://rodrigo740.github.io/" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/medtracking.jpg" alt="MedTracking" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">MedTracking</h3>
+              <p id="medtracking-description" class="text-gray-600 mt-2 overflow-hidden max-h-20">
+                Phone + Tablet app, phone : The MedTracking application is aimed primarily at nurses but it can be used by other health professionals, offering them the ability to follow their day-to-day tasks, access patient information quickly by scanning an NFC tag, keep track of medications administered through the cart functionality of the application(Tablet project) and the care to perform and already performed for each patient. With all these features, nurses have their tasks easier and do not need paper records or remembering tasks they have already done, allowing them to focus on their work without distractions. Tablet: The MedTracking for tablet is an application that simulates a medicine cart and is designed to work with the MedTracking application for phone.
+              </p>
+              <button id="read-more-btn" class="text-blue-600 hover:underline mt-4 block">Read More</button>
+              <a href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Blockchain-Based Authentication for NDN</h3>
+              <p class="text-gray-600 mt-2">Master Thesis - Security and Authentication in Named Data Networking...</p>
+              <a href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/park.jpg" alt="ParkBuddy in Flutter" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">ParkBuddy in Flutter</h3>
+              <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>
+              <a href="https://github.com/coutooo/ParkBuddy" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <img src="public/park2.jpg" alt="ParkBuddy in Android Studio" class="w-full h-40 object-cover rounded-md">
+              <h3 class="text-xl font-semibold mt-4">ParkBuddy in Android Studio</h3>
+              <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>
+              <a href="https://github.com/coutooo/ParkBuddy_AS" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          
+            <div class="bg-white shadow-md rounded-lg p-6">
+              <video src="public/demo-Walk and Seat.mp4" alt="Walk and Seat" class="w-full h-40 object-cover rounded-md" controls></video>
+              <h3 class="text-xl font-semibold mt-4">Walk and Seat</h3>
+              <p class="text-gray-600 mt-2">Our aim was to provide clients in the vicinity of the restaurants with access to relevant content, such as the number of avaliable tables and menus.</p>
+              <a href="https://github.com/coutooo/Walk-n-Seat" class="text-blue-600 hover:underline mt-4 block">Learn More</a>
+            </div>
+          </div>
+          
 
-            <a href="public/CV Manuel Couto.pdf" download>
-                <button class="cv-button">Download CV</button>
-            </a>
-            <footer>
-                <a href="policy.html" target="_blank">Policy Page</a>
-                <a>|</a>
-                <a href="support.html" target="_blank">Support Page</a>
-            </footer>
-        </div>
+        <!-- Add more projects similarly -->
 
-        <!-- Right Side -->
-        <div class="right-column" id="projects-container">
-            <!-- Projects will be dynamically loaded here -->
-        </div>
-        
-    </main>
+      </div>
+    </div>
+  </section>
 
-    <!-- Embedded JSON Data -->
-    <script id="projects-data" type="application/json">
-    [
-        {
-            "title": "Enigmas of Dark Stories",
-            "description": "The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI.",            "techStack": "Flutter, MongoDB, OpenAI, Google Admob, Swift, Xcode, Android",
-            "mediaType": "image",
-            "mediaSrc": "public/darkstories.jpeg",
-            "link": "https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029"
-        },
-        {
-            "title": "B-day Widget",
-            "description": "Keep track of all your friends' special dates with ease! iOS app + Widget", 
-            "techStack": "Swift, Xcode, WidgetKit, CoreData, SwiftUI, WidgetKit",
-            "mediaType": "image",
-            "mediaSrc": "public/bdaywidget.png",
-            "link": "https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2"
-        },
-        {
-            "title": "Faceit Skill Rankings",
-            "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
-            "techStack": "JavaScript, MongoDB, Node.js, Vercel, Html, Next.js",
-            "mediaType": "image",
-            "mediaSrc": "public/faceitskill.jfif",
-            "link": "https://faceitskill.com"
-        },
-        {
-            "title": "RedFlags Detector",
-            "description": "Webapp + Mobile App that uses AI to detect red flags in printed messages, also as a automated blog post generator using AI.",
-            "techStack": "Flutter, TypeScript, Next.js, MongoDB, JavaScript, Dart, Python, AI, Swift, Tesseract Js, OCR detection",
-            "mediaType": "image",
-            "mediaSrc": "public/redflag.jpg",
-            "link": "https://www.findredflags.today/"
-        },
-        {
-            "title": "Vinted Chrome Extension",
-            "description": "A browser extension for filtering items on Vinted by location, helping users find what they need more easily.",
-            "techStack": "JavaScript, Chrome API, HTML, CSS",
-            "mediaType": "image",
-            "mediaSrc": "public/vinted.jpg",
-            "link" : "https://chromewebstore.google.com/detail/vinted-filter-by-location/ndeeghnjilpjgaphgfjaoioflnpijhkm"
-        },
-        {
-            "title": "Video Bulk",
-            "description": "🚀 I’ve been automating my short-form content with a script and decided to share it with everyone through http://videobulk.pro ! Just create a TXT list of topics (I use ChatGPT) and pick a background for your shorts. Save time and boost consistency.",
-            "techStack": "FFMPEG wasm, FFMPEG, TypeScript, JavaScript, Next.js, MongoDB, Webassembly, Stripe",
-            "mediaType": "video",
-            "mediaSrc": "public/videobulk.mp4",
-            "link": "https://www.videobulk.pro/"
-        },
-        {
-            "title": "Cronos",
-            "description": "Perpetuate your words even if you're not here. A way of leaving messages or important data for post-mortem situations or just to leave a message for the future.",
-            "techStack": "Next.js, JavaScript, MongoDB, Node.js, Vercel, Html, Mailgun, Stripe",
-            "mediaType": "video",
-            "mediaSrc": "public/cronos.mp4",
-            "link": "https://cronosgram.com/"
-        },
-        {
-            "title": "V2X: Medical Emergency Service",
-            "description": "V2X communication is an emerging and innovative technology that enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment. This type of communication makes it possible to connect a vehicle not only to other vehicles, but also to infrastructure, the cellular/cloud network, and vulnerable road users (such as motorcyclists, cyclists and/or pedestrians), thus covering a wide range of applications from traditional infotainment cases to the most advanced cooperative and assisted driving functions.",
-            "techStack": "Flask, Python, React, mqtt. InfluxDB, SQL, RSUs (Road Side Units), CAMs (Cooperative Awareness Message), DENMs (Decentralized Environmental Notification Message), SocketiO",
-            "mediaType": "video",
-            "mediaSrc": "public/Video promocional Projeto ARC.mp4",
-            "link": "https://rodrigo740.github.io/"
-        },
-        {
-            "title": "MedTracking",
-            "description": "Phone + Tablet app, phone : The MedTracking application is aimed primarily at nurses but it can be used by other health professionals, offering them the ability to follow their day-to-day tasks, access patient information quickly by scanning an NFC tag, keep track of medications administered through the cart functionality of the application(Tablet project) and the care to perform and already performed for each patient. With all these features, nurses have their tasks easier and do not need paper records or remembering tasks they have already done, allowing them to focus on their work without distractions. Tablet: The MedTracking for tablet is an application that simulates a medicine cart and is designed to work with the MedTracking application for phone.",
-            "techStack": "Java, Android Studio, NFC, Bluethoot, Firebase.",
-            "mediaType": "image",
-            "mediaSrc": "public/medtracking.jpg",
-            "link": "https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf"
-        },
-        {
-            "title": "Blockchain-Based Authentication for NDN",
-            "description": "Master Thesis - Security and Authentication in Named Data Networking",
-            "techStack": "Blockchain using Hyperledger Sawtooth, C++, Python, Nextjs for a webapp, NS-3 based Named Data Networking (NDN) simulator",
-            "mediaType": "image",
-            "mediaSrc": "public/thesis.jpg",
-            "link": "public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf"
-        },
-        {
-            "title": "ParkBuddy in Flutter",
-            "description": "Made to be ur buddy on retainig your parking localization.",
-            "techStack": "Flutter, Firebase, Dart, hive",
-            "mediaType": "image",
-            "mediaSrc": "public/park.jpg",
-            "link": "https://github.com/coutooo/ParkBuddy"
-        },
-        {
-            "title": "ParkBuddy in Android Studio",
-            "description": "Made to be ur buddy on retainig your parking localization.",
-            "techStack": "Android Studio, Java, Biometric sensors, qr code scanners, gps, pedometers, maps",
-            "mediaType": "image",
-            "mediaSrc": "public/park2.jpg",
-            "link": "https://github.com/coutooo/ParkBuddy_AS"
-        },
-        {
-            "title": "Walk and Seat",
-            "description": "Our aim was to provide clients in the vicinity of the restaurants with access to relevant content, such as the number of avaliable tables and menus.",
-            "techStack": "IPFS, VANETZA (Vehicular Ad Hoc Network), RSUs (road side unit), VRUs (vulnerable road user), VAMs (vulnerable road user Awareness message), MQTT brokers, Python, Flask, CID Tracker Database for IPFS",
-            "mediaType": "video",
-            "mediaSrc": "public/demo-Walk and Seat.mp4",
-            "link": "https://github.com/coutooo/Walk-n-Seat"
-        }
-    ]
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const projectsData = document.getElementById('projects-data').textContent;
-            const projects = JSON.parse(projectsData);
-            const container = document.getElementById('projects-container');
-            
-            projects.forEach(project => {
-                const projectDiv = document.createElement('div');
-                projectDiv.classList.add('project');
-
-                const title = document.createElement('h2');
-                title.textContent = project.title;
-                projectDiv.appendChild(title);
-
-                const description = document.createElement('p');
-                description.textContent = project.description;
-                projectDiv.appendChild(description);
-
-                const techStack = document.createElement('p');
-                techStack.classList.add('tech-stack');
-                techStack.textContent = `Tech Stack: ${project.techStack}`;
-                projectDiv.appendChild(techStack);
-
-                if (project.mediaType === 'video') {
-                    const video = document.createElement('video');
-                    video.classList.add('demo-media');
-                    video.controls = true;
-
-                    const source = document.createElement('source');
-                    source.src = project.mediaSrc;
-                    source.type = 'video/mp4';
-                    video.appendChild(source);
-
-                    projectDiv.appendChild(video);
-                } else if (project.mediaType === 'image') {
-                    const img = document.createElement('img');
-                    img.classList.add('demo-media');
-                    if (project.title === "Faceit Skill Rankings") {
-                        img.classList.add('small-image');
-                    }
-                    img.src = project.mediaSrc;
-                    img.alt = `${project.title} Demo`;
-                    projectDiv.appendChild(img);
-                } else if (project.mediaType === 'pdf') {
-                    const pdfLink = document.createElement('a');
-                    pdfLink.href = project.mediaSrc;
-                    pdfLink.classList.add('pdf-link');
-                    pdfLink.textContent = "Download PDF";
-                    pdfLink.download = project.mediaSrc.split('/').pop();
-                    projectDiv.appendChild(pdfLink);
-                }
-
-                if (project.link) {
-                    const link = document.createElement('a');
-                    link.href = project.link;
-                    link.target = "_blank";
-                    link.classList.add('project-link');
-                    link.textContent = "Visit Website";
-                    projectDiv.appendChild(link);
-                }
-
-                container.appendChild(projectDiv);
-            });
-        });
-    </script>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-100 py-6">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 Manuel Couto. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
-
 </html>

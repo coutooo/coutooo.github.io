@@ -1,0 +1,25 @@
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+    }
+
+    .animate-scroll {
+    display: inline-flex;
+    animation: scroll 15s linear infinite;
+    }
+
+    #medtracking-description,
+    #v2x-description {
+    max-height: 4.5em; /* Adjust this value to fit approximately 4 lines */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    }
+
+    #medtracking-description.expanded,
+    #v2x-description.expanded {
+    max-height: none;
+    }

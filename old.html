@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manuel Couto</title>
+    <style>
+        :root {
+            --primary-color: #3E2723;      /* Very dark brown */
+            --secondary-color: #6D4C41;    /* Darker brown */
+            --accent-color: #4E342E;       /* Rich accent brown */
+            --background-color: #2D1B14;   /* Deep brown background */
+            --text-light-color: #D7CCC8;   /* Light beige for text */
+            --text-dark-color: #3E2723;    /* Dark brown for text */
+            --box-shadow-color: rgba(62, 39, 35, 0.15);  /* Shadow with a dark brown tone */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full viewport height */
+            overflow-x: hidden;
+            transition: background 0.3s ease; /* Smooth transition */
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px var(--box-shadow-color);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .left-column {
+            background-color: var(--secondary-color);
+            padding: 30px 20px; /* Reduced padding for more space */
+            display: flex;
+            flex-direction: column;
+            justify-content: start; /* Align content to the top */
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            max-height: 100%; /* Ensure it takes full height */
+        }
+
+        .left-column::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 10px;
+        }
+
+
+        .left-column h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light-color);
+        }
+
+        .left-column p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: var(--text-light-color);
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            margin-top: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile img:hover {
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.8rem;
+            color: var(--text-light-color);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .cv-button {
+            margin-top: 35px;
+            padding: 14px 28px;
+            background: var(--accent-color);
+            color: var(--text-light-color);
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .cv-button:hover {
+            background: var(--text-light-color);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+
+        .right-column {
+            padding: 40px;
+            background-color: var(--background-color);
+            overflow-y: auto;
+            height: 100%;
+            animation: slideIn 1.2s ease-in-out;
+        }
+
+        .project {
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 25px var(--box-shadow-color);
+            color: var(--text-light-color);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .project:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 35px var(--box-shadow-color);
+        }
+
+        .project h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .project p {
+            margin: 0;
+            opacity: 0.85;
+            text-align: center;
+        }
+
+        .tech-stack {
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .demo-media {
+            display: block;
+            margin-top: 20px;
+            max-width: 90%; /* Prevents images/videos from being too wide */
+            max-height: 400px; /* Limits the maximum height */
+            min-width: 250px; /* Ensures a minimum size for smaller content */
+            border-radius: 15px;
+            border: 3px solid var(--accent-color);
+            object-fit: cover; /* Ensures media scales proportionally */
+            transition: transform 0.3s;
+        }
+
+        .demo-media:hover {
+            transform: scale(1.03);
+        }
+
+        .right-column::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .right-column::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 15px;
+        }
+
+        .project-link {
+            display: block;
+            margin-top: 10px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            color: var(--text-light-color);
+            text-align: center;
+            width: 100%;
+        }
+
+        footer a {
+            color: var(--text-light-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+        
+        .carousel-image {
+            flex: 0 0 auto;
+            width: 200px; /* Keep the specified image size */
+            height: 400px; /* Maintain aspect ratio */
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            scroll-snap-align: center;
+        }
+        
+        .carousel-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .carousel-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            position: relative;
+            top: -50px; /* Adjust this value as needed */
+            width: 100%;
+        }
+        
+        .carousel-button {
+            background-color: var(--primary-color);
+            color: var(--text-light-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        
+        .carousel-button:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+    main {
+        display: flex;  /* Stack columns vertically */
+        flex-direction: column;
+        width: 100%;    /* Full width on mobile */
+        height: auto;   /* Let height adjust naturally */
+    }
+
+    .left-column, .right-column {
+        padding: 20px;
+        height: auto;   /* Let columns adjust to content */
+        width: auto;    /* Ensure full width */
+    }
+
+    .left-column h1 {
+        font-size: 2.5rem;  /* Reduce title font size */
+    }
+
+    .left-column p {
+        font-size: 1rem;  /* Adjust paragraph font size */
+    }
+
+    .cv-button {
+        padding: 10px 20px; /* Reduce button size */
+    }
+
+    .project {
+        padding: 15px; /* Reduce project padding */
+    }
+
+    .project h2 {
+        font-size: 1.5rem;  /* Reduce project title font size */
+    }
+
+    img, iframe {
+        max-width: 100%;  /* Ensure images and iframes don't overflow */
+    }
+}
+@media (max-width: 480px) {
+    .left-column h1 {
+        font-size: 2rem;  /* Further reduce title font size */
+    }
+
+    .profile img {
+        width: 120px;
+        height: 120px;  /* Adjust profile image size */
+    }
+
+    .social-links a {
+        font-size: 1.2rem;  /* Adjust social link size */
+    }
+
+    .cv-button {
+        font-size: 0.9rem;  /* Slightly smaller button text */
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <!-- Left Side -->
+        <div class="left-column">
+            <h1>Manuel Couto</h1>
+            <p>
+                I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.            </p>
+            <p>
+            Explore my projects and demos.
+    </p>
+            <div class="profile">
+                <img src="public/image 1.jfif" alt="Your Profile Photo">
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/coutooo" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/coutooo/" target="_blank">LinkedIn</a>
+            </div>
+
+            <a href="public/CV Manuel Couto.pdf" download>
+                <button class="cv-button">Download CV</button>
+            </a>
+            <footer>
+                <a href="policy.html" target="_blank">Policy Page</a>
+                <a>|</a>
+                <a href="support.html" target="_blank">Support Page</a>
+            </footer>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-column" id="projects-container">
+            <!-- Projects will be dynamically loaded here -->
+        </div>
+        
+    </main>
+
+    <!-- Embedded JSON Data -->
+    <script id="projects-data" type="application/json">
+    [
+        {
+            "title": "LensesBuddy",
+            "description": "LensesBuddy is the ultimate contact lens tracker designed to help you manage your lens usage and maintain a healthy eye care routine. Whether you wear daily, weekly, or monthly lenses, this app helps you track your lenses effortlessly, ensuring you never forget when to replace them.",
+            "techStack": "Swift, Xcode, CoreData, SwiftUI, WidgetKit, AI",
+            "mediaType": "carousel",
+            "mediaSrc": ["public/Lensesbuddy/AppLogo.png", "public/Lensesbuddy/1.png", "public/Lensesbuddy/2.png", "public/Lensesbuddy/3.png", "public/Lensesbuddy/4.png", "public/Lensesbuddy/5.png", "public/LensesBuddy/6.png", "public/LensesBuddy/7.png"],
+            "link": "https://apps.apple.com/pt/app/lensesbuddy/id6738940136?l=en-GB"
+        },
+        {
+            "title": "Enigmas of Dark Stories",
+            "description": "The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI.",            
+            "techStack": "Flutter, MongoDB, OpenAI, Google Admob, Swift, Xcode, Android",
+            "mediaType": "image",
+            "mediaSrc": "public/darkstories.jpeg",
+            "link": "https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029"
+        },
+        {
+            "title": "B-day Widget",
+            "description": "Keep track of all your friends' special dates with ease! iOS app + Widget", 
+            "techStack": "Swift, Xcode, WidgetKit, CoreData, SwiftUI, WidgetKit",
+            "mediaType": "image",
+            "mediaSrc": "public/bdaywidget.png",
+            "link": "https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2"
+        },
+        {
+            "title": "Faceit Skill Rankings",
+            "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
+            "techStack": "JavaScript, MongoDB, Node.js, Vercel, Html, Next.js",
+            "mediaType": "image",
+            "mediaSrc": "public/faceitskill.jfif",
+            "link": "https://faceitskill.com"
+        },
+        {
+            "title": "RedFlags Detector",
+            "description": "Webapp + Mobile App that uses AI to detect red flags in printed messages, also as a automated blog post generator using AI.",
+            "techStack": "Flutter, TypeScript, Next.js, MongoDB, JavaScript, Dart, Python, AI, Swift, Tesseract Js, OCR detection",
+            "mediaType": "image",
+            "mediaSrc": "public/redflag.jpg",
+            "link": "https://www.findredflags.today/"
+        },
+        {
+            "title": "Vinted Chrome Extension",
+            "description": "A browser extension for filtering items on Vinted by location, helping users find what they need more easily.",
+            "techStack": "JavaScript, Chrome API, HTML, CSS",
+            "mediaType": "image",
+            "mediaSrc": "public/vinted.jpg",
+            "link" : "https://chromewebstore.google.com/detail/vinted-filter-by-location/ndeeghnjilpjgaphgfjaoioflnpijhkm"
+        },
+        {
+            "title": "Video Bulk",
+            "description": "🚀 I’ve been automating my short-form content with a script and decided to share it with everyone through http://videobulk.pro ! Just create a TXT list of topics (I use ChatGPT) and pick a background for your shorts. Save time and boost consistency.",
+            "techStack": "FFMPEG wasm, FFMPEG, TypeScript, JavaScript, Next.js, MongoDB, Webassembly, Stripe",
+            "mediaType": "video",
+            "mediaSrc": "public/videobulk.mp4",
+            "link": "https://www.videobulk.pro/"
+        },
+        {
+            "title": "Cronos",
+            "description": "Perpetuate your words even if you're not here. A way of leaving messages or important data for post-mortem situations or just to leave a message for the future.",
+            "techStack": "Next.js, JavaScript, MongoDB, Node.js, Vercel, Html, Mailgun, Stripe",
+            "mediaType": "video",
+            "mediaSrc": "public/cronos.mp4",
+            "link": "https://cronosgram.com/"
+        },
+        {
+            "title": "V2X: Medical Emergency Service",
+            "description": "V2X communication is an emerging and innovative technology that enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment. This type of communication makes it possible to connect a vehicle not only to other vehicles, but also to infrastructure, the cellular/cloud network, and vulnerable road users (such as motorcyclists, cyclists and/or pedestrians), thus covering a wide range of applications from traditional infotainment cases to the most advanced cooperative and assisted driving functions.",
+            "techStack": "Flask, Python, React, mqtt. InfluxDB, SQL, RSUs (Road Side Units), CAMs (Cooperative Awareness Message), DENMs (Decentralized Environmental Notification Message), SocketiO",
+            "mediaType": "video",
+            "mediaSrc": "public/Video promocional Projeto ARC.mp4",
+            "link": "https://rodrigo740.github.io/"
+        },
+        {
+            "title": "MedTracking",
+            "description": "Phone + Tablet app, phone : The MedTracking application is aimed primarily at nurses but it can be used by other health professionals, offering them the ability to follow their day-to-day tasks, access patient information quickly by scanning an NFC tag, keep track of medications administered through the cart functionality of the application(Tablet project) and the care to perform and already performed for each patient. With all these features, nurses have their tasks easier and do not need paper records or remembering tasks they have already done, allowing them to focus on their work without distractions. Tablet: The MedTracking for tablet is an application that simulates a medicine cart and is designed to work with the MedTracking application for phone.",
+            "techStack": "Java, Android Studio, NFC, Bluethoot, Firebase.",
+            "mediaType": "image",
+            "mediaSrc": "public/medtracking.jpg",
+            "link": "https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf"
+        },
+        {
+            "title": "Blockchain-Based Authentication for NDN",
+            "description": "Master Thesis - Security and Authentication in Named Data Networking",
+            "techStack": "Blockchain using Hyperledger Sawtooth, C++, Python, Nextjs for a webapp, NS-3 based Named Data Networking (NDN) simulator",
+            "mediaType": "image",
+            "mediaSrc": "public/thesis.jpg",
+            "link": "public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf"
+        },
+        {
+            "title": "ParkBuddy in Flutter",
+            "description": "Made to be ur buddy on retainig your parking localization.",
+            "techStack": "Flutter, Firebase, Dart, hive",
+            "mediaType": "image",
+            "mediaSrc": "public/park.jpg",
+            "link": "https://github.com/coutooo/ParkBuddy"
+        },
+        {
+            "title": "ParkBuddy in Android Studio",
+            "description": "Made to be ur buddy on retainig your parking localization.",
+            "techStack": "Android Studio, Java, Biometric sensors, qr code scanners, gps, pedometers, maps",
+            "mediaType": "image",
+            "mediaSrc": "public/park2.jpg",
+            "link": "https://github.com/coutooo/ParkBuddy_AS"
+        },
+        {
+            "title": "Walk and Seat",
+            "description": "Our aim was to provide clients in the vicinity of the restaurants with access to relevant content, such as the number of avaliable tables and menus.",
+            "techStack": "IPFS, VANETZA (Vehicular Ad Hoc Network), RSUs (road side unit), VRUs (vulnerable road user), VAMs (vulnerable road user Awareness message), MQTT brokers, Python, Flask, CID Tracker Database for IPFS",
+            "mediaType": "video",
+            "mediaSrc": "public/demo-Walk and Seat.mp4",
+            "link": "https://github.com/coutooo/Walk-n-Seat"
+        }
+    ]
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const projectsData = document.getElementById('projects-data').textContent;
+        const projects = JSON.parse(projectsData);
+        const container = document.getElementById('projects-container');
+        
+        projects.forEach(project => {
+            const projectDiv = document.createElement('div');
+            projectDiv.classList.add('project');
+        
+            const title = document.createElement('h2');
+            title.textContent = project.title;
+            projectDiv.appendChild(title);
+        
+            const description = document.createElement('p');
+            description.textContent = project.description;
+            projectDiv.appendChild(description);
+        
+            const techStack = document.createElement('p');
+            techStack.classList.add('tech-stack');
+            techStack.textContent = `Tech Stack: ${project.techStack}`;
+            projectDiv.appendChild(techStack);
+        
+            if (project.mediaType === 'carousel') {
+                const carousel = document.createElement('div');
+                carousel.classList.add('carousel');
+        
+                project.mediaSrc.forEach(src => {
+                    const img = document.createElement('img');
+                    img.classList.add('carousel-image');
+                    img.src = src;
+                    img.alt = `${project.title} Carousel Image`;
+                    carousel.appendChild(img);
+                });
+        
+                projectDiv.appendChild(carousel);
+    
+                const carouselNavigation = document.createElement('div');
+                carouselNavigation.classList.add('carousel-navigation');
+                carouselNavigation.innerHTML = `
+                    <button class="carousel-button">Previous</button>
+                    <button class="carousel-button">Next</button>
+                `;
+                projectDiv.appendChild(carouselNavigation);
+            } else if (project.mediaType === 'video') {
+                const video = document.createElement('video');
+                video.classList.add('demo-media');
+                video.controls = true;
+        
+                const source = document.createElement('source');
+                source.src = project.mediaSrc;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+        
+                projectDiv.appendChild(video);
+            } else if (project.mediaType === 'image') {
+                const img = document.createElement('img');
+                img.classList.add('demo-media');
+                img.src = project.mediaSrc;
+                img.alt = `${project.title} Demo`;
+                projectDiv.appendChild(img);
+            } else if (project.mediaType === 'pdf') {
+                const pdfLink = document.createElement('a');
+                pdfLink.href = project.mediaSrc;
+                pdfLink.classList.add('pdf-link');
+                pdfLink.textContent = "Download PDF";
+                pdfLink.download = project.mediaSrc.split('/').pop();
+                projectDiv.appendChild(pdfLink);
+            }
+        
+            if (project.link) {
+                const link = document.createElement('a');
+                link.href = project.link;
+                link.target = "_blank";
+                link.classList.add('project-link');
+                link.textContent = "Visit Website";
+                projectDiv.appendChild(link);
+            }
+        
+            container.appendChild(projectDiv);
+        });
+    });
+    </script>
+
+
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousels = document.querySelectorAll('.carousel');
+    
+        carousels.forEach(carousel => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+    
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carousel.classList.add('active');
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+    
+            carousel.addEventListener('mouseleave', () => {
+                isDown = false;
+                carousel.classList.remove('active');
+            });
+    
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+                carousel.classList.remove('active');
+            });
+    
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 3; //scroll-fast
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+    
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - carousel.offsetLeft;
+                scrollLeft = carousel.scrollLeft;
+            });
+    
+            carousel.addEventListener('touchmove', (e) => {
+                const x = e.touches[0].pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 3; //scroll-fast
+                carousel.scrollLeft = scrollLeft - walk;
+            });
+    
+            const nextButton = carousel.parentElement.querySelector('.carousel-button.next');
+            const prevButton = carousel.parentElement.querySelector('.carousel-button.prev');
+    
+            nextButton.addEventListener('click', () => {
+                carousel.scrollBy({ left: 200, behavior: 'smooth' });
+            });
+    
+            prevButton.addEventListener('click', () => {
+                carousel.scrollBy({ left: -200, behavior: 'smooth' });
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

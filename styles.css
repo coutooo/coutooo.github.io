@@ -6,7 +6,7 @@
     
     .scroll-content {
         display: inline-flex;
-        animation: scroll 60s linear infinite; /* Increased duration to 120s */
+        animation: scroll 120s linear infinite; /* Increased duration to 120s */
     }
     
     .scroll-item {

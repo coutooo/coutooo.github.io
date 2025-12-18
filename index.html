@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manuel Couto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="script.js" defer></script>
@@ -11,13 +14,13 @@
 <body class="bg-gray-100 text-gray-800">
   <!-- Header Section -->
   <header class="bg-white shadow-md py-6">
-    <div class="container mx-auto px-6 flex justify-between items-center">
+    <div class="container mx-auto px-6 flex justify-between items-center header-inner">
       <h1 class="text-xl font-bold text-brown-500 flex items-center">
         <span>👋</span>
         <span class="mx-2">Wishing you a great day!</span>
         <span>😊</span>
       </h1>
-      <nav>
+      <nav class="primary-nav">
         <ul class="flex space-x-4">
           <li><a href="#about" class="text-blue-600 hover:underline">About</a></li>
           <li><a href="#projects" class="text-blue-600 hover:underline">Projects</a></li>
@@ -32,7 +35,7 @@
       <img src="public/me.jfif" alt="Your Name" class="w-32 h-32 mx-auto rounded-full border-4 border-blue-600">
       <h2 class="text-2xl font-semibold mt-4">Manuel Couto</h2>
       <p class="text-gray-600">I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.</p>
-      <div class="flex justify-center space-x-6 mt-6">
+      <div class="flex flex-wrap justify-center gap-3 mt-6 text-sm md:text-base profile-links">
         <a href="https://www.linkedin.com/in/coutooo/" class="text-blue-600 hover:underline">LinkedIn</a>
         <a href="https://github.com/coutooo" class="text-blue-600 hover:underline">GitHub</a>
         <a href="public/CV Manuel Couto.pdf" download class="text-blue-600 hover:underline">Download CV</a>
@@ -119,93 +122,107 @@
   <section id="projects" class="py-12">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 projects-grid">
         <!-- Project Cards -->
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/SwipeClean/icon.png" alt="SwipeClean – Clean Up Photos" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">SwipeClean – Clean Up Photos</h3>
               <p class="text-gray-600 mt-2">Clean up photos fast: swipe to keep or delete, confirm before removal, and track storage freed.</p>
               <a href="SwipeClean.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">LensesBuddy</h3>
               <p class="text-gray-600 mt-2">LensesBuddy is the ultimate contact lens tracker designed to help you manage your lens usage and maintain a healthy eye care routine. Whether you wear daily, weekly, or monthly lenses, this app helps you track your lenses effortlessly, ensuring you never forget when to replace them.</p>
               <a href="LensesBuddy.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/SlideFactory/logo.png" alt="Slide Factory – AI Viral Maker" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">Slide Factory – AI Viral Maker</h3>
               <p class="text-gray-600 mt-2">Turn raw ideas into scroll-stopping viral carousels, scripts, hooks and visuals – all powered by AI.</p>
               <a href="SlideFactory.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
+              <img src="public/HobbyDogging/icon.png" alt="Hobby Dogging – Invisible Dog Walk" class="w-full h-40 object-contain rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Hobby Dogging – Invisible Dog</h3>
+              <p class="text-gray-600 mt-2">Walk an imaginary dog with a real leash, track playful sessions, and level up moods, styles, and streaks.</p>
+              <a href="HobbyDogging.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
+            </div>
+
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
+              <img src="public/DeathDebt/icon_s.png" alt="Death Debt – Gain with Gaming" class="w-full h-40 object-contain rounded-md">
+              <h3 class="text-xl font-semibold mt-4">Death Debt – Gain with Gaming</h3>
+              <p class="text-gray-600 mt-2">Turn every in-game death into real pushups, track streaks, unlock badges, and compete on gamer fitness leaderboards.</p>
+              <a href="DeathDebt.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
+            </div>
+
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/StichIt/logo.png" alt="StichIt – Cross Stitch Creator" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">StichIt – Cross Stitch Creator</h3>
               <p class="text-gray-600 mt-2">Convert any photo into a cross stitch pattern, edit stitches with full DMC palettes, and export printable charts to start stitching fast.</p>
               <a href="StichIt.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/RetroBlocks/icon.png" alt="Retro Blocks – Classic Puzzle" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">Retro Blocks – Classic Puzzle</h3>
               <p class="text-gray-600 mt-2">A nostalgic puzzle game that brings back the classic block-stacking fun with a modern twist.</p>
               <a href="RetroBlocks.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/onCamScripter/logo.png" alt="On-Cam Script Prompter" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">On-Cam Script Prompter</h3>
               <p class="text-gray-600 mt-2">Professional teleprompter app for seamless video recording and content creation. Perfect for YouTubers, presenters, and content creators who want to maintain eye contact while delivering their message.</p>
               <a href="OnCamScriptPrompter.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/TheSquare/thesquare_logo.png" alt="The Square: Idle Game" class="w-full h-40 object-contain rounded-md">
               <h3 class="text-xl font-semibold mt-4">The Square: Idle Game</h3>
               <p class="text-gray-600 mt-2">An engaging idle game where you manage and upgrade your square to progress through various levels and challenges.</p>
               <a href="TheSquare.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">Faceit Skill Rankings</h3>
               <p class="text-gray-600 mt-2">A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes...</p>
               <a href="https://faceitskill.com" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">Blockchain-Based Authentication for NDN</h3>
               <p class="text-gray-600 mt-2">Master Thesis - Security and Authentication in Named Data Networking...</p>
               <a href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/bdaywidget.png" alt="B-day Widget" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">B-day Widget</h3>
               <p class="text-gray-600 mt-2">Keep track of all your friends' special dates with ease! iOS app + Widget...</p>
               <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/redflag.jpg" alt="RedFlags Detector" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">RedFlags Detector</h3>
               <p class="text-gray-600 mt-2">Mobile App that uses AI to detect red flags in printed messages, also as a automated blog post generator using AI.</p>
               <a href="https://apps.apple.com/pt/app/red-flags-detector-texting/id6630375062?l=en-GB&platform=iphone" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">Vinted Chrome Extension</h3>
               <p class="text-gray-600 mt-2">A browser extension for filtering items on Vinted by location...</p>
               <a href="https://vintedfilterbylocation.vercel.app/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-             <div class="bg-white shadow-md rounded-lg p-6">
+             <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <video src="public/Video promocional Projeto ARC.mp4" alt="V2X: Medical Emergency Service" class="w-full h-40 object-cover rounded-md" controls></video>
               <h3 class="text-xl font-semibold mt-4">V2X: Medical Emergency Service</h3>
               <p id="v2x-description" class="text-gray-600 mt-2">
@@ -215,28 +232,28 @@
               <a href="https://rodrigo740.github.io/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <video src="public/demo-Walk and Seat.mp4" alt="Walk and Seat" class="w-full h-40 object-cover rounded-md" controls></video>
               <h3 class="text-xl font-semibold mt-4">Walk and Seat</h3>
               <p class="text-gray-600 mt-2">Our aim was to provide clients in the vicinity of the restaurants with access to relevant content, such as the number of avaliable tables and menus.</p>
               <a href="https://github.com/coutooo/Walk-n-Seat" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <video src="public/videobulk.mp4" alt="Video Bulk" class="w-full h-40 object-cover rounded-md" controls></video>
               <h3 class="text-xl font-semibold mt-4">Video Bulk</h3>
               <p class="text-gray-600 mt-2">Automate your short-form content with a script to save time and boost consistency...</p>
               <a href="https://www.videobulk.pro/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <video src="public/cronos.mp4" alt="Cronos" class="w-full h-40 object-cover rounded-md" controls></video>
               <h3 class="text-xl font-semibold mt-4">Cronos</h3>
               <p class="text-gray-600 mt-2">Perpetuate your words even if you're not here. A way of leaving messages or important data for post-mortem situations or just to leave a message for the future...</p>
               <a href="https://cronosgram.com/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/medtracking.jpg" alt="MedTracking" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">MedTracking</h3>
               <p id="medtracking-description" class="text-gray-600 mt-2 overflow-hidden max-h-20">
@@ -246,21 +263,21 @@
               <a href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">Enigmas of Dark Stories</h3>
               <p class="text-gray-600 mt-2">The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI...</p>
               <a href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/park.jpg" alt="ParkBuddy in Flutter" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">ParkBuddy in Flutter</h3>
               <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>
               <a href="https://github.com/coutooo/ParkBuddy" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
             </div>
           
-            <div class="bg-white shadow-md rounded-lg p-6">
+            <div class="bg-white shadow-md rounded-lg p-6 project-card">
               <img src="public/park2.jpg" alt="ParkBuddy in Android Studio" class="w-full h-40 object-cover rounded-md">
               <h3 class="text-xl font-semibold mt-4">ParkBuddy in Android Studio</h3>
               <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>

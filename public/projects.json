@@ -1,5 +1,21 @@
 [
     {
+        "title": "Hobby Dogging – Invisible Dog",
+        "description": "Track playful invisible dog walks, earn XP, and unlock moods, leash styles, and streaks right on your phone.",
+        "techStack": "Swift, SwiftUI, CoreMotion, HealthKit",
+        "mediaType": "image",
+        "mediaSrc": "public/HobbyDogging/icon.png",
+        "page": "HobbyDogging.html"
+    },
+    {
+        "title": "Death Debt – Gain with Gaming",
+        "description": "Every in-game death becomes a pushup. Track fitness debt, streaks, badges, and leaderboard progress built for gamers.",
+        "techStack": "Swift, SwiftUI, HealthKit, GameKit",
+        "mediaType": "image",
+        "mediaSrc": "public/DeathDebt/icon_s.png",
+        "page": "DeathDebt.html"
+    },
+    {
         "title": "Faceit Skill Rankings",
         "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
         "techStack": "JavaScript, MongoDB, Node.js, Vercel",

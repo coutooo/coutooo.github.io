@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Debt – Gain with Gaming</title>
+    <meta name="description" content="Turn every in-game death into real pushups. Track fitness debt, streaks, and achievements built for gamers.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --void: #05060b;
+            --glow: #4ade80;
+            --crimson: #fb7185;
+            --violet: #6d28d9;
+            --panel: rgba(5, 6, 11, 0.75);
+            --line: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #1a1035 0%, #090a13 45%, #020205 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        a.back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(2, 2, 5, 0.5);
+            color: #f8fafc;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 22px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 36px;
+            background: linear-gradient(135deg, rgba(5, 6, 11, 0.8), rgba(38, 16, 69, 0.75));
+            border: 1px solid var(--line);
+            box-shadow: 0 40px 120px rgba(5, 6, 11, 0.8);
+        }
+
+        .hero img {
+            width: 130px;
+            height: 130px;
+            border-radius: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 5vw, 3.8rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            font-size: 1.2rem;
+            color: rgba(248, 250, 252, 0.78);
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 16px 34px;
+            border-radius: 18px;
+            font-weight: 700;
+            color: #020205;
+            background: linear-gradient(120deg, var(--glow), var(--crimson));
+            box-shadow: 0 18px 45px rgba(250, 113, 133, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 70px rgba(74, 222, 128, 0.35);
+        }
+
+        .metrics {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+
+        .metric-card {
+            padding: 22px;
+            border-radius: 24px;
+            background: rgba(248, 250, 252, 0.06);
+            border: 1px solid var(--line);
+            text-align: left;
+        }
+
+        .metric-card span {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(248, 250, 252, 0.65);
+        }
+
+        .metric-card h3 {
+            font-size: 2.2rem;
+            margin-top: 8px;
+            color: var(--glow);
+        }
+
+        .glass-section {
+            margin-top: 40px;
+            padding: 45px;
+            border-radius: 32px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .section-lead {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 32px;
+            color: rgba(248, 250, 252, 0.75);
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            padding: 28px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-card strong {
+            font-size: 1.2rem;
+        }
+
+        .feature-card p {
+            color: rgba(248, 250, 252, 0.7);
+            line-height: 1.6;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(109, 40, 217, 0.2);
+            border: 1px solid rgba(109, 40, 217, 0.5);
+            font-size: 1.6rem;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .flow-step {
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px dashed rgba(248, 250, 252, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .flow-step h4 {
+            color: var(--crimson);
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 12px;
+        }
+
+        .flow-step p {
+            color: rgba(248, 250, 252, 0.78);
+            line-height: 1.6;
+        }
+
+        .screens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .screen-card {
+            width: min(280px, 100%);
+            padding: 18px;
+            border-radius: 26px;
+            background: rgba(5, 6, 11, 0.7);
+            border: 1px solid var(--line);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .screen-card img {
+            width: 100%;
+            border-radius: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 12px;
+        }
+
+        .screen-card span {
+            font-size: 0.95rem;
+            color: rgba(248, 250, 252, 0.7);
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .pill-list span {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(74, 222, 128, 0.4);
+            background: rgba(74, 222, 128, 0.15);
+            color: #f8fafc;
+            font-size: 0.92rem;
+        }
+
+        footer {
+            margin-top: 55px;
+            text-align: center;
+            color: rgba(248, 250, 252, 0.6);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 110px 16px 70px;
+            }
+
+            .hero {
+                padding: 45px 20px;
+            }
+
+            .glass-section {
+                padding: 32px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <main class="container">
+        <header class="hero">
+            <img src="public/DeathDebt/icon_s.png" alt="Death Debt App Icon">
+            <h1>Death Debt</h1>
+            <p>Every time you die in-game, you owe your body real pushups. Death Debt tracks that promise, logs distance, calories, and streaks, and turns your gaming habit into a fitness loop that actually sticks.</p>
+            <a class="cta-btn" href="https://apps.apple.com/us/app/death-debt-gain-with-gaming/id6755499433" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+
+            <div class="metrics">
+                <div class="metric-card">
+                    <span>Daily Pushup Debt</span>
+                    <h3>0 ➜ Paid</h3>
+                </div>
+                <div class="metric-card">
+                    <span>Challenge Streaks</span>
+                    <h3>30 Days</h3>
+                </div>
+                <div class="metric-card">
+                    <span>Party Leaderboard</span>
+                    <h3>#03</h3>
+                </div>
+            </div>
+        </header>
+
+        <section class="glass-section">
+            <h2 class="section-title">Fitness motivation for gamers</h2>
+            <p class="section-lead">Death Debt is a workout accountability partner that speaks your language. Track every death-to-exercise conversion, keep stats for daily, weekly, and lifetime effort, and climb leaderboards with friends who are also turning defeats into reps.</p>
+
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <strong>Every death = work</strong>
+                    <p>Log kills, deaths, or wipes from any game and instantly see how many pushups, squats, or burpees you owe yourself.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <strong>Stats that matter</strong>
+                    <p>Daily, weekly, lifetime summaries, plus calorie estimates using your age, weight, and workout time for accuracy.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🏅</div>
+                    <strong>Achievements & badges</strong>
+                    <p>Collect exclusive badges for streaks, high-effort days, and cleared debt milestones to keep the grind rewarding.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <strong>Community accountability</strong>
+                    <p>Invite friends, compare streaks on leaderboards, and push each other through weekly or monthly squad challenges.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="glass-section">
+            <h2 class="section-title">Loop your gameplay into workouts</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <h4>01 • Log the death</h4>
+                    <p>Finish a match, add your death count, and watch the app translate it into a fitness “debt” with your chosen exercise.</p>
+                </div>
+                <div class="flow-step">
+                    <h4>02 • Pay it back</h4>
+                    <p>Knock out the reps. Use built-in timers or log manual sessions with custom exercise types, dates, and notes.</p>
+                </div>
+                <div class="flow-step">
+                    <h4>03 • Flex the receipts</h4>
+                    <p>Share badges, climb the leaderboard, and keep streak reminders on so you never let a losing streak go unpaid.</p>
+                </div>
+            </div>
+            <div class="pill-list">
+                <span>Gamified accountability</span>
+                <span>Customizable routines</span>
+                <span>Friendly reminders</span>
+                <span>Private local data</span>
+                <span>iPhone & iPad ready</span>
+            </div>
+        </section>
+
+        <section class="glass-section">
+            <h2 class="section-title">Screens from the app</h2>
+            <p class="section-lead">Tactile neon UI built for low-light gaming setups, but clear enough to review in daylight.</p>
+            <div class="screens">
+                <div class="screen-card">
+                    <img src="public/DeathDebt/Preview 5.png" alt="Dashboard showing pushup debt and streaks">
+                    <span>Pushup bank with daily, weekly, lifetime snapshots.</span>
+                </div>
+                <div class="screen-card">
+                    <img src="public/DeathDebt/Preview 6.png" alt="Challenge cards and achievements">
+                    <span>Squad challenges and achievements to keep motivation high.</span>
+                </div>
+                <div class="screen-card">
+                    <img src="public/DeathDebt/Preview 7.png" alt="Manual workout logger">
+                    <span>Custom workout logger with date, exercise type, and notes.</span>
+                </div>
+                <div class="screen-card">
+                    <img src="public/DeathDebt/Preview 11.png" alt="Leaderboard and badges">
+                    <span>Leaderboards plus badge shelves for streak flexing.</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Ready to turn rage-quits into reps? Download Death Debt, set your first goal, and start getting stronger every time you lose.
+        </footer>
+    </main>
+</body>
+</html>

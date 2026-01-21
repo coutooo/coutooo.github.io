@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calm – Anxiety & Breathing SOS</title>
+    <meta name="description" content="A one-tap panic SOS with guided breathing, grounding exercises, and gentle logging to help you ride out anxiety waves." />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg0: #060a12;
+            --bg1: #0b1220;
+            --mist: rgba(255, 255, 255, 0.08);
+            --line: rgba(255, 255, 255, 0.12);
+            --ink: #e5e7eb;
+            --inkMuted: rgba(229, 231, 235, 0.78);
+            --mint: #34d399;
+            --sky: #38bdf8;
+            --violet: #a78bfa;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 90% 0%, rgba(52, 211, 153, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 100%, rgba(167, 139, 250, 0.18) 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--ink);
+            background: rgba(6, 10, 18, 0.45);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(6, 10, 18, 0.65);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 85px 24px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 34px;
+            border-radius: 36px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--line);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero img {
+            width: 130px;
+            height: 130px;
+            border-radius: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 26px;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #061018;
+            background: linear-gradient(120deg, var(--mint), var(--sky));
+            box-shadow: 0 18px 50px rgba(56, 189, 248, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 70px rgba(52, 211, 153, 0.22);
+        }
+
+        .metrics {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .metric {
+            padding: 22px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--line);
+            text-align: left;
+        }
+
+        .metric span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(229, 231, 235, 0.65);
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .section {
+            margin-top: 38px;
+            padding: 44px;
+            border-radius: 34px;
+            background: rgba(6, 10, 18, 0.52);
+            border: 1px solid var(--mist);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .section-lead {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--mist);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 220px;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: rgba(56, 189, 248, 0.14);
+            color: #fff;
+            font-size: 1.6rem;
+        }
+
+        .card strong {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: rgba(229, 231, 235, 0.75);
+            line-height: 1.6;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .step {
+            padding: 28px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.18);
+        }
+
+        .step h4 {
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sky);
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: rgba(229, 231, 235, 0.78);
+            line-height: 1.65;
+        }
+
+        .screens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 26px;
+        }
+
+        .shot {
+            width: min(280px, 100%);
+            padding: 18px;
+            border-radius: 28px;
+            background: rgba(6, 10, 18, 0.62);
+            border: 1px solid var(--mist);
+            text-align: center;
+            box-shadow: 0 25px 85px rgba(0, 0, 0, 0.6);
+        }
+
+        .shot img {
+            width: 100%;
+            border-radius: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 12px;
+        }
+
+        .shot span {
+            display: block;
+            font-size: 0.95rem;
+            color: rgba(229, 231, 235, 0.72);
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 22px;
+        }
+
+        .pill-row span {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            background: rgba(52, 211, 153, 0.12);
+            color: #fff;
+            font-size: 0.92rem;
+        }
+
+        footer {
+            margin-top: 52px;
+            text-align: center;
+            color: rgba(229, 231, 235, 0.6);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 105px 16px 65px;
+            }
+
+            .hero {
+                padding: 42px 18px;
+            }
+
+            .section {
+                padding: 32px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <div class="container">
+        <header class="hero">
+            <img src="public/Calm/logo.png" alt="Calm: Anxiety & Breathing SOS logo" />
+            <h1>Calm: Anxiety &amp; Breathing SOS</h1>
+            <p>
+                Calm your panic with one tap. Guided breathing, grounding exercises, and gentle reflection help you ride out waves of anxiety
+                and fall asleep easier — whenever you need support.
+            </p>
+            <a class="cta" href="https://apps.apple.com/pt/app/calm-anxiety-breathing-sos/id6756827012?l=en-GB" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+
+            <div class="metrics">
+                <div class="metric">
+                    <span>Emergency Mode</span>
+                    <strong>One-tap SOS</strong>
+                </div>
+                <div class="metric">
+                    <span>Breathing Tools</span>
+                    <strong>Stress + Sleep</strong>
+                </div>
+                <div class="metric">
+                    <span>Privacy First</span>
+                    <strong>On-device</strong>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">A calm panic button</h2>
+            <p class="section-lead">
+                When you feel overwhelmed, tap the big “I’m panicking” button and the app fades everything else away.
+                You’ll be guided through slow, science-inspired breathing patterns that lengthen the exhale and steady your body.
+            </p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">🫁</div>
+                    <strong>Guided breathing</strong>
+                    <p>Short sessions designed for real life — sofa, train, or a tough moment — focusing on calming exhale-led patterns.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🧠</div>
+                    <strong>Grounding exercises</strong>
+                    <p>Use simple 5-4-3-2-1 steps to reconnect with your senses and come back to the present.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🌙</div>
+                    <strong>Sleep wind-down</strong>
+                    <p>Slower breaths to help your body settle at night when thoughts won’t switch off.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📝</div>
+                    <strong>Gentle logging</strong>
+                    <p>Capture what happened without judgment. Over time, tiny notes help reveal patterns in your anxiety waves.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">How it works in the moment</h2>
+            <div class="flow">
+                <div class="step">
+                    <h4>01 · Tap SOS</h4>
+                    <p>Hit the panic button to enter a calm, focused screen that removes clutter and guides you step-by-step.</p>
+                </div>
+                <div class="step">
+                    <h4>02 · Breathe or ground</h4>
+                    <p>Choose breathing for panic/stress or open the grounding exercise when breathing alone isn’t enough.</p>
+                </div>
+                <div class="step">
+                    <h4>03 · Log gently</h4>
+                    <p>Optional reflection helps you notice triggers, patterns, and progress — while keeping everything private on-device.</p>
+                </div>
+            </div>
+
+            <div class="pill-row">
+                <span>No clutter</span>
+                <span>Built for crises</span>
+                <span>Soft daily mode</span>
+                <span>Sleep support</span>
+                <span>Private by default</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Screens from the app</h2>
+            <p class="section-lead">A calm, clean interface designed to feel safe and comforting — ready the moment you need to tap.</p>
+
+            <div class="screens">
+                <div class="shot">
+                    <img src="public/Calm/1.png" alt="Calm SOS panic button screen" />
+                    <span>One-tap SOS for panic moments.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Calm/2.png" alt="Guided breathing mode" />
+                    <span>Guided breathing patterns for stress and anxiety.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Calm/3.png" alt="Grounding and reflection tools" />
+                    <span>Grounding exercises and gentle logging.</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            If anxiety hits, Calm is ready — one tap away.
+        </footer>
+    </div>
+</body>
+</html>

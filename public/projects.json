@@ -16,6 +16,14 @@
         "page": "DeathDebt.html"
     },
     {
+        "title": "Calm: Anxiety & Breathing SOS",
+        "description": "A one-tap panic SOS with guided breathing, grounding exercises, sleep wind-down, and gentle on-device reflection.",
+        "techStack": "Swift, SwiftUI, HealthKit",
+        "mediaType": "image",
+        "mediaSrc": "public/Calm/logo.png",
+        "page": "Calm.html"
+    },
+    {
         "title": "Faceit Skill Rankings",
         "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
         "techStack": "JavaScript, MongoDB, Node.js, Vercel",

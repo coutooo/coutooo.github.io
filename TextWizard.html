@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Wizard – Clean & Convert</title>
+    <meta name="description" content="Polish messy text in seconds. Clean formatting, remove clutter, and switch letter case to get copy-ready text every time." />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg0: #070816;
+            --bg1: #0b1024;
+            --line: rgba(255, 255, 255, 0.12);
+            --mist: rgba(255, 255, 255, 0.07);
+            --ink: #e5e7eb;
+            --inkMuted: rgba(229, 231, 235, 0.78);
+            --cyan: #22d3ee;
+            --violet: #a78bfa;
+            --amber: #fbbf24;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 0%, rgba(34, 211, 238, 0.22) 0%, transparent 42%),
+                radial-gradient(circle at 95% 10%, rgba(167, 139, 250, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 40% 100%, rgba(251, 191, 36, 0.14) 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--ink);
+            background: rgba(7, 8, 22, 0.45);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(7, 8, 22, 0.65);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 85px 24px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 34px;
+            border-radius: 36px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--line);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero img {
+            width: 130px;
+            height: 130px;
+            border-radius: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 4vw, 3.4rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 26px;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #061018;
+            background: linear-gradient(120deg, var(--cyan), var(--violet));
+            box-shadow: 0 18px 50px rgba(34, 211, 238, 0.22);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 70px rgba(167, 139, 250, 0.18);
+        }
+
+        .metrics {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .metric {
+            padding: 22px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--line);
+            text-align: left;
+        }
+
+        .metric span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(229, 231, 235, 0.65);
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+
+        .section {
+            margin-top: 38px;
+            padding: 44px;
+            border-radius: 34px;
+            background: rgba(7, 8, 22, 0.55);
+            border: 1px solid var(--mist);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .section-lead {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            padding: 28px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--mist);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 220px;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            background: rgba(167, 139, 250, 0.14);
+            color: #fff;
+            font-size: 1.6rem;
+        }
+
+        .card strong {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: rgba(229, 231, 235, 0.75);
+            line-height: 1.6;
+        }
+
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .step {
+            padding: 28px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.18);
+        }
+
+        .step h4 {
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: rgba(229, 231, 235, 0.78);
+            line-height: 1.65;
+        }
+
+        .screens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 26px;
+        }
+
+        .shot {
+            width: min(280px, 100%);
+            padding: 18px;
+            border-radius: 28px;
+            background: rgba(7, 8, 22, 0.62);
+            border: 1px solid var(--mist);
+            text-align: center;
+            box-shadow: 0 25px 85px rgba(0, 0, 0, 0.6);
+        }
+
+        .shot img {
+            width: 100%;
+            border-radius: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            margin-bottom: 12px;
+        }
+
+        .shot span {
+            display: block;
+            font-size: 0.95rem;
+            color: rgba(229, 231, 235, 0.72);
+        }
+
+        footer {
+            margin-top: 52px;
+            text-align: center;
+            color: rgba(229, 231, 235, 0.6);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 105px 16px 65px;
+            }
+
+            .hero {
+                padding: 42px 18px;
+            }
+
+            .section {
+                padding: 32px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <div class="container">
+        <header class="hero">
+            <img src="public/TextWizard/logo.png" alt="TextWizard logo" />
+            <h1>TextWizard</h1>
+            <p>
+                A lightweight text toolbox for quick cleanups and transformations.
+                Paste text, apply the changes you need, and copy the result — fast.
+            </p>
+            <a class="cta-btn" href="https://apps.apple.com/pt/app/text-wizard-clean-convert/id6757397004?l=en-GB" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+
+            <div class="metrics">
+                <div class="metric">
+                    <span>Focus</span>
+                    <strong>Zero clutter</strong>
+                </div>
+                <div class="metric">
+                    <span>Speed</span>
+                    <strong>One tap</strong>
+                </div>
+                <div class="metric">
+                    <span>Output</span>
+                    <strong>Copy-ready</strong>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Your text, but cleaner</h2>
+            <p class="section-lead">
+                TextWizard is built for the everyday moments where text is almost right —
+                but needs a quick polish before you send it, post it, or paste it into another app.
+            </p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">✨</div>
+                    <strong>Quick transforms</strong>
+                    <p>Apply common formatting fixes and text transforms without leaving the page.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🧼</div>
+                    <strong>Cleanup tools</strong>
+                    <p>Remove extra whitespace, normalize formatting, and keep what matters.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📋</div>
+                    <strong>Copy & share</strong>
+                    <p>Copy clean results instantly and paste into messages, notes, docs, or prompts.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🔒</div>
+                    <strong>Simple by design</strong>
+                    <p>A focused interface that stays out of your way so you can get in and out quickly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">How it flows</h2>
+            <div class="flow">
+                <div class="step">
+                    <h4>01 · Paste</h4>
+                    <p>Drop in your messy text from anywhere — messages, notes, subtitles, documents.</p>
+                </div>
+                <div class="step">
+                    <h4>02 · Transform</h4>
+                    <p>Pick the tools you need and watch the output update in a clear, readable view.</p>
+                </div>
+                <div class="step">
+                    <h4>03 · Copy</h4>
+                    <p>Copy the polished result and continue your workflow in whatever app you’re using.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Screens from the app</h2>
+            <p class="section-lead">A clean, high-contrast UI designed to make editing comfortable and fast.</p>
+
+            <div class="screens">
+                <div class="shot">
+                    <img src="public/TextWizard/1.png" alt="TextWizard screenshot 1" />
+                    <span>Start with text input and a focused workspace.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/TextWizard/2.png" alt="TextWizard screenshot 2" />
+                    <span>Apply transforms and see results instantly.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/TextWizard/3.png" alt="TextWizard screenshot 3" />
+                    <span>Copy clean output and keep moving.</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Want the App Store button wired up? Send the App Store link and I’ll add it.
+        </footer>
+    </div>
+</body>
+</html>

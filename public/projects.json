@@ -24,6 +24,14 @@
         "page": "Calm.html"
     },
     {
+        "title": "TextWizard",
+        "description": "A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.",
+        "techStack": "Swift, SwiftUI",
+        "mediaType": "image",
+        "mediaSrc": "public/TextWizard/logo.png",
+        "page": "TextWizard.html"
+    },
+    {
         "title": "Faceit Skill Rankings",
         "description": "A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.",
         "techStack": "JavaScript, MongoDB, Node.js, Vercel",

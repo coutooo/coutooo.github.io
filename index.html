@@ -4,52 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manuel Couto</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="script.js" defer></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="retro">
+  <div class="marquee" aria-live="polite">
+    <div class="marquee__inner" aria-hidden="true">
+      <span class="marquee__item">WELCOME TO MY 1997 INTERNET HQ</span>
+      <span class="marquee__item">PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
+      <span class="marquee__item">THANKS FOR VISITING — SIGN THE GUESTBOOK (IN YOUR HEART)</span>
+      <span class="marquee__item">MANUEL_COUTO.EXE IS ONLINE</span>
+      <span class="marquee__item">WELCOME TO MY 1997 INTERNET HQ</span>
+      <span class="marquee__item">PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
+    </div>
+    <span class="marquee__static">WELCOME TO MY 1997 INTERNET HQ — PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
+  </div>
   <!-- Header Section -->
-  <header class="bg-white shadow-md py-6">
-    <div class="container mx-auto px-6 flex justify-between items-center header-inner">
-      <h1 class="text-xl font-bold text-brown-500 flex items-center">
-        <span>👋</span>
-        <span class="mx-2">Wishing you a great day!</span>
-        <span>😊</span>
-      </h1>
-      <nav class="primary-nav">
-        <ul class="flex space-x-4">
-          <li><a href="#about" class="text-blue-600 hover:underline">About</a></li>
-          <li><a href="#projects" class="text-blue-600 hover:underline">Projects</a></li>
-        </ul>
-      </nav>
+  <header class="retro-window">
+    <div class="retro-titlebar">MANUEL_COUTO.EXE</div>
+    <div class="retro-content">
+      <div class="container flex flex-col md:flex-row md:items-center md:justify-between header-inner">
+        <div>
+          <h1 class="text-3xl md:text-5xl text-rainbow">Manuel Couto <span class="badge-new">NEW!</span></h1>
+          <p>Software Developer · Full Stack Web · Mobile · Chrome Extensions</p>
+          <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+        </div>
+        <nav class="primary-nav mt-4 md:mt-0">
+          <ul class="flex space-x-4">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
   <!-- About Section -->
-  <section id="about" class="py-12 bg-gray-50">
-    <div class="container mx-auto px-6 text-center">
-      <img src="public/me.jfif" alt="Your Name" class="w-32 h-32 mx-auto rounded-full border-4 border-blue-600">
-      <h2 class="text-2xl font-semibold mt-4">Manuel Couto</h2>
-      <p class="text-gray-600">I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.</p>
-      <div class="flex flex-wrap justify-center gap-3 mt-6 text-sm md:text-base profile-links">
-        <a href="https://www.linkedin.com/in/coutooo/" class="text-blue-600 hover:underline">LinkedIn</a>
-        <a href="https://github.com/coutooo" class="text-blue-600 hover:underline">GitHub</a>
-        <a href="public/CV Manuel Couto.pdf" download class="text-blue-600 hover:underline">Download CV</a>
+  <section id="about" class="retro-window">
+    <div class="retro-titlebar">ABOUT_ME.TXT</div>
+    <div class="retro-content">
+      <div class="container text-center">
+        <img src="public/me.jfif" alt="Manuel Couto" class="w-32 h-32 mx-auto border-4 border-black">
+        <h2 class="text-2xl font-semibold mt-4">Manuel Couto</h2>
+        <p>I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.</p>
+        <div class="flex flex-wrap justify-center gap-3 mt-6 text-sm md:text-base profile-links">
+          <a href="https://www.linkedin.com/in/coutooo/">LinkedIn</a>
+          <a href="https://github.com/coutooo">GitHub</a>
+          <a href="public/CV Manuel Couto.pdf" download>Download CV</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <hr class="hr-groove">
+
   <!-- Tech Stack Section -->
-<section id="tech-stack" class="py-12 bg-gray-50">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-8">What I learned in the process</h2>
-        <div class="relative overflow-hidden rounded-lg p-1 backdrop-blur-md bg-white/50 shadow-md">
-            <div class="scroll-container">
-                <div class="scroll-content">
+  <section id="tech-stack" class="retro-window">
+  <div class="retro-titlebar">TECH_STACK.LOG</div>
+  <div class="retro-content">
+    <div class="container">
+    <h2 class="text-3xl font-bold text-center mb-8">What I learned in the process</h2>
+    <div class="scroll-container retro-inset">
+        <div class="scroll-content">
                     <!-- Text for Tech Stacks -->
                     <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Kotlin</span>
                     <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Swift</span>
@@ -115,12 +133,33 @@
             </div>
         </div>
     </div>
-</section>
+  </section>
+
+  <section class="retro-window">
+    <div class="retro-titlebar">COLOR_TEST.PAL</div>
+    <div class="retro-content">
+      <div class="container">
+        <p class="mb-2"><strong>Decorative Color Squares</strong></p>
+        <div class="color-grid" aria-hidden="true">
+          <div class="color-square red"></div>
+          <div class="color-square green"></div>
+          <div class="color-square blue"></div>
+          <div class="color-square yellow"></div>
+          <div class="color-square magenta"></div>
+          <div class="color-square cyan"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="hr-groove">
   
 
   <!-- Projects Section -->
-  <section id="projects" class="py-12">
-    <div class="container mx-auto px-6">
+  <section id="projects" class="retro-window">
+    <div class="retro-titlebar">PROJECTS.DIR</div>
+    <div class="retro-content">
+      <div class="container">
       <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 projects-grid">
         <!-- Project Cards -->
@@ -314,18 +353,29 @@
     </div>
   </section>
 
+  <section id="contact" class="retro-window">
+    <div class="retro-titlebar">CONTACT.ME</div>
+    <div class="retro-content">
+      <div class="container text-center">
+        <div class="construction">UNDER CONSTRUCTION — EMAIL OR DM FOR COLLABS</div>
+        <p class="mt-4">Ping me on LinkedIn or GitHub, or grab the CV above.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- buy me a coffe -->
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mavc" data-description="Support me on Buy me a coffee!" data-message="I love coffee :)" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-100 py-6">
-    <div class="container mx-auto px-6">
-      <div class="flex justify-between items-center">
+  <footer class="retro-window">
+    <div class="retro-titlebar">FOOTER.SYS</div>
+    <div class="retro-content">
+      <div class="container flex flex-col md:flex-row justify-between items-center">
         <p>&copy; 2025 Manuel Couto. All rights reserved.</p>
         <div class="flex space-x-4">
-          <a href="policy.html" target="_blank" class="text-gray-100 hover:underline">Policy Page</a>
+          <a href="policy.html" target="_blank">Policy Page</a>
           <span>|</span>
-          <a href="support.html" target="_blank" class="text-gray-100 hover:underline">Support Page</a>
+          <a href="support.html" target="_blank">Support Page</a>
         </div>
       </div>
     </div>

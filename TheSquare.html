@@ -218,8 +218,19 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="retro">
+    <div class="marquee" aria-live="polite">
+        <div class="marquee__inner" aria-hidden="true">
+            <span class="marquee__item">THE SQUARE ONLINE</span>
+            <span class="marquee__item">IDLE GAME MODE</span>
+            <span class="marquee__item">LEVEL UP NOW</span>
+            <span class="marquee__item">THE SQUARE ONLINE</span>
+            <span class="marquee__item">IDLE GAME MODE</span>
+        </div>
+        <span class="marquee__static">THE SQUARE ONLINE — IDLE GAME MODE</span>
+    </div>
     <a href="index.html" class="back-btn">← Back to Home</a>
     
     <div class="container">
@@ -285,5 +296,22 @@
             </div>
             <p class="description">
     </div>
+    <section class="retro-window">
+        <div class="retro-titlebar">SITE_STATUS.DAT</div>
+        <div class="retro-content">
+            <div class="container">
+                <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+                <div class="color-grid" aria-hidden="true">
+                    <div class="color-square red"></div>
+                    <div class="color-square green"></div>
+                    <div class="color-square blue"></div>
+                    <div class="color-square yellow"></div>
+                    <div class="color-square magenta"></div>
+                    <div class="color-square cyan"></div>
+                </div>
+                <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

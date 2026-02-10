@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basky – Smart Shopping Lists</title>
-    <meta name="description" content="Basky keeps your shopping lists tidy with quick add, categories, and reminders so every basket stays organized." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <meta name="description" content="Basky keeps shared grocery lists in sync with quick add, categories, and reminders so every family or roommate basket stays organized together." />
     <style>
         * {
             margin: 0;
@@ -281,8 +277,19 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="retro">
+    <div class="marquee" aria-live="polite">
+        <div class="marquee__inner" aria-hidden="true">
+            <span class="marquee__item">BASKY ONLINE</span>
+            <span class="marquee__item">SMART SHOPPING LISTS</span>
+            <span class="marquee__item">SYNC YOUR BASKET</span>
+            <span class="marquee__item">BASKY ONLINE</span>
+            <span class="marquee__item">SMART SHOPPING LISTS</span>
+        </div>
+        <span class="marquee__static">BASKY ONLINE — SMART SHOPPING LISTS</span>
+    </div>
     <a href="index.html" class="back-btn">← Back to Home</a>
 
     <div class="container">
@@ -290,23 +297,23 @@
             <img src="public/Basky/icon.png" alt="Basky app icon" />
             <h1>Basky</h1>
             <p>
-                Basky keeps your shared grocery lists in sync for families and roommates. Plan faster,
-                never forget an item, and enjoy a clean, friendly shopping experience together.
+                Basky is built for shared grocery lists. Keep family and roommate lists in sync in real time,
+                plan faster, never forget an item, and shop together without double-buys.
             </p>
             <a class="cta-btn" href="#" aria-disabled="true">Coming soon</a>
 
             <div class="metrics">
                 <div class="metric">
-                    <span>Quick Add</span>
-                    <strong>One-tap items</strong>
+                    <span>Shared Lists</span>
+                    <strong>Real-time sync</strong>
                 </div>
                 <div class="metric">
-                    <span>Smart Lists</span>
-                    <strong>Auto sorting</strong>
+                    <span>Family Ready</span>
+                    <strong>Multi-user edits</strong>
                 </div>
                 <div class="metric">
-                    <span>Ready Anywhere</span>
-                    <strong>Offline-first</strong>
+                    <span>Roommate Proof</span>
+                    <strong>No duplicate buys</strong>
                 </div>
             </div>
         </header>
@@ -314,15 +321,15 @@
         <section class="section">
             <h2 class="section-title">Built for everyday baskets</h2>
             <p class="section-lead">
-                Make grocery runs feel lighter. Basky keeps the essentials easy to capture, prioritize, and share —
-                so you never forget what matters.
+                Make grocery runs feel lighter. Basky keeps shared lists easy to capture, prioritize, and update —
+                so everyone sees the same list and nothing gets missed.
             </p>
 
             <div class="grid">
                 <div class="card">
                     <div class="icon">🛒</div>
-                    <strong>Fast capture</strong>
-                    <p>Add items in seconds with smart suggestions and your recent buys at the top.</p>
+                    <strong>Shared add</strong>
+                    <p>Anyone can add items in seconds with smart suggestions and recent buys.</p>
                 </div>
                 <div class="card">
                     <div class="icon">🧺</div>
@@ -332,7 +339,7 @@
                 <div class="card">
                     <div class="icon">🤝</div>
                     <strong>Shared lists</strong>
-                    <p>Keep a single source of truth for the household with easy collaboration.</p>
+                    <p>Keep a single source of truth with real-time updates for the whole household.</p>
                 </div>
                 <div class="card">
                     <div class="icon">🔔</div>
@@ -347,7 +354,7 @@
             <div class="flow">
                 <div class="step">
                     <h4>01 · Capture</h4>
-                    <p>Drop items in the moment — from pantry restocks to last-minute cravings.</p>
+                    <p>Everyone adds items in the moment — pantry restocks, cravings, or shared staples.</p>
                 </div>
                 <div class="step">
                     <h4>02 · Organize</h4>
@@ -355,20 +362,37 @@
                 </div>
                 <div class="step">
                     <h4>03 · Checkout</h4>
-                    <p>Check off items quickly and keep the list ready for the next run.</p>
+                    <p>Check off items together and keep the shared list ready for the next run.</p>
                 </div>
             </div>
 
             <div class="pill-row">
-                <span>Clean UI</span>
-                <span>Quick recall</span>
+                <span>Shared lists</span>
+                <span>Real-time sync</span>
                 <span>Family-friendly</span>
-                <span>Lightweight</span>
-                <span>No clutter</span>
+                <span>Roommate ready</span>
+                <span>No double-buys</span>
             </div>
         </section>
 
         <footer>© 2026 Manuel Couto · Basky</footer>
     </div>
+    <section class="retro-window">
+        <div class="retro-titlebar">SITE_STATUS.DAT</div>
+        <div class="retro-content">
+            <div class="container">
+                <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+                <div class="color-grid" aria-hidden="true">
+                    <div class="color-square red"></div>
+                    <div class="color-square green"></div>
+                    <div class="color-square blue"></div>
+                    <div class="color-square yellow"></div>
+                    <div class="color-square magenta"></div>
+                    <div class="color-square cyan"></div>
+                </div>
+                <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

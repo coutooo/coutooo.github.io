@@ -265,8 +265,19 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="retro">
+    <div class="marquee" aria-live="polite">
+        <div class="marquee__inner" aria-hidden="true">
+            <span class="marquee__item">RETRO BLOCKS ONLINE</span>
+            <span class="marquee__item">CLASSIC PUZZLE MODE</span>
+            <span class="marquee__item">READY TO DOWNLOAD</span>
+            <span class="marquee__item">RETRO BLOCKS ONLINE</span>
+            <span class="marquee__item">CLASSIC PUZZLE MODE</span>
+        </div>
+        <span class="marquee__static">RETRO BLOCKS ONLINE — CLASSIC PUZZLE MODE</span>
+    </div>
     <a href="index.html" class="back-btn">← Back to Home</a>
     
     <div class="container">
@@ -346,5 +357,22 @@
             </p>
         </div>
     </div>
+    <section class="retro-window">
+        <div class="retro-titlebar">SITE_STATUS.DAT</div>
+        <div class="retro-content">
+            <div class="container">
+                <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+                <div class="color-grid" aria-hidden="true">
+                    <div class="color-square red"></div>
+                    <div class="color-square green"></div>
+                    <div class="color-square blue"></div>
+                    <div class="color-square yellow"></div>
+                    <div class="color-square magenta"></div>
+                    <div class="color-square cyan"></div>
+                </div>
+                <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

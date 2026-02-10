@@ -287,8 +287,19 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="retro">
+    <div class="marquee" aria-live="polite">
+        <div class="marquee__inner" aria-hidden="true">
+            <span class="marquee__item">TEXT WIZARD ONLINE</span>
+            <span class="marquee__item">CLEAN & CONVERT TEXT</span>
+            <span class="marquee__item">COPY READY OUTPUT</span>
+            <span class="marquee__item">TEXT WIZARD ONLINE</span>
+            <span class="marquee__item">CLEAN & CONVERT TEXT</span>
+        </div>
+        <span class="marquee__static">TEXT WIZARD ONLINE — CLEAN & CONVERT TEXT</span>
+    </div>
     <a href="index.html" class="back-btn">← Back to Home</a>
 
     <div class="container">
@@ -390,5 +401,22 @@
             Want the App Store button wired up? Send the App Store link and I’ll add it.
         </footer>
     </div>
+    <section class="retro-window">
+        <div class="retro-titlebar">SITE_STATUS.DAT</div>
+        <div class="retro-content">
+            <div class="container">
+                <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+                <div class="color-grid" aria-hidden="true">
+                    <div class="color-square red"></div>
+                    <div class="color-square green"></div>
+                    <div class="color-square blue"></div>
+                    <div class="color-square yellow"></div>
+                    <div class="color-square magenta"></div>
+                    <div class="color-square cyan"></div>
+                </div>
+                <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

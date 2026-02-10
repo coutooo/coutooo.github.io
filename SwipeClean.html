@@ -9,7 +9,17 @@
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="retro">
+  <div class="marquee" aria-live="polite">
+    <div class="marquee__inner" aria-hidden="true">
+      <span class="marquee__item">SWIPECLEAN ONLINE</span>
+      <span class="marquee__item">CLEAN UP PHOTOS FAST</span>
+      <span class="marquee__item">STORAGE FREED!</span>
+      <span class="marquee__item">SWIPECLEAN ONLINE</span>
+      <span class="marquee__item">CLEAN UP PHOTOS FAST</span>
+    </div>
+    <span class="marquee__static">SWIPECLEAN ONLINE — CLEAN UP PHOTOS FAST</span>
+  </div>
   <!-- Header -->
   <header class="bg-white shadow-md py-4">
     <div class="container mx-auto px-6 flex justify-between items-center">
@@ -155,5 +165,22 @@
       </div>
     </div>
   </footer>
+  <section class="retro-window">
+    <div class="retro-titlebar">SITE_STATUS.DAT</div>
+    <div class="retro-content">
+      <div class="container">
+        <div class="hit-counter">VISITORS: 0001234 | SINCE 1995</div>
+        <div class="color-grid" aria-hidden="true">
+          <div class="color-square red"></div>
+          <div class="color-square green"></div>
+          <div class="color-square blue"></div>
+          <div class="color-square yellow"></div>
+          <div class="color-square magenta"></div>
+          <div class="color-square cyan"></div>
+        </div>
+        <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

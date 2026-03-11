@@ -1,8 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var scrollContent = document.querySelector('.scroll-content');
-  var items = scrollContent.innerHTML;
-  scrollContent.innerHTML += items; // Duplicate the items
-});
+// Tech stack scroll — content is already doubled in HTML for seamless loop
 
 document.getElementById('read-more-btn').addEventListener('click', function() {
   var description = document.getElementById('medtracking-description');

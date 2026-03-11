@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Predefined Elements Auto-Deleter</title>
+    <meta name="description" content="Chrome extension that removes predefined page elements automatically for a cleaner browsing experience." />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg0: #071017;
+            --bg1: #0b1622;
+            --line: rgba(255, 255, 255, 0.12);
+            --mist: rgba(255, 255, 255, 0.07);
+            --ink: #e5e7eb;
+            --inkMuted: rgba(229, 231, 235, 0.78);
+            --teal: #2dd4bf;
+            --sky: #38bdf8;
+            --amber: #fbbf24;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 12% 10%, rgba(56, 189, 248, 0.2) 0%, transparent 42%),
+                radial-gradient(circle at 90% 15%, rgba(45, 212, 191, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 100%, rgba(251, 191, 36, 0.18) 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--ink);
+            background: rgba(7, 16, 23, 0.45);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(7, 16, 23, 0.65);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 85px 24px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 34px;
+            border-radius: 36px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--line);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero img {
+            width: 130px;
+            height: 130px;
+            border-radius: 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0 auto 26px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #0b1220;
+            background: linear-gradient(120deg, var(--teal), var(--sky));
+            box-shadow: 0 18px 50px rgba(56, 189, 248, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 70px rgba(45, 212, 191, 0.22);
+        }
+
+        .section {
+            margin-top: 38px;
+            padding: 44px;
+            border-radius: 34px;
+            background: rgba(7, 16, 23, 0.55);
+            border: 1px solid var(--mist);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            margin-bottom: 14px;
+            color: #fff;
+        }
+
+        .section-lead {
+            text-align: center;
+            max-width: 820px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            color: var(--inkMuted);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            padding: 26px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--mist);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 200px;
+        }
+
+        .card strong {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .card p {
+            color: rgba(229, 231, 235, 0.75);
+            line-height: 1.6;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .step {
+            padding: 26px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .step h4 {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: rgba(229, 231, 235, 0.78);
+            line-height: 1.65;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 18px;
+        }
+
+        .chip {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.95rem;
+            color: var(--inkMuted);
+        }
+
+        @media (max-width: 720px) {
+            .hero {
+                padding: 45px 22px;
+            }
+
+            .section {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">Back to Portfolio</a>
+
+    <main class="container">
+        <section class="hero">
+            <img src="public/predefinedAutoDeleter/logo.png" alt="Page Predefined Elements Auto-Deleter logo" />
+            <h1>Page Predefined Elements Auto-Deleter</h1>
+            <p>Automatically removes predefined page elements so clutter disappears the moment a site loads. Focus on the content you actually want to see.</p>
+            <a class="cta" href="https://chromewebstore.google.com/detail/page-predefined-elements/mjdppkioebbhkaelalfkjeoljgdladki" target="_blank" rel="noreferrer">Get it on Chrome Web Store</a>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Why it exists</h2>
+            <p class="section-lead">Some websites are packed with overlays, banners, and repeating elements that get in the way. This extension lets you define what should be removed and keeps the experience clean every time you visit.</p>
+            <div class="grid">
+                <div class="card">
+                    <strong>Cleaner browsing</strong>
+                    <p>Remove popups, sticky banners, and repetitive blocks without manual clicks.</p>
+                </div>
+                <div class="card">
+                    <strong>Consistent rules</strong>
+                    <p>Define elements once and the extension handles the rest across sessions.</p>
+                </div>
+                <div class="card">
+                    <strong>Fast focus</strong>
+                    <p>Jump straight into the content that matters, with fewer distractions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">How it works</h2>
+            <p class="section-lead">A simple flow: pick elements, save the rule, and enjoy a clean page instantly.</p>
+            <div class="steps">
+                <div class="step">
+                    <h4>Step 01</h4>
+                    <p>Select the elements you want removed on a page and save the rule.</p>
+                </div>
+                <div class="step">
+                    <h4>Step 02</h4>
+                    <p>The extension remembers your preferences for that site.</p>
+                </div>
+                <div class="step">
+                    <h4>Step 03</h4>
+                    <p>Every time you return, those elements disappear automatically.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Built with</h2>
+            <p class="section-lead">A lightweight Chrome extension stack focused on speed and reliability.</p>
+            <div class="chips">
+                <span class="chip">JavaScript</span>
+                <span class="chip">Chrome Extensions API</span>
+                <span class="chip">HTML</span>
+                <span class="chip">CSS</span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

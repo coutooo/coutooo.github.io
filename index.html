@@ -4,381 +4,326 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manuel Couto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="script.js" defer></script>
 </head>
-<body class="retro">
-  <div class="marquee" aria-live="polite">
-    <div class="marquee__inner" aria-hidden="true">
-      <span class="marquee__item">WELCOME TO MY 1997 INTERNET HQ</span>
-      <span class="marquee__item">PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
-      <span class="marquee__item">THANKS FOR VISITING — SIGN THE GUESTBOOK (IN YOUR HEART)</span>
-      <span class="marquee__item">MANUEL_COUTO.EXE IS ONLINE</span>
-      <span class="marquee__item">WELCOME TO MY 1997 INTERNET HQ</span>
-      <span class="marquee__item">PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
+<body>
+
+  <!-- ✏️ Banner -->
+  <div class="banner" aria-hidden="true">
+    <div class="banner__inner">
+      <span>✏️ Open to work &amp; collabs</span>
+      <span class="banner__sep">~</span>
+      <span>Manuel Couto · Software Developer</span>
+      <span class="banner__sep">~</span>
+      <span>New apps + new ideas shipped regularly</span>
+      <span class="banner__sep">~</span>
+      <span>Full Stack · Mobile · Chrome Extensions</span>
+      <span class="banner__sep">~</span>
+      <span>✏️ Open to work &amp; collabs</span>
+      <span class="banner__sep">~</span>
+      <span>Manuel Couto · Software Developer</span>
+      <span class="banner__sep">~</span>
+      <span>New apps + new ideas shipped regularly</span>
+      <span class="banner__sep">~</span>
+      <span>Full Stack · Mobile · Chrome Extensions</span>
+      <span class="banner__sep">~</span>
     </div>
-    <span class="marquee__static">WELCOME TO MY 1997 INTERNET HQ — PORTFOLIO UPDATE: NEW APPS + NEW IDEAS</span>
   </div>
-  <!-- Header Section -->
-  <header class="retro-window">
-    <div class="retro-titlebar">MANUEL_COUTO.EXE</div>
-    <div class="retro-content">
-      <div class="container flex flex-col md:flex-row md:items-center md:justify-between header-inner">
-        <div>
-          <h1 class="text-3xl md:text-5xl text-rainbow">Manuel Couto <span class="badge-new">NEW!</span></h1>
-          <p>Software Developer · Full Stack Web · Mobile · Chrome Extensions</p>
-          <div class="hit-counter">VISITORS: 0000404 | SINCE 2000</div>
+
+  <!-- 🖊️ Header / Hero -->
+  <header class="sketch-header">
+    <div class="container header-inner">
+      <div class="header-text">
+        <h1 class="hero-title">Manuel Couto <span class="hi-tag">hi!</span></h1>
+        <p class="hero-sub">Software Developer · Full Stack Web · Mobile · Chrome Extensions</p>
+        <div class="header-links">
+          <a href="https://www.linkedin.com/in/coutooo/" class="sketch-btn">LinkedIn</a>
+          <a href="https://github.com/coutooo" class="sketch-btn">GitHub</a>
+          <a href="public/CV Manuel Couto.pdf" download class="sketch-btn">Download CV ↓</a>
         </div>
-        <nav class="primary-nav mt-4 md:mt-0">
-          <ul class="flex space-x-4">
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+      </div>
+      <div class="header-portrait">
+        <img src="public/me.jfif" alt="Manuel Couto" class="portrait-img">
+        <span class="portrait-caption">← that's me!</span>
       </div>
     </div>
+    <nav class="sketch-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#tech-stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <!-- About Section -->
-  <section id="about" class="retro-window">
-    <div class="retro-titlebar">ABOUT_ME.TXT</div>
-    <div class="retro-content">
-      <div class="container text-center">
-        <img src="public/me.jfif" alt="Manuel Couto" class="w-32 h-32 mx-auto border-4 border-black">
-        <h2 class="text-2xl font-semibold mt-4">Manuel Couto</h2>
-        <p>I am a Software Developer with experience in Full Stack Web, Mobile Developer and Chrome extensions.</p>
-        <div class="flex flex-wrap justify-center gap-3 mt-6 text-sm md:text-base profile-links">
-          <a href="https://www.linkedin.com/in/coutooo/">LinkedIn</a>
-          <a href="https://github.com/coutooo">GitHub</a>
-          <a href="public/CV Manuel Couto.pdf" download>Download CV</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="hr-groove">
-
-  <!-- Tech Stack Section -->
-  <section id="tech-stack" class="retro-window">
-  <div class="retro-titlebar">TECH_STACK.LOG</div>
-  <div class="retro-content">
+  <!-- 📝 About -->
+  <section id="about" class="section-gap">
     <div class="container">
-    <h2 class="text-3xl font-bold text-center mb-8">What I learned in the process</h2>
-    <div class="scroll-container retro-inset">
-        <div class="scroll-content">
-                    <!-- Text for Tech Stacks -->
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Kotlin</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Swift</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Jetpack Compose</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Xcode</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">CoreData</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">SwiftUI</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">WidgetKit</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">AI</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">React</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Flutter</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">MongoDB</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">OpenAI</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Google Admob</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Android</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">FastAPI</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Swagger</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">TypeScript</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Next.js</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">JavaScript</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Tesseract Js</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Dart</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Python</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">OCR detection</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Chrome API</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">HTML</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">CSS</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">FFMPEG wasm</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Webassembly</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Stripe</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">FFMPEG</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Mailgun</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Flask</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">MQTT</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">InfluxDB</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">SQL</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">RSUs</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">CAMs</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">DENMs</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">SocketiO</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Java</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Android Studio</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">NFC</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Bluetooth</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Firebase</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Blockchain</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Hyperledger Sawtooth</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">C++</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">NS-3</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Hive</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Biometric sensors</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">QR code scanners</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">GPS</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Pedometers</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">Maps</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">IPFS</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">VANETZA</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">VRUs</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">VAMs</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">MQTT brokers</span>
-                    <span class="text-align font-semibold min-w-[100px] text-center" style="margin-right: 1.25em;">CID Tracker Database</span>
-                </div>
-            </div>
-        </div>
+      <div class="section-label">ABOUT_ME.TXT</div>
+      <div class="sketch-card about-card">
+        <div class="tape"></div>
+        <p>I'm a <strong>Software Developer</strong> with hands-on experience in Full Stack Web, iOS &amp; Android Mobile Dev, and Chrome Extensions. I love building things that solve real problems — often with a sprinkle of AI on top ✨</p>
+        <p>Scroll down to see what I've shipped.</p>
+      </div>
     </div>
   </section>
 
-  <section class="retro-window">
-    <div class="retro-titlebar">COLOR_TEST.PAL</div>
-    <div class="retro-content">
-      <div class="container">
-        <p class="mb-2"><strong>Decorative Color Squares</strong></p>
-        <div class="color-grid" aria-hidden="true">
-          <div class="color-square red"></div>
-          <div class="color-square green"></div>
-          <div class="color-square blue"></div>
-          <div class="color-square yellow"></div>
-          <div class="color-square magenta"></div>
-          <div class="color-square cyan"></div>
+  <!-- 🔧 Tech Stack -->
+  <section id="tech-stack" class="section-gap">
+    <div class="container">
+      <div class="section-label">TECH_STACK.LOG</div>
+      <h2 class="section-title">What I learned in the process</h2>
+      <div class="scroll-track">
+        <div class="scroll-inner">
+          <!-- First half -->
+          <span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span>
+          <!-- Second half (mirrors first — keeps animation seamless) -->
+          <span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="hr-groove">
-  
+  <hr class="dashed-divider">
 
-  <!-- Projects Section -->
-  <section id="projects" class="retro-window">
-    <div class="retro-titlebar">PROJECTS.DIR</div>
-    <div class="retro-content">
-      <div class="container">
-      <h2 class="text-3xl font-bold text-center mb-8">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 projects-grid">
-        <!-- Project Cards -->
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/Calm/logo.png" alt="Calm: Anxiety & Breathing SOS" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Calm: Anxiety &amp; Breathing SOS</h3>
-              <p class="text-gray-600 mt-2">A one-tap panic SOS with guided breathing, grounding tools, and gentle on-device logging for anxiety and sleep.</p>
-              <a href="Calm.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+  <!-- 📦 Projects -->
+  <section id="projects" class="section-gap">
+    <div class="container">
+      <div class="section-label">PROJECTS.DIR</div>
+      <h2 class="section-title">Things I've Built</h2>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/SwipeClean/icon.png" alt="SwipeClean – Clean Up Photos" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">SwipeClean – Clean Up Photos</h3>
-              <p class="text-gray-600 mt-2">Clean up photos fast: swipe to keep or delete, confirm before removal, and track storage freed.</p>
-              <a href="SwipeClean.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+      <div class="projects-grid">
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/Basky/icon.png" alt="Basky" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Basky</h3>
-              <p class="text-gray-600 mt-2">Shared grocery lists that stay in sync for families and roommates. Plan faster, never forget an item, and shop together.</p>
-              <a href="Basky.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/predefinedAutoDeleter/logo.png" alt="Page Predefined Elements Auto-Deleter" class="project-card__media">
+          <h3>Page Predefined Elements Auto-Deleter</h3>
+          <p>Chrome extension that auto-deletes predefined page elements for a cleaner browsing experience.</p>
+          <a href="PagePredefinedElementsAutoDeleter.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">LensesBuddy</h3>
-              <p class="text-gray-600 mt-2">LensesBuddy is the ultimate contact lens tracker designed to help you manage your lens usage and maintain a healthy eye care routine. Whether you wear daily, weekly, or monthly lenses, this app helps you track your lenses effortlessly, ensuring you never forget when to replace them.</p>
-              <a href="LensesBuddy.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/brainafk/logo3.png" alt="BrainAFK Games" class="project-card__media">
+          <h3>BrainAFK Games</h3>
+          <p>A games website featuring BrainAFK titles and updates.</p>
+          <a href="BrainAFKGames.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/StichIt/logo.png" alt="StichIt – Cross Stitch Creator" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">StichIt – Cross Stitch Creator</h3>
-              <p class="text-gray-600 mt-2">Convert any photo into a cross stitch pattern, edit stitches with full DMC palettes, and export printable charts to start stitching fast.</p>
-              <a href="StichIt.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/Calm/logo.png" alt="Calm: Anxiety &amp; Breathing SOS" class="project-card__media">
+          <h3>Calm: Anxiety &amp; Breathing SOS</h3>
+          <p>A one-tap panic SOS with guided breathing, grounding tools, and gentle on-device logging for anxiety and sleep.</p>
+          <a href="Calm.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/HobbyDogging/icon.png" alt="Hobby Dogging – Invisible Dog Walk" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Hobby Dogging – Invisible Dog</h3>
-              <p class="text-gray-600 mt-2">Walk an imaginary dog with a real leash, track playful sessions, and level up moods, styles, and streaks.</p>
-              <a href="HobbyDogging.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/SwipeClean/icon.png" alt="SwipeClean – Clean Up Photos" class="project-card__media">
+          <h3>SwipeClean – Clean Up Photos</h3>
+          <p>Clean up photos fast: swipe to keep or delete, confirm before removal, and track storage freed.</p>
+          <a href="SwipeClean.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/DeathDebt/icon_s.png" alt="Death Debt – Gain with Gaming" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Death Debt – Gain with Gaming</h3>
-              <p class="text-gray-600 mt-2">Turn every in-game death into real pushups, track streaks, unlock badges, and compete on gamer fitness leaderboards.</p>
-              <a href="DeathDebt.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/Basky/icon.png" alt="Basky" class="project-card__media">
+          <h3>Basky</h3>
+          <p>Shared grocery lists that stay in sync for families and roommates. Plan faster, never forget an item.</p>
+          <a href="Basky.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/RetroBlocks/icon.png" alt="Retro Blocks – Classic Puzzle" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Retro Blocks – Classic Puzzle</h3>
-              <p class="text-gray-600 mt-2">A nostalgic puzzle game that brings back the classic block-stacking fun with a modern twist.</p>
-              <a href="RetroBlocks.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="project-card__media">
+          <h3>LensesBuddy</h3>
+          <p>The ultimate contact lens tracker to manage lens usage and maintain a healthy eye care routine.</p>
+          <a href="LensesBuddy.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/onCamScripter/logo.png" alt="On-Cam Script Prompter" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">On-Cam Script Prompter</h3>
-              <p class="text-gray-600 mt-2">Professional teleprompter app for seamless video recording and content creation. Perfect for YouTubers, presenters, and content creators who want to maintain eye contact while delivering their message.</p>
-              <a href="OnCamScriptPrompter.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/StichIt/logo.png" alt="StichIt – Cross Stitch Creator" class="project-card__media">
+          <h3>StichIt – Cross Stitch Creator</h3>
+          <p>Convert any photo into a cross stitch pattern, edit stitches with full DMC palettes, and export printable charts.</p>
+          <a href="StichIt.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/TheSquare/thesquare_logo.png" alt="The Square: Idle Game" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">The Square: Idle Game</h3>
-              <p class="text-gray-600 mt-2">An engaging idle game where you manage and upgrade your square to progress through various levels and challenges.</p>
-              <a href="TheSquare.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/HobbyDogging/icon.png" alt="Hobby Dogging" class="project-card__media">
+          <h3>Hobby Dogging – Invisible Dog</h3>
+          <p>Walk an imaginary dog with a real leash, track playful sessions, and level up moods, styles, and streaks.</p>
+          <a href="HobbyDogging.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Faceit Skill Rankings</h3>
-              <p class="text-gray-600 mt-2">A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes...</p>
-              <a href="https://faceitskill.com" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/DeathDebt/icon_s.png" alt="Death Debt" class="project-card__media">
+          <h3>Death Debt – Gain with Gaming</h3>
+          <p>Turn every in-game death into real pushups, track streaks, unlock badges, and compete on gamer fitness leaderboards.</p>
+          <a href="DeathDebt.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Blockchain-Based Authentication for NDN</h3>
-              <p class="text-gray-600 mt-2">Master Thesis - Security and Authentication in Named Data Networking...</p>
-              <a href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/bdaywidget.png" alt="B-day Widget" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">B-day Widget</h3>
-              <p class="text-gray-600 mt-2">Keep track of all your friends' special dates with ease! iOS app + Widget...</p>
-              <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/redflag.jpg" alt="RedFlags Detector" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">RedFlags Detector</h3>
-              <p class="text-gray-600 mt-2">Mobile App that uses AI to detect red flags in printed messages, also as a automated blog post generator using AI.</p>
-              <a href="https://apps.apple.com/pt/app/red-flags-detector-texting/id6630375062?l=en-GB&platform=iphone" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Vinted Chrome Extension</h3>
-              <p class="text-gray-600 mt-2">A browser extension for filtering items on Vinted by location...</p>
-              <a href="https://vintedfilterbylocation.vercel.app/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/RetroBlocks/icon.png" alt="Retro Blocks – Classic Puzzle" class="project-card__media">
+          <h3>Retro Blocks – Classic Puzzle</h3>
+          <p>A nostalgic puzzle game that brings back the classic block-stacking fun with a modern twist.</p>
+          <a href="RetroBlocks.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/SlideFactory/logo.png" alt="Slide Factory – AI Viral Maker" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Slide Factory – AI Viral Maker</h3>
-              <p class="text-gray-600 mt-2">Turn raw ideas into scroll-stopping viral carousels, scripts, hooks and visuals – all powered by AI.</p>
-              <a href="SlideFactory.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/onCamScripter/logo.png" alt="On-Cam Script Prompter" class="project-card__media">
+          <h3>On-Cam Script Prompter</h3>
+          <p>Professional teleprompter app for seamless video recording and content creation. Perfect for YouTubers and presenters.</p>
+          <a href="OnCamScriptPrompter.html" class="visit-link">Visit the project →</a>
+        </div>
 
-             <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <video src="public/Video promocional Projeto ARC.mp4" alt="V2X: Medical Emergency Service" class="w-full h-40 object-cover rounded-md" controls></video>
-              <h3 class="text-xl font-semibold mt-4">V2X: Medical Emergency Service</h3>
-              <p id="v2x-description" class="text-gray-600 mt-2">
-                V2X communication is an emerging and innovative technology that enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment. This type of communication makes it possible to connect a vehicle not only to other vehicles, but also to infrastructure, the cellular/cloud network, and vulnerable road users (such as motorcyclists, cyclists and/or pedestrians), thus covering a wide range of applications from traditional infotainment cases to the most advanced cooperative and assisted driving functions.
-              </p>
-              <button id="read-more-btn-v2x" class="text-grey-600 hover:underline mt-4 block">Read More</button>
-              <a href="https://rodrigo740.github.io/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/TheSquare/thesquare_logo.png" alt="The Square: Idle Game" class="project-card__media">
+          <h3>The Square: Idle Game</h3>
+          <p>An engaging idle game where you manage and upgrade your square to progress through various levels and challenges.</p>
+          <a href="TheSquare.html" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <video src="public/demo-Walk and Seat.mp4" alt="Walk and Seat" class="w-full h-40 object-cover rounded-md" controls></video>
-              <h3 class="text-xl font-semibold mt-4">Walk and Seat</h3>
-              <p class="text-gray-600 mt-2">Our aim was to provide clients in the vicinity of the restaurants with access to relevant content, such as the number of avaliable tables and menus.</p>
-              <a href="https://github.com/coutooo/Walk-n-Seat" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="project-card__media project-card__media--cover">
+          <h3>Faceit Skill Rankings</h3>
+          <p>A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.</p>
+          <a href="https://faceitskill.com" class="visit-link">Visit the project →</a>
+        </div>
 
+        <div class="project-card">
+          <img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="project-card__media project-card__media--cover">
+          <h3>Blockchain-Based Auth for NDN</h3>
+          <p>Master Thesis — Security and Authentication in Named Data Networking, using Hyperledger Sawtooth.</p>
+          <a href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/TextWizard/logo.png" alt="TextWizard" class="w-full h-40 object-contain rounded-md">
-              <h3 class="text-xl font-semibold mt-4">TextWizard</h3>
-              <p class="text-gray-600 mt-2">A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.</p>
-              <a href="TextWizard.html" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <video src="public/videobulk.mp4" alt="Video Bulk" class="w-full h-40 object-cover rounded-md" controls></video>
-              <h3 class="text-xl font-semibold mt-4">Video Bulk</h3>
-              <p class="text-gray-600 mt-2">Automate your short-form content with a script to save time and boost consistency...</p>
-              <a href="https://www.videobulk.pro/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <video src="public/cronos.mp4" alt="Cronos" class="w-full h-40 object-cover rounded-md" controls></video>
-              <h3 class="text-xl font-semibold mt-4">Cronos</h3>
-              <p class="text-gray-600 mt-2">Perpetuate your words even if you're not here. A way of leaving messages or important data for post-mortem situations or just to leave a message for the future...</p>
-              <a href="https://cronosgram.com/" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/medtracking.jpg" alt="MedTracking" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">MedTracking</h3>
-              <p id="medtracking-description" class="text-gray-600 mt-2 overflow-hidden max-h-20">
-                Phone + Tablet app, phone : The MedTracking application is aimed primarily at nurses but it can be used by other health professionals, offering them the ability to follow their day-to-day tasks, access patient information quickly by scanning an NFC tag, keep track of medications administered through the cart functionality of the application(Tablet project) and the care to perform and already performed for each patient. With all these features, nurses have their tasks easier and do not need paper records or remembering tasks they have already done, allowing them to focus on their work without distractions. Tablet: The MedTracking for tablet is an application that simulates a medicine cart and is designed to work with the MedTracking application for phone.
-              </p>
-              <button id="read-more-btn" class="text-grey-600 hover:underline mt-4 block">Read More</button>
-              <a href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/bdaywidget.png" alt="B-day Widget" class="project-card__media project-card__media--cover">
+          <h3>B-day Widget</h3>
+          <p>Keep track of all your friends' special dates with ease! iOS app + Widget.</p>
+          <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" class="visit-link">Visit the project →</a>
+        </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">Enigmas of Dark Stories</h3>
-              <p class="text-gray-600 mt-2">The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI...</p>
-              <a href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/park.jpg" alt="ParkBuddy in Flutter" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">ParkBuddy in Flutter</h3>
-              <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>
-              <a href="https://github.com/coutooo/ParkBuddy" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
-          
-            <div class="bg-white shadow-md rounded-lg p-6 project-card">
-              <img src="public/park2.jpg" alt="ParkBuddy in Android Studio" class="w-full h-40 object-cover rounded-md">
-              <h3 class="text-xl font-semibold mt-4">ParkBuddy in Android Studio</h3>
-              <p class="text-gray-600 mt-2">Made to be your buddy for retaining your parking location...</p>
-              <a href="https://github.com/coutooo/ParkBuddy_AS" class="text-blue-600 hover:underline mt-4 block">Visit the project!</a>
-            </div>
+        <div class="project-card">
+          <img src="public/redflag.jpg" alt="RedFlags Detector" class="project-card__media project-card__media--cover">
+          <h3>RedFlags Detector</h3>
+          <p>Mobile App that uses AI to detect red flags in printed messages, also as an automated blog post generator using AI.</p>
+          <a href="https://apps.apple.com/pt/app/red-flags-detector-texting/id6630375062?l=en-GB&platform=iphone" class="visit-link">Visit the project →</a>
+        </div>
 
+        <div class="project-card">
+          <img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="project-card__media project-card__media--cover">
+          <h3>Vinted Chrome Extension</h3>
+          <p>A browser extension for filtering items on Vinted by location.</p>
+          <a href="https://vintedfilterbylocation.vercel.app/" class="visit-link">Visit the project →</a>
+        </div>
 
+        <div class="project-card">
+          <img src="public/SlideFactory/logo.png" alt="Slide Factory" class="project-card__media">
+          <h3>Slide Factory – AI Viral Maker</h3>
+          <p>Turn raw ideas into scroll-stopping viral carousels, scripts, hooks and visuals — all powered by AI.</p>
+          <a href="SlideFactory.html" class="visit-link">Visit the project →</a>
+        </div>
 
-        <!-- Add more projects similarly -->
+        <div class="project-card">
+          <video src="public/Video promocional Projeto ARC.mp4" class="project-card__media project-card__media--cover" controls></video>
+          <h3>V2X: Medical Emergency Service</h3>
+          <p id="v2x-description">V2X communication enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment — connecting vehicles to each other and to infrastructure, the network, and vulnerable road users.</p>
+          <button id="read-more-btn-v2x" class="read-more-btn">Read more ↓</button>
+          <a href="https://rodrigo740.github.io/" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <video src="public/demo-Walk and Seat.mp4" class="project-card__media project-card__media--cover" controls></video>
+          <h3>Walk and Seat</h3>
+          <p>Provide clients near restaurants with access to relevant content — number of available tables and menus — in real time.</p>
+          <a href="https://github.com/coutooo/Walk-n-Seat" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <img src="public/TextWizard/logo.png" alt="TextWizard" class="project-card__media">
+          <h3>TextWizard</h3>
+          <p>A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.</p>
+          <a href="TextWizard.html" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <video src="public/videobulk.mp4" class="project-card__media project-card__media--cover" controls></video>
+          <h3>Video Bulk</h3>
+          <p>Automate your short-form content with a script to save time and boost consistency.</p>
+          <a href="https://www.videobulk.pro/" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <video src="public/cronos.mp4" class="project-card__media project-card__media--cover" controls></video>
+          <h3>Cronos</h3>
+          <p>Perpetuate your words even if you're not here. Leave messages or important data for post-mortem or future delivery.</p>
+          <a href="https://cronosgram.com/" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <img src="public/medtracking.jpg" alt="MedTracking" class="project-card__media project-card__media--cover">
+          <h3>MedTracking</h3>
+          <p id="medtracking-description">Phone + Tablet app for nurses — NFC patient scanning, medication cart tracking, and task management. Replaces paper records entirely.</p>
+          <button id="read-more-btn" class="read-more-btn">Read more ↓</button>
+          <a href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="project-card__media project-card__media--cover">
+          <h3>Enigmas of Dark Stories</h3>
+          <p>The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI.</p>
+          <a href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <img src="public/park.jpg" alt="ParkBuddy Flutter" class="project-card__media project-card__media--cover">
+          <h3>ParkBuddy in Flutter</h3>
+          <p>Made to be your buddy for retaining your parking location — cross-platform Flutter implementation.</p>
+          <a href="https://github.com/coutooo/ParkBuddy" class="visit-link">Visit the project →</a>
+        </div>
+
+        <div class="project-card">
+          <img src="public/park2.jpg" alt="ParkBuddy Android Studio" class="project-card__media project-card__media--cover">
+          <h3>ParkBuddy in Android Studio</h3>
+          <p>Android Studio native implementation of the ParkBuddy parking location tracker.</p>
+          <a href="https://github.com/coutooo/ParkBuddy_AS" class="visit-link">Visit the project →</a>
+        </div>
 
       </div>
     </div>
   </section>
 
-  <section id="contact" class="retro-window">
-    <div class="retro-titlebar">CONTACT.ME</div>
-    <div class="retro-content">
-      <div class="container text-center">
-        <div class="construction">UNDER CONSTRUCTION — EMAIL OR DM FOR COLLABS</div>
-        <p class="mt-4">Ping me on LinkedIn or GitHub, or grab the CV above.</p>
+  <hr class="dashed-divider">
+
+  <!-- 📬 Contact -->
+  <section id="contact" class="section-gap">
+    <div class="container" style="text-align:center;">
+      <div class="section-label">CONTACT.ME</div>
+      <h2 class="section-title">Let's chat!</h2>
+      <div class="sketch-card contact-card">
+        <div class="tack"></div>
+        <p>Ping me on LinkedIn or GitHub, or grab the CV above. Always happy to talk about projects, collabs, or cool ideas ☕</p>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/coutooo/" class="sketch-btn">LinkedIn</a>
+          <a href="https://github.com/coutooo" class="sketch-btn">GitHub</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- buy me a coffe -->
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mavc" data-description="Support me on Buy me a coffee!" data-message="I love coffee :)" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+  <!-- Buy Me a Coffee -->
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mavc" data-description="Support me on Buy me a coffee!" data-message="I love coffee :)" data-color="#ff4d4d" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
   <!-- Footer -->
-  <footer class="retro-window">
-    <div class="retro-titlebar">FOOTER.SYS</div>
-    <div class="retro-content">
-      <div class="container flex flex-col md:flex-row justify-between items-center">
-        <p>&copy; 2025 Manuel Couto. All rights reserved.</p>
-        <div class="flex space-x-4">
-          <a href="policy.html" target="_blank">Policy Page</a>
-          <span>|</span>
-          <a href="support.html" target="_blank">Support Page</a>
-        </div>
+  <footer class="sketch-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Manuel Couto. Made with ☕</p>
+      <div>
+        <a href="policy.html" target="_blank">Policy</a>
+        <span class="footer-sep">·</span>
+        <a href="support.html" target="_blank">Support</a>
       </div>
     </div>
   </footer>
+
 </body>
 </html>

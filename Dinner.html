@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basky – Smart Shopping Lists</title>
-    <meta name="description" content="Basky keeps shared grocery lists in sync with quick add, categories, and reminders so every family or roommate basket stays organized together." />
+    <title>Dinner - Meal Planning Companion</title>
+    <meta name="description" content="Dinner helps you decide what to eat faster with simple planning, saved ideas, and practical weekly flow." />
     <link rel="stylesheet" href="styles.css" />
     <style>
         * {
@@ -14,15 +14,15 @@
         }
 
         :root {
-            --bg0: #0a0c12;
-            --bg1: #0f1625;
-            --line: rgba(255, 255, 255, 0.12);
-            --mist: rgba(255, 255, 255, 0.08);
-            --ink: #e5e7eb;
-            --inkMuted: rgba(229, 231, 235, 0.78);
-            --lime: #84cc16;
-            --teal: #2dd4bf;
-            --blue: #60a5fa;
+            --bg0: #140b0b;
+            --bg1: #221010;
+            --line: rgba(255, 255, 255, 0.14);
+            --mist: rgba(255, 255, 255, 0.09);
+            --ink: #f3ece8;
+            --inkMuted: rgba(243, 236, 232, 0.8);
+            --tomato: #ef4444;
+            --apricot: #fb923c;
+            --berry: #f43f5e;
         }
 
         body {
@@ -30,9 +30,9 @@
             min-height: 100vh;
             color: var(--ink);
             background:
-                radial-gradient(circle at 15% 10%, rgba(132, 204, 22, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 85% 15%, rgba(45, 212, 191, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 50% 100%, rgba(96, 165, 250, 0.18) 0%, transparent 55%),
+                radial-gradient(circle at 12% 10%, rgba(244, 63, 94, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 88% 8%, rgba(251, 146, 60, 0.2) 0%, transparent 44%),
+                radial-gradient(circle at 50% 100%, rgba(239, 68, 68, 0.2) 0%, transparent 55%),
                 linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
         }
 
@@ -44,14 +44,14 @@
             border-radius: 999px;
             text-decoration: none;
             color: var(--ink);
-            background: rgba(10, 12, 18, 0.45);
+            background: rgba(20, 11, 11, 0.48);
             border: 1px solid var(--line);
             backdrop-filter: blur(10px);
             transition: background 0.3s ease;
         }
 
         .back-btn:hover {
-            background: rgba(10, 12, 18, 0.65);
+            background: rgba(20, 11, 11, 0.68);
         }
 
         .container {
@@ -66,7 +66,7 @@
             border-radius: 36px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--line);
-            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.58);
         }
 
         .hero img {
@@ -104,20 +104,15 @@
             border-radius: 18px;
             text-decoration: none;
             font-weight: 700;
-            color: #07110b;
-            background: linear-gradient(120deg, var(--lime), var(--teal));
-            box-shadow: 0 18px 50px rgba(132, 204, 22, 0.2);
+            color: #1b0a0a;
+            background: linear-gradient(120deg, var(--tomato), var(--apricot));
+            box-shadow: 0 18px 50px rgba(239, 68, 68, 0.26);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 30px 70px rgba(45, 212, 191, 0.22);
-        }
-
-        .cta-btn[aria-disabled="true"] {
-            pointer-events: none;
-            opacity: 0.7;
+            box-shadow: 0 30px 70px rgba(251, 146, 60, 0.24);
         }
 
         .metrics {
@@ -140,7 +135,7 @@
             font-size: 0.9rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: rgba(229, 231, 235, 0.65);
+            color: rgba(243, 236, 232, 0.65);
         }
 
         .metric strong {
@@ -154,7 +149,7 @@
             margin-top: 38px;
             padding: 44px;
             border-radius: 34px;
-            background: rgba(10, 12, 18, 0.55);
+            background: rgba(20, 11, 11, 0.56);
             border: 1px solid var(--mist);
             box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
         }
@@ -198,8 +193,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(45, 212, 191, 0.35);
-            background: rgba(45, 212, 191, 0.14);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            background: rgba(239, 68, 68, 0.14);
             color: #fff;
             font-size: 1.6rem;
         }
@@ -210,7 +205,7 @@
         }
 
         .card p {
-            color: rgba(229, 231, 235, 0.75);
+            color: rgba(243, 236, 232, 0.78);
             line-height: 1.6;
         }
 
@@ -231,12 +226,12 @@
             font-size: 0.95rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--blue);
+            color: var(--apricot);
             margin-bottom: 12px;
         }
 
         .step p {
-            color: rgba(229, 231, 235, 0.78);
+            color: rgba(243, 236, 232, 0.78);
             line-height: 1.65;
         }
 
@@ -251,8 +246,8 @@
         .pill-row span {
             padding: 10px 18px;
             border-radius: 999px;
-            border: 1px solid rgba(132, 204, 22, 0.35);
-            background: rgba(132, 204, 22, 0.12);
+            border: 1px solid rgba(251, 146, 60, 0.35);
+            background: rgba(251, 146, 60, 0.12);
             color: #fff;
             font-size: 0.92rem;
         }
@@ -260,7 +255,7 @@
         footer {
             margin-top: 52px;
             text-align: center;
-            color: rgba(229, 231, 235, 0.6);
+            color: rgba(243, 236, 232, 0.62);
             font-size: 0.95rem;
         }
 
@@ -282,101 +277,102 @@
 <body class="retro">
     <div class="marquee" aria-live="polite">
         <div class="marquee__inner" aria-hidden="true">
-            <span class="marquee__item">BASKY ONLINE</span>
-            <span class="marquee__item">SMART SHOPPING LISTS</span>
-            <span class="marquee__item">SYNC YOUR BASKET</span>
-            <span class="marquee__item">BASKY ONLINE</span>
-            <span class="marquee__item">SMART SHOPPING LISTS</span>
+            <span class="marquee__item">DINNER APP ONLINE</span>
+            <span class="marquee__item">MEAL IDEAS IN SECONDS</span>
+            <span class="marquee__item">PLAN THE WEEK FAST</span>
+            <span class="marquee__item">DINNER APP ONLINE</span>
+            <span class="marquee__item">MEAL IDEAS IN SECONDS</span>
         </div>
-        <span class="marquee__static">BASKY ONLINE — SMART SHOPPING LISTS</span>
+        <span class="marquee__static">DINNER APP ONLINE - MEAL IDEAS IN SECONDS</span>
     </div>
     <a href="index.html" class="back-btn">← Back to Home</a>
 
     <div class="container">
         <header class="hero">
-            <img src="public/Basky/icon.png" alt="Basky app icon" />
-            <h1>Basky</h1>
+            <img src="public/Dinner/red_logo.png" alt="Dinner app logo" />
+            <h1>Dinner</h1>
             <p>
-                Basky is built for shared grocery lists. Keep family and roommate lists in sync in real time,
-                plan faster, never forget an item, and shop together without double-buys.
+                Dinner helps you answer the daily "what should we eat?" question with less stress.
+                Save ideas, plan the week quickly, and keep simple meal routines that actually stick.
             </p>
-            <a class="cta-btn" href="https://apps.apple.com/pt/app/basky-shared-grocery-list/id6758864507?l=en-GB" target="_blank" rel="noopener">Download on the App Store</a>
+            <a class="cta-btn" href="#" aria-disabled="true">Coming soon</a>
 
             <div class="metrics">
                 <div class="metric">
-                    <span>Shared Lists</span>
-                    <strong>Real-time sync</strong>
+                    <span>Fast Decisions</span>
+                    <strong>Meal ideas quickly</strong>
                 </div>
                 <div class="metric">
-                    <span>Family Ready</span>
-                    <strong>Multi-user edits</strong>
+                    <span>Weekly Flow</span>
+                    <strong>Easy planning</strong>
                 </div>
                 <div class="metric">
-                    <span>Roommate Proof</span>
-                    <strong>No duplicate buys</strong>
+                    <span>Everyday Use</span>
+                    <strong>No friction routine</strong>
                 </div>
             </div>
         </header>
 
         <section class="section">
-            <h2 class="section-title">Built for everyday baskets</h2>
+            <h2 class="section-title">Make dinner decisions easier</h2>
             <p class="section-lead">
-                Make grocery runs feel lighter. Basky keeps shared lists easy to capture, prioritize, and update —
-                so everyone sees the same list and nothing gets missed.
+                Instead of repeating the same long debate, Dinner keeps a practical shortlist and helps you pick quickly.
+                One clear place for ideas, rotation, and planning.
             </p>
 
             <div class="grid">
                 <div class="card">
+                    <div class="icon">🍽️</div>
+                    <strong>Saved meal ideas</strong>
+                    <p>Keep your favorite meal options in one place so choices are always ready.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🗓️</div>
+                    <strong>Weekly planning</strong>
+                    <p>Build a week in minutes to reduce daily decision fatigue and last-minute stress.</p>
+                </div>
+                <div class="card">
                     <div class="icon">🛒</div>
-                    <strong>Shared add</strong>
-                    <p>Anyone can add items in seconds with smart suggestions and recent buys.</p>
+                    <strong>Shopping-friendly</strong>
+                    <p>Plan meals in a way that makes grocery prep simpler and more organized.</p>
                 </div>
                 <div class="card">
-                    <div class="icon">🧺</div>
-                    <strong>Category flow</strong>
-                    <p>Group items by aisle or category to keep shopping smooth and efficient.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🤝</div>
-                    <strong>Shared lists</strong>
-                    <p>Keep a single source of truth with real-time updates for the whole household.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🔔</div>
-                    <strong>Gentle reminders</strong>
-                    <p>Get nudged when it’s time to restock your staples or finish a list.</p>
+                    <div class="icon">❤️</div>
+                    <strong>Household ready</strong>
+                    <p>A practical flow for couples, families, or anyone who wants easier evening meals.</p>
                 </div>
             </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">How it fits your routine</h2>
+            <h2 class="section-title">How Dinner fits your week</h2>
             <div class="flow">
                 <div class="step">
-                    <h4>01 · Capture</h4>
-                    <p>Everyone adds items in the moment — pantry restocks, cravings, or shared staples.</p>
+                    <h4>01 - Save ideas</h4>
+                    <p>Add simple meal options you actually enjoy and keep them easy to browse.</p>
                 </div>
                 <div class="step">
-                    <h4>02 · Organize</h4>
-                    <p>Let Basky tidy the list by category so you can shop with a clear path.</p>
+                    <h4>02 - Plan quickly</h4>
+                    <p>Set your week with a lightweight routine that takes minutes, not hours.</p>
                 </div>
                 <div class="step">
-                    <h4>03 · Checkout</h4>
-                    <p>Check off items together and keep the shared list ready for the next run.</p>
+                    <h4>03 - Cook with less stress</h4>
+                    <p>Know what is for dinner ahead of time and avoid the end-of-day scramble.</p>
                 </div>
             </div>
 
             <div class="pill-row">
-                <span>Shared lists</span>
-                <span>Real-time sync</span>
-                <span>Family-friendly</span>
-                <span>Roommate ready</span>
-                <span>No double-buys</span>
+                <span>Meal planning</span>
+                <span>Household friendly</span>
+                <span>Fast decisions</span>
+                <span>Less stress</span>
+                <span>Daily routine</span>
             </div>
         </section>
 
-        <footer>© 2026 Manuel Couto · Basky</footer>
+        <footer>© 2026 Manuel Couto · Dinner</footer>
     </div>
+
     <section class="retro-window">
         <div class="retro-titlebar">SITE_STATUS.DAT</div>
         <div class="retro-content">

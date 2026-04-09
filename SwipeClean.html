@@ -1,186 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SwipeClean – Clean Up Photos Fast</title>
-  <meta name="description" content="SwipeClean: Clean up photos fast! Swipe to keep or delete, confirm before removal, and see how much storage you free. Simple, smart photo cleaner." />
-  <meta name="keywords" content="SwipeClean, clean up photos fast, swipe to delete, photo cleaner, storage cleaner, iOS app" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwipeClean – Clean Up Photos Fast</title>
+    <meta name="description" content="Clean up photos fast! Swipe to keep or delete, confirm before removal, and see how much storage you free. Simple, smart photo cleaner." />
+    <link rel="stylesheet" href="app-page.css" />
+    <style>
+        :root {
+            --accent: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+        }
+    </style>
 </head>
-<body class="retro">
-  <div class="marquee" aria-live="polite">
-    <div class="marquee__inner" aria-hidden="true">
-      <span class="marquee__item">SWIPECLEAN ONLINE</span>
-      <span class="marquee__item">CLEAN UP PHOTOS FAST</span>
-      <span class="marquee__item">STORAGE FREED!</span>
-      <span class="marquee__item">SWIPECLEAN ONLINE</span>
-      <span class="marquee__item">CLEAN UP PHOTOS FAST</span>
-    </div>
-    <span class="marquee__static">SWIPECLEAN ONLINE — CLEAN UP PHOTOS FAST</span>
-  </div>
-  <!-- Header -->
-  <header class="bg-white shadow-md py-4">
-    <div class="container mx-auto px-6 flex justify-between items-center">
-      <a href="index.html" class="text-xl font-bold text-blue-600 hover:text-blue-800">← Back to Portfolio</a>
-      <nav>
-        <ul class="flex space-x-4">
-          <li><a href="#features" class="text-blue-600 hover:underline">Features</a></li>
-          <li><a href="#how" class="text-blue-600 hover:underline">How It Works</a></li>
-          <li><a href="#download" class="text-blue-600 hover:underline">Download</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<body>
+    <div class="app-container">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Portfolio
+        </a>
 
-  <!-- Hero -->
-  <section class="bg-gradient-to-br from-blue-600 via-sky-600 to-cyan-500 text-white py-20 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.4),transparent_60%)]"></div>
-    <div class="container mx-auto px-6 text-center relative">
-      <img src="public/SwipeClean/icon.png" alt="SwipeClean App Icon" class="w-32 h-32 mx-auto mb-8 rounded-2xl shadow-2xl" />
-      <h1 class="text-5xl font-extrabold mb-4 drop-shadow-lg">SwipeClean</h1>
-  <p class="text-xl mb-8 max-w-3xl mx-auto font-light">Clean up photos fast! Swipe to keep or delete, confirm before removal, and see how much storage you free. Simple, smart photo cleaner.</p>
-      <a href="https://apps.apple.com/us/app/swipeclean-clean-up-photos/id6753323375" target="_blank" class="bg-white text-sky-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition duration-300 shadow-lg inline-flex items-center">
-        <span class="mr-2">📸</span> Download on the App Store
-      </a>
-      <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm opacity-90">
-        <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full border border-white/20">Swipe Right to Delete</span>
-        <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full border border-white/20">Swipe Left to Keep</span>
-        <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full border border-white/20">Confirm Before Deleting</span>
-        <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full border border-white/20">Storage Space Tracker</span>
-        <span class="bg-white/10 backdrop-blur px-4 py-2 rounded-full border border-white/20">Fast & Simple</span>
-      </div>
-    </div>
-  </section>
+        <header class="app-hero">
+            <img src="public/SwipeClean/icon.png" alt="SwipeClean App Icon" class="app-icon" />
+            <h1 class="app-title">SwipeClean</h1>
+            <p class="app-subtitle">
+                Clean up your photo gallery fast. Swipe to keep or delete, 
+                confirm before removal, and see how much storage you free up instantly.
+            </p>
+            <a href="https://apps.apple.com/us/app/swipeclean-clean-up-photos/id6753323375" class="cta-button" target="_blank" rel="noopener">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.77-3.26.82-1.33.05-2.33-1.32-3.17-2.54C4.19 17.06 3 12.39 3 9.49c0-2.85 1.85-4.36 3.65-4.39 1.54-.03 2.65.93 3.59.93.95 0 2.22-1.15 4.02-1.01 1.05.04 2.87.41 3.96 1.87-.08.05-1.94 1.13-1.91 3.39.04 2.72 2.36 3.64 2.39 3.65-.03.07-.37 1.26-1.19 2.44v.13zM14.5 2c.02.01.03.01.05.01 1.29.13 2.15 1.34 2.06 2.56-.01.12-.03.24-.07.35-1.11.13-2.18-.84-2.28-2.06-.02-.14-.01-.29.02-.42.08-.14.16-.29.22-.44z"/></svg>
+                Download on the App Store
+            </a>
+        </header>
 
-  <!-- Important / Why / Features / Benefits -->
-  <section id="features" class="py-16">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <div class="grid grid-cols-1 gap-10">
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 class="text-3xl font-bold mb-3">Why SwipeClean?</h2>
-          <p class="text-gray-700">Your photo gallery fills up fast — screenshots, duplicates, blurry shots, and photos you no longer need. Manually searching and deleting takes time. SwipeClean gives you a fun, fast, and effective way to clean up your photo library in seconds.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 class="text-3xl font-bold mb-6">Key Features</h2>
-          <ul class="list-disc pl-6 space-y-2 text-gray-700">
-            <li>Fast and intuitive swipe-to-clean interface.</li>
-            <li>Batch management for reviewing multiple photos at once.</li>
-            <li>Real-time storage tracker: see how much space you recover.</li>
-            <li>Safe delete with confirmation to prevent mistakes.</li>
-            <li>Sleek, modern design that makes photo management simple.</li>
-          </ul>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 class="text-3xl font-bold mb-6">Benefits</h2>
-          <ul class="list-disc pl-6 space-y-2 text-gray-700">
-            <li><strong>Free Up Space</strong>: Clear clutter and recover valuable storage.</li>
-            <li><strong>Save Time</strong>: No more scrolling endlessly to find what to delete.</li>
-            <li><strong>Stay Organized</strong>: Keep your gallery focused on the moments that matter.</li>
-            <li><strong>Boost Performance</strong>: A lighter, cleaner device runs faster.</li>
-          </ul>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-lg">
-          <h2 class="text-3xl font-bold mb-6">Perfect For</h2>
-          <ul class="list-disc pl-6 space-y-2 text-gray-700">
-            <li>Anyone running out of storage.</li>
-            <li>Users who want to quickly delete duplicates and screenshots.</li>
-            <li>People who want a simple, swipe-based way to organize photos.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section>
+            <h2 class="section-title">Take control of your gallery</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📸</span>
+                    <h3 class="feature-title">Fast swiping</h3>
+                    <p class="feature-desc">Swipe right to mark for deletion, swipe left to keep. Cleaning your library has never been this satisfying.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💾</span>
+                    <h3 class="feature-title">Storage tracker</h3>
+                    <p class="feature-desc">See exactly how much space you're recovering in real-time as you clean up your photos.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3 class="feature-title">Safe delete</h3>
+                    <p class="feature-desc">A final confirmation step ensures you never accidentally delete a precious memory.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Lightweight</h3>
+                    <p class="feature-desc">Optimized for speed and performance, making photo management a breeze even with large libraries.</p>
+                </div>
+            </div>
+        </section>
 
-  <!-- How It Works -->
-  <section id="how" class="bg-gray-100 py-16">
-    <div class="container mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12">How It Works</h2>
-      <div class="max-w-5xl mx-auto space-y-16">
-        <div class="flex flex-col md:flex-row items-center gap-10">
-          <div class="md:w-1/2">
-            <div class="bg-sky-100 rounded-full w-16 h-16 flex items-center justify-center mb-4"><span class="text-2xl font-bold text-sky-600">1</span></div>
-            <h3 class="text-2xl font-bold mb-4">Swipe Right to Delete</h3>
-            <p class="text-gray-600 text-lg">Instantly mark a photo for removal.</p>
-          </div>
-          <div class="md:w-1/2 flex justify-center">
-            <div class="bg-white rounded-xl shadow-lg p-8 w-64 h-40 flex items-center justify-center"><span class="text-4xl">🖌️</span></div>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row-reverse items-center gap-10">
-          <div class="md:w-1/2">
-            <div class="bg-cyan-100 rounded-full w-16 h-16 flex items-center justify-center mb-4"><span class="text-2xl font-bold text-cyan-600">2</span></div>
-            <h3 class="text-2xl font-bold mb-4">Swipe Left to Keep</h3>
-            <p class="text-gray-600 text-lg">Save the memories that matter.</p>
-          </div>
-          <div class="md:w-1/2 flex justify-center">
-            <div class="bg-white rounded-xl shadow-lg p-8 w-64 h-40 flex items-center justify-center"><span class="text-4xl">✨</span></div>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-10">
-          <div class="md:w-1/2">
-            <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mb-4"><span class="text-2xl font-bold text-blue-600">3</span></div>
-            <h3 class="text-2xl font-bold mb-4">Confirm & Track Storage</h3>
-            <p class="text-gray-600 text-lg">Confirm before deleting and see exactly how much memory you’re saving.</p>
-          </div>
-          <div class="md:w-1/2 flex justify-center">
-            <div class="bg-white rounded-xl shadow-lg p-8 w-64 h-40 flex items-center justify-center"><span class="text-4xl">📲</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        <section class="steps-container">
+            <h2 class="section-title">How it works</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <h4>01 · Swipe</h4>
+                    <p>Instantly sort photos into 'Keep' or 'Delete' buckets.</p>
+                </div>
+                <div class="step-item">
+                    <h4>02 · Review</h4>
+                    <p>Check your selection before making it final.</p>
+                </div>
+                <div class="step-item">
+                    <h4>03 · Free Space</h4>
+                    <p>Watch your device's storage capacity grow.</p>
+                </div>
+            </div>
+        </section>
 
-  <!-- CTA / Download -->
-  <section id="download" class="bg-sky-700 text-white py-16">
-    <div class="container mx-auto px-6 text-center">
-  <h2 class="text-4xl font-bold mb-6">Free Up Space in Seconds</h2>
-  <p class="text-xl mb-8 max-w-2xl mx-auto">Swipe to keep or delete, confirm before removal, and see how much storage you recover. Simple, fast, and effective.</p>
-      <a href="https://apps.apple.com/us/app/swipeclean-clean-up-photos/id6753323375" target="_blank" class="bg-white text-sky-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition duration-300 shadow-lg inline-flex items-center">
-        <span class="mr-2">📱</span> Download for iOS
-      </a>
-      <div class="mt-10 flex justify-center items-center space-x-8 text-sm opacity-90">
-        <span>✓ Free to Start</span>
-        <span>✓ AI-Powered</span>
-        <span>✓ On-Device Privacy</span>
-      </div>
+        <footer class="app-footer">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p>&copy; 2026 Manuel Couto · SwipeClean</p>
+        </footer>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-100 py-8">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <p>&copy; 2025 Manuel Couto. All rights reserved.</p>
-        </div>
-        <div class="flex space-x-6">
-          <a href="policy.html" target="_blank" class="text-gray-100 hover:underline">Privacy Policy</a>
-          <span>|</span>
-          <a href="support.html" target="_blank" class="text-gray-100 hover:underline">Support</a>
-          <span>|</span>
-          <a href="index.html" class="text-gray-100 hover:underline">Back to Portfolio</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <section class="retro-window">
-    <div class="retro-titlebar">SITE_STATUS.DAT</div>
-    <div class="retro-content">
-      <div class="container">
-        <div class="hit-counter">VISITORS: 0000404 | SINCE 2000</div>
-        <div class="color-grid" aria-hidden="true">
-          <div class="color-square red"></div>
-          <div class="color-square green"></div>
-          <div class="color-square blue"></div>
-          <div class="color-square yellow"></div>
-          <div class="color-square magenta"></div>
-          <div class="color-square cyan"></div>
-        </div>
-        <div class="construction">UNDER CONSTRUCTION — CHECK BACK SOON</div>
-      </div>
-    </div>
-  </section>
 </body>
 </html>

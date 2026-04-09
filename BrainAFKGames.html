@@ -3,237 +3,122 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BrainAFK Games</title>
-    <meta name="description" content="BrainAFK Games website highlighting game releases, updates, and links." />
-
+    <title>BrainAFK Games – Game Dev Hub</title>
+    <meta name="description" content="A hub for BrainAFK games, updates, and links. Explore our latest releases and keep up with the community." />
+    <link rel="stylesheet" href="app-page.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --bg0: #060c14;
-            --bg1: #0c1626;
-            --line: rgba(255, 255, 255, 0.12);
-            --mist: rgba(255, 255, 255, 0.07);
-            --ink: #e5e7eb;
-            --inkMuted: rgba(229, 231, 235, 0.78);
-            --lime: #84cc16;
-            --emerald: #10b981;
-            --sky: #38bdf8;
+            --accent: #84cc16;
+            --accent-gradient: linear-gradient(135deg, #84cc16 0%, #10b981 100%);
         }
-
-        body {
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            min-height: 100vh;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at 8% 10%, rgba(16, 185, 129, 0.22) 0%, transparent 42%),
-                radial-gradient(circle at 95% 15%, rgba(56, 189, 248, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 50% 100%, rgba(132, 204, 22, 0.18) 0%, transparent 55%),
-                linear-gradient(180deg, var(--bg1) 0%, var(--bg0) 100%);
-        }
-
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 18px;
-            border-radius: 999px;
-            text-decoration: none;
-            color: var(--ink);
-            background: rgba(6, 12, 20, 0.45);
-            border: 1px solid var(--line);
-            backdrop-filter: blur(10px);
-            transition: background 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: rgba(6, 12, 20, 0.65);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 85px 24px 60px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 60px 34px;
-            border-radius: 36px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--line);
-            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
-        }
-
-        .hero img {
-            width: 140px;
-            height: 140px;
-            border-radius: 30px;
-            margin-bottom: 22px;
-            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.45);
-            object-fit: contain;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            letter-spacing: -0.03em;
-            margin-bottom: 14px;
-            color: #fff;
-        }
-
-        .hero p {
-            max-width: 760px;
-            margin: 0 auto 26px;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--inkMuted);
-        }
-
-        .cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 18px;
-            text-decoration: none;
-            font-weight: 700;
-            color: #07140c;
-            background: linear-gradient(120deg, var(--lime), var(--emerald));
-            box-shadow: 0 18px 50px rgba(16, 185, 129, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 30px 70px rgba(132, 204, 22, 0.22);
-        }
-
-        .section {
-            margin-top: 38px;
-            padding: 44px;
-            border-radius: 34px;
-            background: rgba(6, 12, 20, 0.55);
-            border: 1px solid var(--mist);
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.1rem;
-            margin-bottom: 14px;
-            color: #fff;
-        }
-
-        .section-lead {
-            text-align: center;
-            max-width: 820px;
-            margin: 0 auto 30px;
-            line-height: 1.7;
-            color: var(--inkMuted);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 22px;
-        }
-
-        .card {
-            padding: 26px;
-            border-radius: 26px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--mist);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            min-height: 200px;
-        }
-
-        .card strong {
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-        .card p {
-            color: rgba(229, 231, 235, 0.75);
-            line-height: 1.6;
-        }
-
-        .chips {
+        .tech-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
-            margin-top: 18px;
+            margin-top: 40px;
         }
-
-        .chip {
-            padding: 10px 18px;
-            border-radius: 999px;
-            border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.04);
-            font-size: 0.95rem;
-            color: var(--inkMuted);
+        .tech-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
         }
-
-        @media (max-width: 720px) {
-            .hero {
-                padding: 45px 22px;
-            }
-
-            .section {
-                padding: 32px 24px;
-            }
+        .tech-chip:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-btn">Back to Portfolio</a>
+    <div class="app-container">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Portfolio
+        </a>
 
-    <main class="container">
-        <section class="hero">
-            <img src="public/brainafk/logo3.png" alt="BrainAFK Games logo" />
-            <h1>BrainAFK Games</h1>
-            <p>A hub for BrainAFK games, updates, and links. Built as a clean landing site to showcase releases and keep players in the loop.</p>
-            <a class="cta" href="https://www.brainafkgames.online/" target="_blank" rel="noreferrer">Visit the website</a>
-        </section>
+        <header class="app-hero">
+            <img src="public/brainafk/logo3.png" alt="BrainAFK Games Logo" class="app-icon" />
+            <h1 class="app-title">BrainAFK Games</h1>
+            <p class="app-subtitle">
+                A central hub for BrainAFK games, updates, and community links. 
+                Explore our current titles and stay informed about our latest releases.
+            </p>
+            <a href="https://www.brainafkgames.online/" class="cta-button" target="_blank" rel="noopener">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                Visit the Website
+            </a>
+        </header>
 
-        <section class="section">
-            <h2 class="section-title">What you will find</h2>
-            <p class="section-lead">A focused home for game announcements, new launches, and quick links to play or download.</p>
-            <div class="grid">
-                <div class="card">
-                    <strong>Game catalog</strong>
-                    <p>Browse current titles with clear calls to action and fast navigation.</p>
+        <section>
+            <h2 class="section-title">What we build</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h3 class="feature-title">Game Catalog</h3>
+                    <p class="feature-desc">Browse our collection of titles with clear navigation and fast access to play or download.</p>
                 </div>
-                <div class="card">
-                    <strong>Launch updates</strong>
-                    <p>Highlight new releases and keep the community informed.</p>
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3 class="feature-title">Launch Updates</h3>
+                    <p class="feature-desc">Stay ahead with real-time announcements for new game launches and version updates.</p>
                 </div>
-                <div class="card">
-                    <strong>Brand presence</strong>
-                    <p>Consistent visuals, logo use, and messaging across the site.</p>
+                <div class="feature-card">
+                    <span class="feature-icon">💎</span>
+                    <h3 class="feature-title">Brand Presence</h3>
+                    <p class="feature-desc">Experience a consistent visual language and messaging across all our game interfaces.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3 class="feature-title">Community Hub</h3>
+                    <p class="feature-desc">Find quick links to our social channels, support, and player communities in one place.</p>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Tech stack</h2>
-            <p class="section-lead">A lightweight web stack optimized for speed and easy updates.</p>
-            <div class="chips">
-                <span class="chip">HTML</span>
-                <span class="chip">CSS</span>
-                <span class="chip">JavaScript</span>
-                <span class="chip">Hosting</span>
+        <section class="steps-container">
+            <h2 class="section-title">Our development loop</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <h4>01 · Ideation</h4>
+                    <p>Focusing on minimalist, engaging mechanics that spark joy.</p>
+                </div>
+                <div class="step-item">
+                    <h4>02 · Build</h4>
+                    <p>Iterating fast with modern stacks for optimal performance.</p>
+                </div>
+                <div class="step-item">
+                    <h4>03 · Launch</h4>
+                    <p>Sharing our creations with the world and listening to feedback.</p>
+                </div>
             </div>
         </section>
-    </main>
+
+        <section>
+            <h2 class="section-title">Our tech stack</h2>
+            <div class="tech-chips">
+                <div class="tech-chip">HTML5</div>
+                <div class="tech-chip">Modern CSS</div>
+                <div class="tech-chip">JavaScript</div>
+                <div class="tech-chip">Unity</div>
+                <div class="tech-chip">Swift</div>
+                <div class="tech-chip">Scalable Hosting</div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p>&copy; 2026 Manuel Couto · BrainAFK Games</p>
+        </footer>
+    </div>
 </body>
 </html>

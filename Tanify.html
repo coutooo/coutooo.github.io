@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanify – UV Index & Smart Tanning App</title>
+    <meta name="description"
+        content="Meet Tanify, your smart tanning companion. Live UV index, guided session timers, SPF reminders, skin tone tracking, and a tanning journal — all in one beautiful app." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ============================================================
+           TANIFY – SUNSAFE-INSPIRED LANDING PAGE
+           ============================================================ */
+
+        :root {
+            --bg: #fef8f0;
+            --bg-alt: #fff7ed;
+            --text-dark: #1a1a1a;
+            --text-muted: #6b7280;
+            --accent: #e8a838;
+            --accent-deep: #d97706;
+            --card-dark: #1c1917;
+            --card-dark-alt: #292524;
+            --radius: 24px;
+            --radius-lg: 32px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(254, 248, 240, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--text-dark) !important;
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            opacity: 1 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero-rating {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .hero-stars {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-rating-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .hero-rating-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-right img {
+            width: 100%;
+            max-width: 560px;
+            border-radius: var(--radius);
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #000;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-store-badge svg {
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .badge-text-small {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-text-big {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- Showcase Sections --------------------------------- */
+        .showcase {
+            padding: 80px 0;
+        }
+
+        .showcase-row {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            min-height: 520px;
+        }
+
+        .showcase-row--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-text-card {
+            flex: 1;
+            background: var(--card-dark);
+            border-radius: var(--radius-lg);
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .showcase-text-card h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .showcase-text-card p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        .showcase-img-card {
+            flex: 1;
+            background: #e8e0d4;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            overflow: hidden;
+        }
+
+        .showcase-img-card--warm {
+            background: linear-gradient(160deg, #fde68a 0%, #f59e0b 100%);
+        }
+
+        .showcase-img-card--coral {
+            background: linear-gradient(160deg, #fed7aa 0%, #fb923c 100%);
+        }
+
+        .showcase-img-card--sky {
+            background: linear-gradient(160deg, #bae6fd 0%, #38bdf8 100%);
+        }
+
+        .showcase-img-card img {
+            max-width: 300px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Feature Section with colored text card ------------ */
+        .showcase-text-card--accent {
+            background: linear-gradient(160deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .showcase-text-card--accent h2 {
+            color: #fff;
+        }
+
+        .showcase-text-card--accent p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- CTA Section --------------------------------------- */
+        .cta-section {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Animations ---------------------------------------- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 12px 20px;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 48px 0 40px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hero-right img {
+                max-width: 100%;
+            }
+
+            .showcase {
+                padding: 40px 0;
+            }
+
+            .showcase-row,
+            .showcase-row--reverse {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .showcase-text-card {
+                padding: 36px 28px;
+                min-height: 280px;
+            }
+
+            .showcase-img-card {
+                padding: 32px 20px;
+                min-height: 400px;
+            }
+
+            .showcase-img-card img {
+                max-width: 260px;
+            }
+
+            .cta-section {
+                padding: 80px 0 60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-desc {
+                font-size: 1rem;
+            }
+
+            .showcase-text-card h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <img src="public/Tanify/logo_og.png" alt="Tanify" class="nav-logo" />
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="support.html">Support</a>
+            <a href="https://apps.apple.com/pt/app/tanify-uv-index-tanning/id6774725043?l=en-GB" target="_blank"
+                rel="noopener" class="nav-cta">Try For Free</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero-top animate-in">
+                <div class="hero-rating">
+                    <span class="hero-stars">⭐️⭐️⭐️⭐️⭐️</span>
+                    <span class="hero-rating-text">4.8 / 5 Average rating</span>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-left animate-in delay-1">
+                    <h1 class="hero-title">Tanify —<br />UV Index<br />& Tanning App</h1>
+                    <p class="hero-desc">
+                        Meet Tanify, your smart tanning companion. Live UV tracking, guided session timers,
+                        SPF reminders, and a visual skin tone journal.
+                    </p>
+                    <a href="https://apps.apple.com/pt/app/tanify-uv-index-tanning/id6774725043?l=en-GB" target="_blank"
+                        rel="noopener" class="app-store-badge">
+                        <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                            <path
+                                d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                        </svg>
+                        <span class="badge-text">
+                            <span class="badge-text-small">Download on the</span>
+                            <span class="badge-text-big">App Store</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="hero-right animate-in delay-2">
+                    <img src="public/Tanify/iphone_1.png" alt="Tanify app – Know the best time to tan" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 1: Session Timer -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row animate-in">
+                <div class="showcase-text-card">
+                    <h2>Smart tanning sessions built for your skin type.</h2>
+                    <p>Countdown timer with side-flip reminders, burn-risk warnings, and SPF reapply alerts — so you tan
+                        safely every time.</p>
+                </div>
+                <div class="showcase-img-card showcase-img-card--warm">
+                    <img src="public/Tanify/iphone_4.png" alt="Tanify session timer with SPF reminders" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 2: UV Index -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row showcase-row--reverse animate-in">
+                <div class="showcase-img-card">
+                    <img src="public/Tanify/iphone_2.png" alt="Live UV index dashboard" />
+                </div>
+                <div class="showcase-text-card--accent showcase-text-card">
+                    <h2>Live UV index with hourly forecast & best tanning window.</h2>
+                    <p>Real-time temperature, cloud cover, wind speed, and the optimal time window to get your glow on.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 3: Tanning Journal -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row animate-in">
+                <div class="showcase-text-card">
+                    <h2>Track every session —<br />Skin tone journal & progress photos.</h2>
+                    <p>Log your tan, track streaks, snap progress photos, and watch your skin tone evolve with
+                        AI-powered analysis.</p>
+                </div>
+                <div class="showcase-img-card showcase-img-card--coral">
+                    <img src="public/Tanify/iphone_3.png" alt="Tanning journal with streak tracking" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 4: Tan Tracker -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row showcase-row--reverse animate-in">
+                <div class="showcase-img-card showcase-img-card--sky">
+                    <img src="public/Tanify/iphone_5.png" alt="Tan tracker with photo progress log" />
+                </div>
+                <div class="showcase-text-card">
+                    <h2>Your glow, visualized —<br />Side-by-side skin progress.</h2>
+                    <p>Compare before & after photos, track skin tone changes over time, and see exactly how far you've
+                        come.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper animate-in">
+            <h2 class="cta-title">Start your Tanify journey today</h2>
+            <p class="cta-sub">Get the perfect tan, safely.</p>
+            <a href="https://apps.apple.com/pt/app/tanify-uv-index-tanning/id6774725043?l=en-GB" target="_blank"
+                rel="noopener" class="app-store-badge">
+                <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                    <path
+                        d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                </svg>
+                <span class="badge-text">
+                    <span class="badge-text-small">Download on the</span>
+                    <span class="badge-text-big">App Store</span>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · Tanify</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.showcase .showcase-row, .cta-section .wrapper').forEach(el => {
+            el.classList.remove('animate-in');
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>

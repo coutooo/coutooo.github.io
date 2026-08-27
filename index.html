@@ -280,7 +280,6 @@
 
     /* --- Section chrome ----------------------------------- */
     .sec { padding: 96px 0; }
-    .sec--tight { padding: 64px 0; }
 
     .sec__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
 
@@ -386,28 +385,6 @@
 
     .empty { display: none; font-family: var(--mono); color: var(--dim); padding: 40px 0; }
 
-    /* --- Stack marquee ------------------------------------ */
-    .rail { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-    .rail + .rail { margin-top: 12px; }
-
-    .rail__in { display: flex; gap: 10px; width: max-content; animation: slide 60s linear infinite; }
-    .rail--rev .rail__in { animation-direction: reverse; animation-duration: 74s; }
-    .rail:hover .rail__in { animation-play-state: paused; }
-
-    .rail__in span {
-      font-family: var(--mono);
-      font-size: .82rem;
-      white-space: nowrap;
-      padding: 9px 15px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      background: var(--panel);
-      color: var(--muted);
-      transition: color .2s, border-color .2s;
-    }
-
-    .rail__in span:hover { color: var(--acid); border-color: var(--acid); }
-
     /* --- About -------------------------------------------- */
     .about { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
 
@@ -440,7 +417,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .ticker__in, .rail__in, .brand__dot { animation: none; }
+      .ticker__in, .brand__dot { animation: none; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .btn:hover, .card__link:hover { transform: none; }
     }
@@ -479,7 +456,6 @@
       <a href="#top" class="brand"><span class="brand__dot"></span> manuel-couto</a>
       <div class="nav__links">
         <a href="#work">Work</a>
-        <a href="#stack">Stack</a>
         <a href="#about">About</a>
         <a href="public/CV Manuel Couto.pdf" download class="nav__cv">CV &#8595;</a>
       </div>
@@ -814,27 +790,6 @@
         </article>
       </div>
       <p class="empty" id="empty">// no projects match that filter</p>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- Stack -->
-  <section class="sec sec--tight" id="stack">
-    <div class="wrap">
-      <div class="sec__head reveal">
-        <div>
-          <h2 class="sec__title">Sixty-seven technologies,<br>all of them shipped.</h2>
-        </div>
-        <p class="sec__note">Not a list of things I read about &mdash; every one of these is in something that went
-          live.</p>
-      </div>
-    </div>
-    <div class="rail">
-      <div class="rail__in"><span>Flutter</span><span>Dart</span><span>Swift</span><span>SwiftUI</span><span>Kotlin</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>WidgetKit</span><span>AI</span><span>React</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>Flutter</span><span>Dart</span><span>Swift</span><span>SwiftUI</span><span>Kotlin</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>WidgetKit</span><span>AI</span><span>React</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span></div>
-    </div>
-    <div class="rail rail--rev">
-      <div class="rail__in"><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span></div>
     </div>
   </section>
 

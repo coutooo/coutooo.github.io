@@ -1,357 +1,1179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manuel Couto</title>
+  <title>Manuel Couto — Software Developer</title>
+  <meta name="description"
+    content="Manuel Couto ships software. 17 apps live on the App Store, 31 projects built, 67 technologies in production — iOS, full-stack web, Chrome extensions, and networking research.">
+  <link rel="canonical" href="https://coutooo.github.io/">
+  <meta property="og:title" content="Manuel Couto — Software Developer">
+  <meta property="og:description" content="17 apps on the App Store. 31 projects shipped. 67 technologies.">
+  <meta property="og:image" content="https://coutooo.github.io/public/me.jfif">
+  <meta property="og:url" content="https://coutooo.github.io/">
+  <meta name="theme-color" content="#08090a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ==========================================================
+       MANUEL COUTO — SHIPPING TERMINAL
+       ========================================================== */
+    :root {
+      --bg: #08090a;
+      --bg-2: #0e1013;
+      --panel: rgba(255, 255, 255, .035);
+      --panel-2: rgba(255, 255, 255, .06);
+      --line: rgba(255, 255, 255, .09);
+      --line-2: rgba(255, 255, 255, .16);
+      --text: #edeff2;
+      --muted: #8b91a0;
+      --dim: #5c6272;
+      --acid: #c8f751;
+      --acid-dim: rgba(200, 247, 81, .14);
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --r: 14px;
+      --r-lg: 22px;
+      --maxw: 1240px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(900px 520px at 78% -10%, rgba(200, 247, 81, .10), transparent 62%),
+        radial-gradient(700px 500px at 8% 8%, rgba(120, 160, 255, .07), transparent 60%);
+      pointer-events: none;
+    }
+
+    /* faint grid */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .022) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(1200px 800px at 50% 0%, #000 20%, transparent 78%);
+      -webkit-mask-image: radial-gradient(1200px 800px at 50% 0%, #000 20%, transparent 78%);
+      pointer-events: none;
+    }
+
+    a { color: inherit; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    /* --- Ticker ------------------------------------------- */
+    .ticker {
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 9, 10, .9);
+      overflow: hidden;
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .ticker__in {
+      display: flex;
+      gap: 34px;
+      white-space: nowrap;
+      padding: 9px 0;
+      width: max-content;
+      animation: slide 42s linear infinite;
+    }
+
+    .ticker b { color: var(--acid); font-weight: 500; }
+
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* --- Nav ---------------------------------------------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(8, 9, 10, .72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav__in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 28px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      text-decoration: none;
+    }
+
+    .brand__dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 0 4px var(--acid-dim);
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+    .nav__links { display: flex; align-items: center; gap: 8px; }
+
+    .nav__links a {
+      padding: 8px 14px;
+      border-radius: 9px;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .18s, background .18s;
+    }
+
+    .nav__links a:hover { color: var(--text); background: var(--panel); }
+
+    .nav__cv {
+      border: 1px solid var(--line-2);
+      color: var(--text) !important;
+      font-weight: 600 !important;
+    }
+
+    .nav__cv:hover { border-color: var(--acid); color: var(--acid) !important; background: var(--acid-dim) !important; }
+
+    /* --- Hero --------------------------------------------- */
+    .hero { padding: 86px 0 60px; }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow i {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--acid); font-style: normal;
+      box-shadow: 0 0 10px var(--acid);
+    }
+
+    h1.hero__name {
+      font-size: clamp(3rem, 9vw, 6.4rem);
+      font-weight: 900;
+      line-height: .92;
+      letter-spacing: -.045em;
+      margin-bottom: 22px;
+    }
+
+    .hero__name em {
+      font-style: normal;
+      display: block;
+      background: linear-gradient(96deg, var(--acid) 0%, #8ce0ff 62%, #c9a6ff 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero__lede {
+      font-size: 1.14rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 30px;
+    }
+
+    .hero__lede b { color: var(--text); font-weight: 600; }
+
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 22px;
+      border-radius: 11px;
+      font-size: .93rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--line-2);
+      transition: transform .18s, border-color .18s, background .18s, color .18s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn--primary { background: var(--acid); color: #0b0d07; border-color: var(--acid); }
+    .btn--primary:hover { box-shadow: 0 14px 34px rgba(200, 247, 81, .26); }
+    .btn--ghost:hover { border-color: var(--acid); color: var(--acid); background: var(--acid-dim); }
+
+    .portrait { position: relative; }
+
+    .portrait img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--line-2);
+      filter: grayscale(1) contrast(1.06);
+      transition: filter .4s;
+    }
+
+    .portrait:hover img { filter: grayscale(0); }
+
+    .portrait__tag {
+      position: absolute;
+      left: -12px;
+      bottom: 16px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--acid);
+      color: #0b0d07;
+      padding: 5px 11px;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+
+    /* --- Stats -------------------------------------------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      margin: 60px 0 10px;
+    }
+
+    .stat { background: var(--bg-2); padding: 30px 26px; transition: background .25s; }
+    .stat:hover { background: #14171c; }
+
+    .stat b {
+      display: block;
+      font-family: var(--mono);
+      font-size: clamp(2.4rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: var(--acid);
+      margin-bottom: 10px;
+    }
+
+    .stat span { display: block; font-size: .9rem; color: var(--muted); }
+    .stat small { display: block; font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
+
+    /* --- Section chrome ----------------------------------- */
+    .sec { padding: 96px 0; }
+    .sec--tight { padding: 64px 0; }
+
+    .sec__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+
+    .sec__tag {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--acid);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .sec__title { font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; }
+    .sec__note { font-size: .95rem; color: var(--muted); max-width: 420px; }
+
+    hr.rule { border: 0; border-top: 1px solid var(--line); }
+
+    /* --- Shipping log ------------------------------------- */
+    .ship { display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px; align-items: stretch; }
+
+    .panel { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 30px; }
+
+    .panel__h {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 26px;
+      display: flex; justify-content: space-between; gap: 12px;
+    }
+
+    .chart { display: flex; align-items: flex-end; gap: 10px; height: 230px; }
+
+    .bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 8px; }
+
+    .bar__n { font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--muted); }
+
+    .bar__fill {
+      width: 100%;
+      height: 0;
+      border-radius: 7px 7px 3px 3px;
+      background: linear-gradient(180deg, var(--acid), rgba(200, 247, 81, .22));
+      transition: height 1s cubic-bezier(.2, .8, .2, 1);
+      min-height: 3px;
+    }
+
+    .chart.is-on .bar__fill { height: var(--h); }
+
+    .bar__lbl { font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--dim); text-align: center; line-height: 1.35; }
+    .bar__lbl b { display: block; color: var(--muted); font-weight: 700; }
+
+    .log { list-style: none; max-height: 292px; overflow-y: auto; padding-right: 8px; }
+
+    .log li {
+      display: flex; align-items: baseline; gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: .9rem;
+    }
+
+    .log li:last-child { border-bottom: 0; }
+    .log time { font-family: var(--mono); font-size: .74rem; color: var(--dim); flex: none; }
+    .log__name { color: var(--text); }
+    .log::-webkit-scrollbar { width: 5px; }
+    .log::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; }
+
+    /* --- Filters ------------------------------------------ */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 9px 15px;
+      border-radius: 9px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .18s;
+    }
+
+    .chip:hover { color: var(--text); border-color: var(--line-2); }
+    .chip[aria-pressed="true"] { background: var(--acid); border-color: var(--acid); color: #0b0d07; font-weight: 700; }
+    .chip em { font-style: normal; opacity: .55; margin-left: 6px; }
+
+    /* --- Work grid ---------------------------------------- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 16px; }
+
+    .card { display: block; }
+    .card.is-hidden { display: none; }
+
+    .card__link {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      padding: 16px;
+      text-decoration: none;
+      transition: border-color .22s, transform .22s, background .22s;
+    }
+
+    .card__link:hover { border-color: var(--acid); transform: translateY(-4px); background: #12151a; }
+
+    .card__frame {
+      display: block;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0a0c0f;
+      border: 1px solid var(--line);
+      margin-bottom: 15px;
+    }
+
+    .card__media { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; padding: 16px; display: block; transition: transform .35s; }
+    .card__media--cover { object-fit: cover; padding: 0; }
+    .card__link:hover .card__media { transform: scale(1.04); }
+
+    .card__meta { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+
+    .card__cat, .card__year {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .card__year { color: var(--acid); border-color: rgba(200, 247, 81, .28); }
+
+    .card__title { font-size: 1rem; font-weight: 700; letter-spacing: -.015em; margin-bottom: 7px; line-height: 1.3; }
+    .card__desc { font-size: .87rem; color: var(--muted); margin-bottom: 16px; }
+
+    .card__go {
+      margin-top: auto;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      transition: color .2s;
+    }
+
+    .card__link:hover .card__go { color: var(--acid); }
+
+    .empty { display: none; font-family: var(--mono); color: var(--dim); padding: 40px 0; }
+
+    /* --- Stack marquee ------------------------------------ */
+    .rail { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .rail + .rail { margin-top: 12px; }
+
+    .rail__in { display: flex; gap: 10px; width: max-content; animation: slide 60s linear infinite; }
+    .rail--rev .rail__in { animation-direction: reverse; animation-duration: 74s; }
+    .rail:hover .rail__in { animation-play-state: paused; }
+
+    .rail__in span {
+      font-family: var(--mono);
+      font-size: .82rem;
+      white-space: nowrap;
+      padding: 9px 15px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel);
+      color: var(--muted);
+      transition: color .2s, border-color .2s;
+    }
+
+    .rail__in span:hover { color: var(--acid); border-color: var(--acid); }
+
+    /* --- About -------------------------------------------- */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+    .about p { color: var(--muted); font-size: 1.02rem; margin-bottom: 16px; }
+    .about p:last-child { margin-bottom: 0; }
+    .about strong { color: var(--text); font-weight: 600; }
+
+    .facts { list-style: none; display: grid; gap: 12px; }
+
+    .facts li { display: flex; gap: 14px; align-items: flex-start; font-size: .96rem; color: var(--muted); padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
+    .facts li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .facts li b { font-family: var(--mono); color: var(--acid); flex: none; font-size: .8rem; padding-top: 3px; }
+
+    /* --- CTA ---------------------------------------------- */
+    .cta { text-align: center; padding: 110px 0 96px; }
+    .cta h2 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.02; margin-bottom: 18px; }
+    .cta p { color: var(--muted); font-size: 1.06rem; margin-bottom: 30px; }
+    .cta .btns { justify-content: center; }
+
+    /* --- Footer ------------------------------------------- */
+    .foot { border-top: 1px solid var(--line); padding: 30px 0; }
+    .foot__in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: .74rem; color: var(--dim); }
+    .foot a { color: var(--muted); text-decoration: none; }
+    .foot a:hover { color: var(--acid); }
+    .foot__links { display: flex; gap: 16px; }
+
+    /* --- Reveal ------------------------------------------- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .reveal.is-in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker__in, .rail__in, .brand__dot { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .bar__fill { transition: none; }
+      .btn:hover, .card__link:hover { transform: none; }
+    }
+
+    /* --- Responsive --------------------------------------- */
+    @media (max-width: 980px) {
+      .hero__grid { grid-template-columns: 1fr; gap: 40px; }
+      .portrait { max-width: 240px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .ship { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 0 18px; }
+      .nav__in { padding: 12px 18px; }
+      .nav__links a:not(.nav__cv) { display: none; }
+      .hero { padding: 54px 0 40px; }
+      .sec { padding: 66px 0; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 22px 18px; }
+      .panel { padding: 22px 18px; }
+      .chart { height: 170px; gap: 5px; }
+      .bar__lbl { font-size: .54rem; }
+      .grid { grid-template-columns: 1fr; }
+      .cta { padding: 80px 0 70px; }
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- ✏️ Banner -->
-  <div class="banner" aria-hidden="true">
-    <div class="banner__inner">
-      <span>✏️ Open to work &amp; collabs</span>
-      <span class="banner__sep">~</span>
-      <span>Manuel Couto · Software Developer</span>
-      <span class="banner__sep">~</span>
-      <span>New apps + new ideas shipped regularly</span>
-      <span class="banner__sep">~</span>
-      <span>Full Stack · Mobile · Chrome Extensions</span>
-      <span class="banner__sep">~</span>
-      <span>✏️ Open to work &amp; collabs</span>
-      <span class="banner__sep">~</span>
-      <span>Manuel Couto · Software Developer</span>
-      <span class="banner__sep">~</span>
-      <span>New apps + new ideas shipped regularly</span>
-      <span class="banner__sep">~</span>
-      <span>Full Stack · Mobile · Chrome Extensions</span>
-      <span class="banner__sep">~</span>
+  <!-- Ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__in">
+      <span>Open to work &amp; collabs</span><span>&mdash;</span><span><b>17</b> apps on the App Store</span><span>&mdash;</span><span><b>31</b> projects shipped</span><span>&mdash;</span><span><b>67</b> technologies</span><span>&mdash;</span><span>iOS &middot; Full-stack &middot; Chrome extensions</span><span>&mdash;</span><span>Latest ship: <b>Soul Care</b> &mdash; Aug 2026</span><span>&mdash;</span><span>Designed, built &amp; published solo</span><span>&mdash;</span><span>Open to work &amp; collabs</span><span>&mdash;</span><span><b>17</b> apps on the App Store</span><span>&mdash;</span><span><b>31</b> projects shipped</span><span>&mdash;</span><span><b>67</b> technologies</span><span>&mdash;</span><span>iOS &middot; Full-stack &middot; Chrome extensions</span><span>&mdash;</span><span>Latest ship: <b>Soul Care</b> &mdash; Aug 2026</span><span>&mdash;</span><span>Designed, built &amp; published solo</span><span>&mdash;</span>
     </div>
   </div>
 
-  <!-- 🖊️ Header / Hero -->
-  <header class="sketch-header">
-    <div class="container header-inner">
-      <div class="header-text">
-        <h1 class="hero-title">Manuel Couto <span class="hi-tag">hi!</span></h1>
-        <p class="hero-sub">Software Developer · Full Stack Web · Mobile · Chrome Extensions</p>
-        <div class="header-links">
-          <a href="https://www.linkedin.com/in/coutooo/" class="sketch-btn">LinkedIn</a>
-          <a href="https://github.com/coutooo" class="sketch-btn">GitHub</a>
-          <a href="public/CV Manuel Couto.pdf" download class="sketch-btn">Download CV ↓</a>
-        </div>
-      </div>
-      <div class="header-portrait">
-        <img src="public/me.jfif" alt="Manuel Couto" class="portrait-img">
-        <span class="portrait-caption">← that's me!</span>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav__in">
+      <a href="#top" class="brand"><span class="brand__dot"></span> manuel-couto</a>
+      <div class="nav__links">
+        <a href="#work">Work</a>
+        <a href="#shipping">Shipping log</a>
+        <a href="#stack">Stack</a>
+        <a href="#about">About</a>
+        <a href="public/CV Manuel Couto.pdf" download class="nav__cv">CV &#8595;</a>
       </div>
     </div>
-    <nav class="sketch-nav" aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#tech-stack">Stack</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div>
+          <span class="eyebrow"><i></i> Available for work &amp; collabs</span>
+          <h1 class="hero__name">Manuel Couto<em>ships software.</em></h1>
+          <p class="hero__lede">
+            Software developer working across <b>iOS</b>, <b>full-stack web</b>, <b>Chrome extensions</b>
+            and <b>networking research</b>. Seventeen apps live on the App Store, thirty-one projects
+            built end to end &mdash; design, code, ship, support.
+          </p>
+          <div class="btns">
+            <a href="#work" class="btn btn--primary">See the work</a>
+            <a href="https://www.linkedin.com/in/coutooo/" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn</a>
+            <a href="https://github.com/coutooo" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+          </div>
+        </div>
+        <div class="portrait">
+          <img src="public/me.jfif" alt="Manuel Couto">
+          <span class="portrait__tag">That&#39;s me</span>
+        </div>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat">
+          <b data-count="17">0</b>
+          <span>Apps live on the App Store</span>
+          <small>Verified Aug 2026</small>
+        </div>
+        <div class="stat">
+          <b data-count="31">0</b>
+          <span>Projects built end to end</span>
+          <small>Apps, sites, extensions</small>
+        </div>
+        <div class="stat">
+          <b data-count="67">0</b>
+          <span>Technologies in production</span>
+          <small>Swift to Kubernetes</small>
+        </div>
+        <div class="stat">
+          <b data-count="3">0</b>
+          <span>Chrome extensions published</span>
+          <small>Plus 1 master&#39;s thesis</small>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- 📝 About -->
-  <section id="about" class="section-gap">
-    <div class="container">
-      <div class="section-label">ABOUT_ME.TXT</div>
-      <div class="sketch-card about-card">
-        <div class="tape"></div>
-        <p>I'm a <strong>Software Developer</strong> with hands-on experience in Full Stack Web, iOS &amp; Android Mobile Dev, and Chrome Extensions. I love building things that solve real problems — often with a sprinkle of AI on top ✨</p>
-        <p>Scroll down to see what I've shipped.</p>
+  <!-- Shipping log -->
+  <section class="sec" id="shipping">
+    <div class="wrap">
+      <div class="sec__head reveal">
+        <div>
+          <span class="sec__tag">// shipping_log</span>
+          <h2 class="sec__title">Seventeen releases,<br>and the pace is going up.</h2>
+        </div>
+        <p class="sec__note">Every App Store release since the first one in August 2024. Dates pulled straight from
+          Apple &mdash; not rounded, not padded.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- 🔧 Tech Stack -->
-  <section id="tech-stack" class="section-gap">
-    <div class="container">
-      <div class="section-label">TECH_STACK.LOG</div>
-      <h2 class="section-title">What I learned in the process</h2>
-      <div class="scroll-track">
-        <div class="scroll-inner">
-          <!-- First half -->
-          <span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span>
-          <!-- Second half (mirrors first — keeps animation seamless) -->
-          <span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span>
+      <div class="ship">
+        <div class="panel reveal">
+          <div class="panel__h"><span>App Store releases per quarter</span><span>2024 &#8594; 2026</span></div>
+          <div class="chart" id="chart">
+          <div class="bar" style="--h:25%">
+            <span class="bar__n">1</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q3</b>2024</span>
+          </div>
+          <div class="bar" style="--h:50%">
+            <span class="bar__n">2</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q4</b>2024</span>
+          </div>
+          <div class="bar" style="--h:25%">
+            <span class="bar__n">1</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q1</b>2025</span>
+          </div>
+          <div class="bar" style="--h:0%">
+            <span class="bar__n">0</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q2</b>2025</span>
+          </div>
+          <div class="bar" style="--h:50%">
+            <span class="bar__n">2</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q3</b>2025</span>
+          </div>
+          <div class="bar" style="--h:100%">
+            <span class="bar__n">4</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q4</b>2025</span>
+          </div>
+          <div class="bar" style="--h:100%">
+            <span class="bar__n">4</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q1</b>2026</span>
+          </div>
+          <div class="bar" style="--h:50%">
+            <span class="bar__n">2</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q2</b>2026</span>
+          </div>
+          <div class="bar" style="--h:25%">
+            <span class="bar__n">1</span>
+            <span class="bar__fill"></span>
+            <span class="bar__lbl"><b>Q3</b>2026</span>
+          </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="dashed-divider">
-
-  <!-- 📦 Projects -->
-  <section id="projects" class="section-gap">
-    <div class="container">
-      <div class="section-label">PROJECTS.DIR</div>
-      <h2 class="section-title">Things I've Built</h2>
-
-      <div class="projects-grid">
-
-        <div class="project-card">
-          <img src="public/SoulCare/icon.png" alt="Soul Care – Screen Time Control" class="project-card__media">
-          <h3>Soul Care – Screen Time Control</h3>
-          <p>Raise a living Soul that fades when you doomscroll. Block apps, run focus sessions, and reclaim your hours.</p>
-          <a href="SoulCare.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="project-card__media project-card__media--cover">
-          <h3>Faceit Skill Rankings</h3>
-          <p>A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.</p>
-          <a href="https://faceitskill.com" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/Tanify/logo_og.png" alt="Tanify – Smart Tanning & UV Tracker" class="project-card__media">
-          <h3>Tanify – Smart Tanning & UV Tracker</h3>
-          <p>Tan safely with live UV index, smart session timers, SPF reminders, and a visual skin tone journal.</p>
-          <a href="Tanify.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/StichIt/logo.png" alt="StichIt – Cross Stitch Creator" class="project-card__media">
-          <h3>StichIt – Cross Stitch Creator</h3>
-          <p>Convert any photo into a cross stitch pattern, edit stitches with full DMC palettes, and export printable charts.</p>
-          <a href="StichIt.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/predefinedAutoDeleter/logo.png" alt="Page Predefined Elements Auto-Deleter" class="project-card__media">
-          <h3>Page Predefined Elements Auto-Deleter</h3>
-          <p>Chrome extension that auto-deletes predefined page elements for a cleaner browsing experience.</p>
-          <a href="PagePredefinedElementsAutoDeleter.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/brainafk/logo3.png" alt="BrainAFK Games" class="project-card__media">
-          <h3>BrainAFK Games</h3>
-          <p>A games website featuring BrainAFK titles and updates.</p>
-          <a href="BrainAFKGames.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/Calm/logo.png" alt="Calm: Anxiety &amp; Breathing SOS" class="project-card__media">
-          <h3>Calm: Anxiety &amp; Breathing SOS</h3>
-          <p>A one-tap panic SOS with guided breathing, grounding tools, and gentle on-device logging for anxiety and sleep.</p>
-          <a href="Calm.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/SwipeClean/icon.png" alt="SwipeClean – Clean Up Photos" class="project-card__media">
-          <h3>SwipeClean – Clean Up Photos</h3>
-          <p>Clean up photos fast: swipe to keep or delete, confirm before removal, and track storage freed.</p>
-          <a href="SwipeClean.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/Basky/icon.png" alt="Basky" class="project-card__media">
-          <h3>Basky</h3>
-          <p>Shared grocery lists that stay in sync for families and roommates. Plan faster, never forget an item.</p>
-          <a href="Basky.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="project-card__media">
-          <h3>LensesBuddy</h3>
-          <p>The ultimate contact lens tracker to manage lens usage and maintain a healthy eye care routine.</p>
-          <a href="LensesBuddy.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/Dinner/red_logo.png" alt="Dinner" class="project-card__media">
-          <h3>Dinner</h3>
-          <p>A practical dinner planning companion to save meal ideas, plan the week faster, and reduce daily decision stress.</p>
-          <a href="Dinner.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/HobbyDogging/icon.png" alt="Hobby Dogging" class="project-card__media">
-          <h3>Hobby Dogging – Invisible Dog</h3>
-          <p>Walk an imaginary dog with a real leash, track playful sessions, and level up moods, styles, and streaks.</p>
-          <a href="HobbyDogging.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/LunaCut/lunar_haircut_icon_cropped.jpeg" alt="LunaCut – Lunar Haircut Calendar" class="project-card__media">
-          <h3>LunaCut – Lunar Haircut Calendar</h3>
-          <p>Find the best moon phases for hair growth, volume, and strength — with personalized goals and lunar rituals.</p>
-          <a href="LunaCut.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/DeathDebt/icon_s.png" alt="Death Debt" class="project-card__media">
-          <h3>Death Debt – Gain with Gaming</h3>
-          <p>Turn every in-game death into real pushups, track streaks, unlock badges, and compete on gamer fitness leaderboards.</p>
-          <a href="DeathDebt.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/RetroBlocks/icon.png" alt="Retro Blocks – Classic Puzzle" class="project-card__media">
-          <h3>Retro Blocks – Classic Puzzle</h3>
-          <p>A nostalgic puzzle game that brings back the classic block-stacking fun with a modern twist.</p>
-          <a href="RetroBlocks.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/onCamScripter/logo.png" alt="On-Cam Script Prompter" class="project-card__media">
-          <h3>On-Cam Script Prompter</h3>
-          <p>Professional teleprompter app for seamless video recording and content creation. Perfect for YouTubers and presenters.</p>
-          <a href="OnCamScriptPrompter.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/TheSquare/thesquare_logo.png" alt="The Square: Idle Game" class="project-card__media">
-          <h3>The Square: Idle Game</h3>
-          <p>An engaging idle game where you manage and upgrade your square to progress through various levels and challenges.</p>
-          <a href="TheSquare.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="project-card__media project-card__media--cover">
-          <h3>Blockchain-Based Auth for NDN</h3>
-          <p>Master Thesis — Security and Authentication in Named Data Networking, using Hyperledger Sawtooth.</p>
-          <a href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/bdaywidget.png" alt="B-day Widget" class="project-card__media project-card__media--cover">
-          <h3>B-day Widget</h3>
-          <p>Keep track of all your friends' special dates with ease! iOS app + Widget.</p>
-          <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/redflag.jpg" alt="RedFlags Detector" class="project-card__media project-card__media--cover">
-          <h3>RedFlags Detector</h3>
-          <p>Mobile App that uses AI to detect red flags in printed messages, also as an automated blog post generator using AI.</p>
-          <a href="https://apps.apple.com/pt/app/red-flags-detector-texting/id6630375062?l=en-GB&platform=iphone" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="project-card__media project-card__media--cover">
-          <h3>Vinted Chrome Extension</h3>
-          <p>A browser extension for filtering items on Vinted by location.</p>
-          <a href="https://vintedfilterbylocation.vercel.app/" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/SlideFactory/logo.png" alt="Slide Factory" class="project-card__media">
-          <h3>Slide Factory – AI Viral Maker</h3>
-          <p>Turn raw ideas into scroll-stopping viral carousels, scripts, hooks and visuals — all powered by AI.</p>
-          <a href="SlideFactory.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <video src="public/Video promocional Projeto ARC.mp4" class="project-card__media project-card__media--cover" controls></video>
-          <h3>V2X: Medical Emergency Service</h3>
-          <p id="v2x-description">V2X communication enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment — connecting vehicles to each other and to infrastructure, the network, and vulnerable road users.</p>
-          <button id="read-more-btn-v2x" class="read-more-btn">Read more ↓</button>
-          <a href="https://rodrigo740.github.io/" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <video src="public/demo-Walk and Seat.mp4" class="project-card__media project-card__media--cover" controls></video>
-          <h3>Walk and Seat</h3>
-          <p>Provide clients near restaurants with access to relevant content — number of available tables and menus — in real time.</p>
-          <a href="https://github.com/coutooo/Walk-n-Seat" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/TextWizard/logo.png" alt="TextWizard" class="project-card__media">
-          <h3>TextWizard</h3>
-          <p>A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.</p>
-          <a href="TextWizard.html" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <video src="public/videobulk.mp4" class="project-card__media project-card__media--cover" controls></video>
-          <h3>Video Bulk</h3>
-          <p>Automate your short-form content with a script to save time and boost consistency.</p>
-          <a href="https://www.videobulk.pro/" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <video src="public/cronos.mp4" class="project-card__media project-card__media--cover" controls></video>
-          <h3>Cronos</h3>
-          <p>Perpetuate your words even if you're not here. Leave messages or important data for post-mortem or future delivery.</p>
-          <a href="https://cronosgram.com/" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/medtracking.jpg" alt="MedTracking" class="project-card__media project-card__media--cover">
-          <h3>MedTracking</h3>
-          <p id="medtracking-description">Phone + Tablet app for nurses — NFC patient scanning, medication cart tracking, and task management. Replaces paper records entirely.</p>
-          <button id="read-more-btn" class="read-more-btn">Read more ↓</button>
-          <a href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="project-card__media project-card__media--cover">
-          <h3>Enigmas of Dark Stories</h3>
-          <p>The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI.</p>
-          <a href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/park.jpg" alt="ParkBuddy Flutter" class="project-card__media project-card__media--cover">
-          <h3>ParkBuddy in Flutter</h3>
-          <p>Made to be your buddy for retaining your parking location — cross-platform Flutter implementation.</p>
-          <a href="https://github.com/coutooo/ParkBuddy" class="visit-link">Visit the project →</a>
-        </div>
-
-        <div class="project-card">
-          <img src="public/park2.jpg" alt="ParkBuddy Android Studio" class="project-card__media project-card__media--cover">
-          <h3>ParkBuddy in Android Studio</h3>
-          <p>Android Studio native implementation of the ParkBuddy parking location tracker.</p>
-          <a href="https://github.com/coutooo/ParkBuddy_AS" class="visit-link">Visit the project →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <hr class="dashed-divider">
-
-  <!-- 📬 Contact -->
-  <section id="contact" class="section-gap">
-    <div class="container" style="text-align:center;">
-      <div class="section-label">CONTACT.ME</div>
-      <h2 class="section-title">Let's chat!</h2>
-      <div class="sketch-card contact-card">
-        <div class="tack"></div>
-        <p>Ping me on LinkedIn or GitHub, or grab the CV above. Always happy to talk about projects, collabs, or cool ideas ☕</p>
-        <div class="contact-links">
-          <a href="https://www.linkedin.com/in/coutooo/" class="sketch-btn">LinkedIn</a>
-          <a href="https://github.com/coutooo" class="sketch-btn">GitHub</a>
+        <div class="panel reveal">
+          <div class="panel__h"><span>Release history</span><span>newest first</span></div>
+          <ul class="log">
+          <li><time datetime="2026-08-26">2026-08-26</time><span class="log__name">Soul Care</span></li>
+          <li><time datetime="2026-06-10">2026-06-10</time><span class="log__name">Tanify</span></li>
+          <li><time datetime="2026-05-27">2026-05-27</time><span class="log__name">LunaCut</span></li>
+          <li><time datetime="2026-03-31">2026-03-31</time><span class="log__name">Dinner</span></li>
+          <li><time datetime="2026-02-12">2026-02-12</time><span class="log__name">Basky</span></li>
+          <li><time datetime="2026-01-08">2026-01-08</time><span class="log__name">Text Wizard</span></li>
+          <li><time datetime="2026-01-08">2026-01-08</time><span class="log__name">Calm</span></li>
+          <li><time datetime="2025-12-16">2025-12-16</time><span class="log__name">Hobby Dogging</span></li>
+          <li><time datetime="2025-12-16">2025-12-16</time><span class="log__name">Death Debt</span></li>
+          <li><time datetime="2025-11-06">2025-11-06</time><span class="log__name">StitchIt</span></li>
+          <li><time datetime="2025-10-07">2025-10-07</time><span class="log__name">SwipeClean</span></li>
+          <li><time datetime="2025-09-07">2025-09-07</time><span class="log__name">Slide Factory</span></li>
+          <li><time datetime="2025-08-25">2025-08-25</time><span class="log__name">On-Cam Script Prompter</span></li>
+          <li><time datetime="2025-01-07">2025-01-07</time><span class="log__name">LensesBuddy</span></li>
+          <li><time datetime="2024-11-11">2024-11-11</time><span class="log__name">Enigmas of Dark Stories</span></li>
+          <li><time datetime="2024-10-31">2024-10-31</time><span class="log__name">B-day Widget</span></li>
+          <li><time datetime="2024-08-14">2024-08-14</time><span class="log__name">Red Flags Detector</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Buy Me a Coffee -->
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mavc" data-description="Support me on Buy me a coffee!" data-message="I love coffee :)" data-color="#ff4d4d" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+  <hr class="rule">
+
+  <!-- Work -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="sec__head reveal">
+        <div>
+          <span class="sec__tag">// projects.dir</span>
+          <h2 class="sec__title">Everything I&#39;ve built.</h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip" data-filter="all" aria-pressed="true">All <em>31</em></button>
+          <button class="chip" data-filter="mobile" aria-pressed="false">Mobile <em>22</em></button>
+          <button class="chip" data-filter="web" aria-pressed="false">Web <em>3</em></button>
+          <button class="chip" data-filter="extension" aria-pressed="false">Extensions <em>3</em></button>
+          <button class="chip" data-filter="research" aria-pressed="false">Research <em>3</em></button>
+        </div>
+      </div>
+
+      <div class="grid" id="grid">
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="SoulCare.html">
+            <span class="card__frame"><img src="public/SoulCare/icon.png" alt="Soul Care – Screen Time Control" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">Soul Care – Screen Time Control</h3>
+            <p class="card__desc">Raise a living Soul that fades when you doomscroll. Block apps, run focus sessions, and reclaim your hours.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="extension">
+          <a class="card__link" href="https://faceitskill.com" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/faceitskill.jfif" alt="Faceit Skill Rankings" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Extension</span></span>
+            <h3 class="card__title">Faceit Skill Rankings</h3>
+            <p class="card__desc">A Google Chrome extension for tagging Faceit players as good or bad and ranking them based on votes.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="Tanify.html">
+            <span class="card__frame"><img src="public/Tanify/logo_og.png" alt="Tanify – Smart Tanning & UV Tracker" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">Tanify – Smart Tanning & UV Tracker</h3>
+            <p class="card__desc">Tan safely with live UV index, smart session timers, SPF reminders, and a visual skin tone journal.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="StichIt.html">
+            <span class="card__frame"><img src="public/StichIt/logo.png" alt="StichIt – Cross Stitch Creator" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">StichIt – Cross Stitch Creator</h3>
+            <p class="card__desc">Convert any photo into a cross stitch pattern, edit stitches with full DMC palettes, and export printable charts.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="extension">
+          <a class="card__link" href="PagePredefinedElementsAutoDeleter.html">
+            <span class="card__frame"><img src="public/predefinedAutoDeleter/logo.png" alt="Page Predefined Elements Auto-Deleter" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Extension</span></span>
+            <h3 class="card__title">Page Predefined Elements Auto-Deleter</h3>
+            <p class="card__desc">Chrome extension that auto-deletes predefined page elements for a cleaner browsing experience.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="web">
+          <a class="card__link" href="BrainAFKGames.html">
+            <span class="card__frame"><img src="public/brainafk/logo3.png" alt="BrainAFK Games" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Web</span></span>
+            <h3 class="card__title">BrainAFK Games</h3>
+            <p class="card__desc">A games website featuring BrainAFK titles and updates.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="Calm.html">
+            <span class="card__frame"><img src="public/Calm/logo.png" alt="Calm: Anxiety &amp; Breathing SOS" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">Calm: Anxiety &amp; Breathing SOS</h3>
+            <p class="card__desc">A one-tap panic SOS with guided breathing, grounding tools, and gentle on-device logging for anxiety and sleep.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="SwipeClean.html">
+            <span class="card__frame"><img src="public/SwipeClean/icon.png" alt="SwipeClean – Clean Up Photos" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">SwipeClean – Clean Up Photos</h3>
+            <p class="card__desc">Clean up photos fast: swipe to keep or delete, confirm before removal, and track storage freed.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="Basky.html">
+            <span class="card__frame"><img src="public/Basky/icon.png" alt="Basky" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">Basky</h3>
+            <p class="card__desc">Shared grocery lists that stay in sync for families and roommates. Plan faster, never forget an item.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="LensesBuddy.html">
+            <span class="card__frame"><img src="public/Lensesbuddy/AppLogo.png" alt="LensesBuddy" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">LensesBuddy</h3>
+            <p class="card__desc">The ultimate contact lens tracker to manage lens usage and maintain a healthy eye care routine.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="Dinner.html">
+            <span class="card__frame"><img src="public/Dinner/red_logo.png" alt="Dinner" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">Dinner</h3>
+            <p class="card__desc">A practical dinner planning companion to save meal ideas, plan the week faster, and reduce daily decision stress.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="HobbyDogging.html">
+            <span class="card__frame"><img src="public/HobbyDogging/icon.png" alt="Hobby Dogging" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">Hobby Dogging – Invisible Dog</h3>
+            <p class="card__desc">Walk an imaginary dog with a real leash, track playful sessions, and level up moods, styles, and streaks.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="LunaCut.html">
+            <span class="card__frame"><img src="public/LunaCut/lunar_haircut_icon_cropped.jpeg" alt="LunaCut – Lunar Haircut Calendar" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">LunaCut – Lunar Haircut Calendar</h3>
+            <p class="card__desc">Find the best moon phases for hair growth, volume, and strength — with personalized goals and lunar rituals.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="DeathDebt.html">
+            <span class="card__frame"><img src="public/DeathDebt/icon_s.png" alt="Death Debt" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">Death Debt – Gain with Gaming</h3>
+            <p class="card__desc">Turn every in-game death into real pushups, track streaks, unlock badges, and compete on gamer fitness leaderboards.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="RetroBlocks.html">
+            <span class="card__frame"><img src="public/RetroBlocks/icon.png" alt="Retro Blocks – Classic Puzzle" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span></span>
+            <h3 class="card__title">Retro Blocks – Classic Puzzle</h3>
+            <p class="card__desc">A nostalgic puzzle game that brings back the classic block-stacking fun with a modern twist.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="OnCamScriptPrompter.html">
+            <span class="card__frame"><img src="public/onCamScripter/logo.png" alt="On-Cam Script Prompter" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">On-Cam Script Prompter</h3>
+            <p class="card__desc">Professional teleprompter app for seamless video recording and content creation. Perfect for YouTubers and presenters.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="TheSquare.html">
+            <span class="card__frame"><img src="public/TheSquare/thesquare_logo.png" alt="The Square: Idle Game" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span></span>
+            <h3 class="card__title">The Square: Idle Game</h3>
+            <p class="card__desc">An engaging idle game where you manage and upgrade your square to progress through various levels and challenges.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="research">
+          <a class="card__link" href="public/Blockchain_Based_Authentication_for_NDN___UA_Thesis.pdf">
+            <span class="card__frame"><img src="public/thesis.jpg" alt="Blockchain-Based Authentication for NDN" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Research</span></span>
+            <h3 class="card__title">Blockchain-Based Auth for NDN</h3>
+            <p class="card__desc">Master Thesis — Security and Authentication in Named Data Networking, using Hyperledger Sawtooth.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://apps.apple.com/gb/app/b-day-widget/id6737482867?uo=2" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/bdaywidget.png" alt="B-day Widget" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2024</span></span>
+            <h3 class="card__title">B-day Widget</h3>
+            <p class="card__desc">Keep track of all your friends' special dates with ease! iOS app + Widget.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://apps.apple.com/pt/app/red-flags-detector-texting/id6630375062?l=en-GB&platform=iphone" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/redflag.jpg" alt="RedFlags Detector" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2024</span></span>
+            <h3 class="card__title">RedFlags Detector</h3>
+            <p class="card__desc">Mobile App that uses AI to detect red flags in printed messages, also as an automated blog post generator using AI.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="extension">
+          <a class="card__link" href="https://vintedfilterbylocation.vercel.app/" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/vinted.jpg" alt="Vinted Chrome Extension" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Extension</span></span>
+            <h3 class="card__title">Vinted Chrome Extension</h3>
+            <p class="card__desc">A browser extension for filtering items on Vinted by location.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="SlideFactory.html">
+            <span class="card__frame"><img src="public/SlideFactory/logo.png" alt="Slide Factory" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2025</span></span>
+            <h3 class="card__title">Slide Factory – AI Viral Maker</h3>
+            <p class="card__desc">Turn raw ideas into scroll-stopping viral carousels, scripts, hooks and visuals — all powered by AI.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="research">
+          <a class="card__link" href="https://rodrigo740.github.io/" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/V2X/poster.jpg" alt="V2X: Medical Emergency Service" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Research</span></span>
+            <h3 class="card__title">V2X: Medical Emergency Service</h3>
+            <p class="card__desc">V2X communication enables the exchange of cooperation, alert, and multimedia messages in a wireless vehicular environment — connecting vehicles to each other and to infrastructure, the network, and vulnerable road users.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="research">
+          <a class="card__link" href="https://github.com/coutooo/Walk-n-Seat" target="_blank" rel="noopener">
+            <span class="card__frame"><video src="public/demo-Walk and Seat.mp4" class="card__media card__media--cover" muted loop playsinline preload="metadata"></video></span>
+            <span class="card__meta"><span class="card__cat">Research</span></span>
+            <h3 class="card__title">Walk and Seat</h3>
+            <p class="card__desc">Provide clients near restaurants with access to relevant content — number of available tables and menus — in real time.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="TextWizard.html">
+            <span class="card__frame"><img src="public/TextWizard/logo.png" alt="TextWizard" class="card__media" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2026</span></span>
+            <h3 class="card__title">TextWizard</h3>
+            <p class="card__desc">A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.</p>
+            <span class="card__go">Case study &#8594;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="web">
+          <a class="card__link" href="https://www.videobulk.pro/" target="_blank" rel="noopener">
+            <span class="card__frame"><video src="public/videobulk.mp4" class="card__media card__media--cover" muted loop playsinline preload="metadata"></video></span>
+            <span class="card__meta"><span class="card__cat">Web</span></span>
+            <h3 class="card__title">Video Bulk</h3>
+            <p class="card__desc">Automate your short-form content with a script to save time and boost consistency.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="web">
+          <a class="card__link" href="https://cronosgram.com/" target="_blank" rel="noopener">
+            <span class="card__frame"><video src="public/cronos.mp4" class="card__media card__media--cover" muted loop playsinline preload="metadata"></video></span>
+            <span class="card__meta"><span class="card__cat">Web</span></span>
+            <h3 class="card__title">Cronos</h3>
+            <p class="card__desc">Perpetuate your words even if you're not here. Leave messages or important data for post-mortem or future delivery.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://github.com/coutooo/MedTracking/blob/master/CM%20Report%20TP1_G6%20.pdf" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/medtracking.jpg" alt="MedTracking" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span></span>
+            <h3 class="card__title">MedTracking</h3>
+            <p class="card__desc">Phone + Tablet app for nurses — NFC patient scanning, medication cart tracking, and task management. Replaces paper records entirely.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://apps.apple.com/us/app/enigmas-of-dark-stories/id6737199029" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/darkstories.jpeg" alt="Enigmas of Dark Stories" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span><span class="card__year">2024</span></span>
+            <h3 class="card__title">Enigmas of Dark Stories</h3>
+            <p class="card__desc">The famous Dark Stories Game with the ability to generate an infinite number of enigmas using AI.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://github.com/coutooo/ParkBuddy" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/park.jpg" alt="ParkBuddy Flutter" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span></span>
+            <h3 class="card__title">ParkBuddy in Flutter</h3>
+            <p class="card__desc">Made to be your buddy for retaining your parking location — cross-platform Flutter implementation.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+        <article class="card reveal" data-cat="mobile">
+          <a class="card__link" href="https://github.com/coutooo/ParkBuddy_AS" target="_blank" rel="noopener">
+            <span class="card__frame"><img src="public/park2.jpg" alt="ParkBuddy Android Studio" class="card__media card__media--cover" loading="lazy" decoding="async"></span>
+            <span class="card__meta"><span class="card__cat">Mobile</span></span>
+            <h3 class="card__title">ParkBuddy in Android Studio</h3>
+            <p class="card__desc">Android Studio native implementation of the ParkBuddy parking location tracker.</p>
+            <span class="card__go">Open site &#8599;</span>
+          </a>
+        </article>
+      </div>
+      <p class="empty" id="empty">// no projects match that filter</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- Stack -->
+  <section class="sec sec--tight" id="stack">
+    <div class="wrap">
+      <div class="sec__head reveal">
+        <div>
+          <span class="sec__tag">// tech_stack.log</span>
+          <h2 class="sec__title">Sixty-seven technologies,<br>all of them shipped.</h2>
+        </div>
+        <p class="sec__note">Not a list of things I read about &mdash; every one of these is in something that went
+          live.</p>
+      </div>
+    </div>
+    <div class="rail">
+      <div class="rail__in"><span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span></div>
+    </div>
+    <div class="rail rail--rev">
+      <div class="rail__in"><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- About -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec__head reveal">
+        <div>
+          <span class="sec__tag">// about_me.txt</span>
+          <h2 class="sec__title">How I actually work.</h2>
+        </div>
+      </div>
+      <div class="about reveal">
+        <div>
+          <p>I build the whole thing. <strong>Idea, design, code, App Store listing, landing page, support inbox</strong>
+            &mdash; there&#39;s no handoff, because there&#39;s no one to hand off to.</p>
+          <p>Most of what I ship starts as a small personal annoyance. A contact-lens reminder I kept forgetting. A
+            grocery list my house kept losing. A screen-time habit I wanted to break. Then it becomes an app, and
+            sometimes other people want it too.</p>
+          <p>Day to day that means <strong>Swift and SwiftUI</strong> on iOS, <strong>TypeScript and Next.js</strong> on
+            the web, and a fair amount of Python, Docker and Kubernetes underneath. My master&#39;s thesis went the
+            other direction entirely &mdash; blockchain authentication for Named Data Networking.</p>
+        </div>
+        <ul class="facts">
+          <li><b>01</b><span>Ship small, ship often. Seventeen App Store releases in twenty-four months, and four in a
+              single quarter.</span></li>
+          <li><b>02</b><span>Solo end to end. Every app on this page was designed, built, and published by one
+              person.</span></li>
+          <li><b>03</b><span>Privacy first. Most of these apps keep data on-device &mdash; no accounts, no
+              cloud.</span></li>
+          <li><b>04</b><span>Research background. MSc work on blockchain-based authentication for NDN, plus V2X
+              vehicular networking.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap reveal">
+      <span class="sec__tag">// contact.me</span>
+      <h2>Got something<br>worth building?</h2>
+      <p>Open to work, freelance, and collaborations. I reply fast.</p>
+      <div class="btns">
+        <a href="https://www.linkedin.com/in/coutooo/" target="_blank" rel="noopener" class="btn btn--primary">Message me on LinkedIn</a>
+        <a href="https://github.com/coutooo" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+        <a href="public/CV Manuel Couto.pdf" download class="btn btn--ghost">Download CV &#8595;</a>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="sketch-footer">
-    <div class="container footer-inner">
-      <p>© 2025 Manuel Couto. Made with ☕</p>
-      <div>
-        <a href="policy.html" target="_blank">Policy</a>
-        <span class="footer-sep">·</span>
-        <a href="support.html" target="_blank">Support</a>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <span>&copy; 2026 Manuel Couto &mdash; built and shipped solo</span>
+      <div class="foot__links">
+        <a href="policy.html">Privacy</a>
+        <a href="support.html">Support</a>
+        <a href="https://github.com/coutooo" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
 
+  <!-- Buy Me a Coffee -->
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="mavc" data-description="Support me on Buy me a coffee!" data-message="I love coffee :)"
+    data-color="#c8f751" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Scroll reveal */
+      var revealer = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); revealer.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
+
+      /* Count-up stats */
+      function countUp(el) {
+        var target = parseInt(el.dataset.count, 10);
+        if (reduced) { el.textContent = target; return; }
+        var start = performance.now(), dur = 1100;
+        function step(now) {
+          var p = Math.min((now - start) / dur, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var statObs = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { countUp(e.target); statObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll('.stat b[data-count]').forEach(function (el) { statObs.observe(el); });
+
+      /* Chart grow */
+      var chart = document.getElementById('chart');
+      if (chart) {
+        var chartObs = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting) { chart.classList.add('is-on'); chartObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.35 });
+        chartObs.observe(chart);
+      }
+
+      /* Project filters */
+      var chips = document.querySelectorAll('.chip');
+      var cards = document.querySelectorAll('.card');
+      var empty = document.getElementById('empty');
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var f = chip.dataset.filter;
+          chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+          var shown = 0;
+          cards.forEach(function (card) {
+            var match = (f === 'all' || card.dataset.cat === f);
+            card.classList.toggle('is-hidden', !match);
+            if (match) { shown++; card.classList.add('is-in'); }
+          });
+          empty.style.display = shown ? 'none' : 'block';
+        });
+      });
+
+      /* Play project videos on hover */
+      document.querySelectorAll('video.card__media').forEach(function (v) {
+        var card = v.closest('.card__link');
+        card.addEventListener('mouseenter', function () { v.play().catch(function () { }); });
+        card.addEventListener('mouseleave', function () { v.pause(); });
+      });
+    })();
+  </script>
+
 </body>
+
 </html>

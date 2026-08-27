@@ -172,7 +172,7 @@
     .nav__cv:hover { border-color: var(--acid); color: var(--acid) !important; background: var(--acid-dim) !important; }
 
     /* --- Hero --------------------------------------------- */
-    .hero { padding: 86px 0 60px; }
+    .hero { padding: 86px 0 96px; }
 
     .hero__grid {
       display: grid;
@@ -278,35 +278,6 @@
       font-weight: 700;
     }
 
-    /* --- Stats -------------------------------------------- */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      margin: 60px 0 10px;
-    }
-
-    .stat { background: var(--bg-2); padding: 30px 26px; transition: background .25s; }
-    .stat:hover { background: #14171c; }
-
-    .stat b {
-      display: block;
-      font-family: var(--mono);
-      font-size: clamp(2.4rem, 5vw, 3.5rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -.04em;
-      color: var(--acid);
-      margin-bottom: 10px;
-    }
-
-    .stat span { display: block; font-size: .9rem; color: var(--muted); }
-    .stat small { display: block; font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
-
     /* --- Section chrome ----------------------------------- */
     .sec { padding: 96px 0; }
     .sec--tight { padding: 64px 0; }
@@ -327,56 +298,6 @@
     .sec__note { font-size: .95rem; color: var(--muted); max-width: 420px; }
 
     hr.rule { border: 0; border-top: 1px solid var(--line); }
-
-    /* --- Shipping log ------------------------------------- */
-    .ship { display: grid; grid-template-columns: 1.55fr 1fr; gap: 28px; align-items: stretch; }
-
-    .panel { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 30px; }
-
-    .panel__h {
-      font-family: var(--mono);
-      font-size: .72rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 26px;
-      display: flex; justify-content: space-between; gap: 12px;
-    }
-
-    .chart { display: flex; align-items: flex-end; gap: 10px; height: 230px; }
-
-    .bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 8px; }
-
-    .bar__n { font-family: var(--mono); font-size: .8rem; font-weight: 700; color: var(--muted); }
-
-    .bar__fill {
-      width: 100%;
-      height: 0;
-      border-radius: 7px 7px 3px 3px;
-      background: linear-gradient(180deg, var(--acid), rgba(200, 247, 81, .22));
-      transition: height 1s cubic-bezier(.2, .8, .2, 1);
-      min-height: 3px;
-    }
-
-    .chart.is-on .bar__fill { height: var(--h); }
-
-    .bar__lbl { font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--dim); text-align: center; line-height: 1.35; }
-    .bar__lbl b { display: block; color: var(--muted); font-weight: 700; }
-
-    .log { list-style: none; max-height: 292px; overflow-y: auto; padding-right: 8px; }
-
-    .log li {
-      display: flex; align-items: baseline; gap: 14px;
-      padding: 9px 0;
-      border-bottom: 1px dashed var(--line);
-      font-size: .9rem;
-    }
-
-    .log li:last-child { border-bottom: 0; }
-    .log time { font-family: var(--mono); font-size: .74rem; color: var(--dim); flex: none; }
-    .log__name { color: var(--text); }
-    .log::-webkit-scrollbar { width: 5px; }
-    .log::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; }
 
     /* --- Filters ------------------------------------------ */
     .filters { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -521,7 +442,6 @@
       html { scroll-behavior: auto; }
       .ticker__in, .rail__in, .brand__dot { animation: none; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      .bar__fill { transition: none; }
       .btn:hover, .card__link:hover { transform: none; }
     }
 
@@ -529,8 +449,6 @@
     @media (max-width: 980px) {
       .hero__grid { grid-template-columns: 1fr; gap: 40px; }
       .portrait { max-width: 240px; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .ship { grid-template-columns: 1fr; }
       .about { grid-template-columns: 1fr; }
     }
 
@@ -540,11 +458,6 @@
       .nav__links a:not(.nav__cv) { display: none; }
       .hero { padding: 54px 0 40px; }
       .sec { padding: 66px 0; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .stat { padding: 22px 18px; }
-      .panel { padding: 22px 18px; }
-      .chart { height: 170px; gap: 5px; }
-      .bar__lbl { font-size: .54rem; }
       .grid { grid-template-columns: 1fr; }
       .cta { padding: 80px 0 70px; }
     }
@@ -566,7 +479,6 @@
       <a href="#top" class="brand"><span class="brand__dot"></span> manuel-couto</a>
       <div class="nav__links">
         <a href="#work">Work</a>
-        <a href="#shipping">Shipping log</a>
         <a href="#stack">Stack</a>
         <a href="#about">About</a>
         <a href="public/CV Manuel Couto.pdf" download class="nav__cv">CV &#8595;</a>
@@ -598,119 +510,8 @@
         </div>
       </div>
 
-      <div class="stats" id="stats">
-        <div class="stat">
-          <b data-count="17">0</b>
-          <span>Apps live on the App Store</span>
-          <small>Verified Aug 2026</small>
-        </div>
-        <div class="stat">
-          <b data-count="31">0</b>
-          <span>Projects built end to end</span>
-          <small>Apps, sites, extensions</small>
-        </div>
-        <div class="stat">
-          <b data-count="67">0</b>
-          <span>Technologies in production</span>
-          <small>Swift to Kubernetes</small>
-        </div>
-        <div class="stat">
-          <b data-count="3">0</b>
-          <span>Chrome extensions published</span>
-          <small>Plus 1 master&#39;s thesis</small>
-        </div>
-      </div>
     </div>
   </header>
-
-  <!-- Shipping log -->
-  <section class="sec" id="shipping">
-    <div class="wrap">
-      <div class="sec__head reveal">
-        <div>
-          <span class="sec__tag">// shipping_log</span>
-          <h2 class="sec__title">Seventeen releases,<br>and the pace is going up.</h2>
-        </div>
-        <p class="sec__note">Every App Store release since the first one in August 2024. Dates pulled straight from
-          Apple &mdash; not rounded, not padded.</p>
-      </div>
-
-      <div class="ship">
-        <div class="panel reveal">
-          <div class="panel__h"><span>App Store releases per quarter</span><span>2024 &#8594; 2026</span></div>
-          <div class="chart" id="chart">
-          <div class="bar" style="--h:25%">
-            <span class="bar__n">1</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q3</b>2024</span>
-          </div>
-          <div class="bar" style="--h:50%">
-            <span class="bar__n">2</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q4</b>2024</span>
-          </div>
-          <div class="bar" style="--h:25%">
-            <span class="bar__n">1</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q1</b>2025</span>
-          </div>
-          <div class="bar" style="--h:0%">
-            <span class="bar__n">0</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q2</b>2025</span>
-          </div>
-          <div class="bar" style="--h:50%">
-            <span class="bar__n">2</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q3</b>2025</span>
-          </div>
-          <div class="bar" style="--h:100%">
-            <span class="bar__n">4</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q4</b>2025</span>
-          </div>
-          <div class="bar" style="--h:100%">
-            <span class="bar__n">4</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q1</b>2026</span>
-          </div>
-          <div class="bar" style="--h:50%">
-            <span class="bar__n">2</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q2</b>2026</span>
-          </div>
-          <div class="bar" style="--h:25%">
-            <span class="bar__n">1</span>
-            <span class="bar__fill"></span>
-            <span class="bar__lbl"><b>Q3</b>2026</span>
-          </div>
-          </div>
-        </div>
-        <div class="panel reveal">
-          <div class="panel__h"><span>Release history</span><span>newest first</span></div>
-          <ul class="log">
-          <li><time datetime="2026-08-26">2026-08-26</time><span class="log__name">Soul Care</span></li>
-          <li><time datetime="2026-06-10">2026-06-10</time><span class="log__name">Tanify</span></li>
-          <li><time datetime="2026-05-27">2026-05-27</time><span class="log__name">LunaCut</span></li>
-          <li><time datetime="2026-03-31">2026-03-31</time><span class="log__name">Dinner</span></li>
-          <li><time datetime="2026-02-12">2026-02-12</time><span class="log__name">Basky</span></li>
-          <li><time datetime="2026-01-08">2026-01-08</time><span class="log__name">Text Wizard</span></li>
-          <li><time datetime="2026-01-08">2026-01-08</time><span class="log__name">Calm</span></li>
-          <li><time datetime="2025-12-16">2025-12-16</time><span class="log__name">Hobby Dogging</span></li>
-          <li><time datetime="2025-12-16">2025-12-16</time><span class="log__name">Death Debt</span></li>
-          <li><time datetime="2025-11-06">2025-11-06</time><span class="log__name">StitchIt</span></li>
-          <li><time datetime="2025-10-07">2025-10-07</time><span class="log__name">SwipeClean</span></li>
-          <li><time datetime="2025-09-07">2025-09-07</time><span class="log__name">Slide Factory</span></li>
-          <li><time datetime="2025-08-25">2025-08-25</time><span class="log__name">On-Cam Script Prompter</span></li>
-          <li><time datetime="2025-01-07">2025-01-07</time><span class="log__name">LensesBuddy</span></li>
-          <li><time datetime="2024-11-11">2024-11-11</time><span class="log__name">Enigmas of Dark Stories</span></li>
-          <li><time datetime="2024-10-31">2024-10-31</time><span class="log__name">B-day Widget</span></li>
-          <li><time datetime="2024-08-14">2024-08-14</time><span class="log__name">Red Flags Detector</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <hr class="rule">
 
@@ -1031,7 +832,7 @@
       </div>
     </div>
     <div class="rail">
-      <div class="rail__in"><span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>Kotlin</span><span>Swift</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>SwiftUI</span><span>WidgetKit</span><span>AI</span><span>React</span><span>Flutter</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Dart</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span></div>
+      <div class="rail__in"><span>Flutter</span><span>Dart</span><span>Swift</span><span>SwiftUI</span><span>Kotlin</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>WidgetKit</span><span>AI</span><span>React</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span><span>Flutter</span><span>Dart</span><span>Swift</span><span>SwiftUI</span><span>Kotlin</span><span>Jetpack Compose</span><span>Xcode</span><span>CoreData</span><span>WidgetKit</span><span>AI</span><span>React</span><span>MongoDB</span><span>OpenAI</span><span>Google Admob</span><span>Android</span><span>FastAPI</span><span>Swagger</span><span>TypeScript</span><span>Next.js</span><span>JavaScript</span><span>Tesseract.js</span><span>Python</span><span>OCR</span><span>Chrome API</span><span>HTML</span><span>CSS</span><span>FFMPEG wasm</span><span>WebAssembly</span><span>Stripe</span><span>FFMPEG</span><span>Mailgun</span><span>Flask</span><span>MQTT</span><span>InfluxDB</span></div>
     </div>
     <div class="rail rail--rev">
       <div class="rail__in"><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span><span>SQL</span><span>RSUs</span><span>CAMs</span><span>DENMs</span><span>Socket.io</span><span>Java</span><span>Android Studio</span><span>NFC</span><span>Bluetooth</span><span>Firebase</span><span>Blockchain</span><span>Hyperledger Sawtooth</span><span>C++</span><span>NS-3</span><span>Hive</span><span>GPS</span><span>IPFS</span><span>VANETZA</span><span>Azure</span><span>ArgoCD</span><span>Go</span><span>YAML</span><span>Grafana</span><span>Docker</span><span>Kubernetes</span><span>Helm</span><span>Prometheus</span><span>GitHub Actions</span><span>CI/CD</span><span>Terraform</span><span>Redis</span><span>PostgreSQL</span><span>REST APIs</span></div>
@@ -1056,9 +857,10 @@
           <p>Most of what I ship starts as a small personal annoyance. A contact-lens reminder I kept forgetting. A
             grocery list my house kept losing. A screen-time habit I wanted to break. Then it becomes an app, and
             sometimes other people want it too.</p>
-          <p>Day to day that means <strong>Swift and SwiftUI</strong> on iOS, <strong>TypeScript and Next.js</strong> on
-            the web, and a fair amount of Python, Docker and Kubernetes underneath. My master&#39;s thesis went the
-            other direction entirely &mdash; blockchain authentication for Named Data Networking.</p>
+          <p>Day to day that means <strong>Flutter and Dart</strong> for most of what I ship, <strong>Swift and
+              SwiftUI</strong> when a build needs to go native, <strong>TypeScript and Next.js</strong> on the web, and a
+            fair amount of Python, Docker and Kubernetes underneath. My master&#39;s thesis went the other direction
+            entirely &mdash; blockchain authentication for Named Data Networking.</p>
         </div>
         <ul class="facts">
           <li><b>01</b><span>Ship small, ship often. Seventeen App Store releases in twenty-four months, and four in a
@@ -1116,36 +918,6 @@
         });
       }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
       document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
-
-      /* Count-up stats */
-      function countUp(el) {
-        var target = parseInt(el.dataset.count, 10);
-        if (reduced) { el.textContent = target; return; }
-        var start = performance.now(), dur = 1100;
-        function step(now) {
-          var p = Math.min((now - start) / dur, 1);
-          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-      var statObs = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (e.isIntersecting) { countUp(e.target); statObs.unobserve(e.target); }
-        });
-      }, { threshold: 0.6 });
-      document.querySelectorAll('.stat b[data-count]').forEach(function (el) { statObs.observe(el); });
-
-      /* Chart grow */
-      var chart = document.getElementById('chart');
-      if (chart) {
-        var chartObs = new IntersectionObserver(function (es) {
-          es.forEach(function (e) {
-            if (e.isIntersecting) { chart.classList.add('is-on'); chartObs.unobserve(e.target); }
-          });
-        }, { threshold: 0.35 });
-        chartObs.observe(chart);
-      }
 
       /* Project filters */
       var chips = document.querySelectorAll('.chip');

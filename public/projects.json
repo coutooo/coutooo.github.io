@@ -1,6 +1,14 @@
 [
     {
-        "title": "Soul Care \u2013 Screen Time Control",
+        "title": "STAKKA – Block Tower",
+        "description": "A one-tap block-stacking arcade game. Land it centre for a perfect, chase combos across four modes, and unlock skins and scenes.",
+        "techStack": "Flutter, Dart, RevenueCat, Google Mobile Ads",
+        "mediaType": "image",
+        "mediaSrc": "public/Stakka/icon.png",
+        "page": "Stakka.html"
+    },
+    {
+        "title": "Soul Care – Screen Time Control",
         "description": "Raise a living Soul that thrives when you're present and fades when you doomscroll. App blocking, focus sessions, and mindful unlocks.",
         "techStack": "Swift, SwiftUI, Screen Time API (FamilyControls, DeviceActivity), WidgetKit",
         "mediaType": "image",
@@ -8,7 +16,7 @@
         "page": "SoulCare.html"
     },
     {
-        "title": "Hobby Dogging \u2013 Invisible Dog",
+        "title": "Hobby Dogging – Invisible Dog",
         "description": "Track playful invisible dog walks, earn XP, and unlock moods, leash styles, and streaks right on your phone.",
         "techStack": "Swift, SwiftUI, CoreMotion, HealthKit",
         "mediaType": "image",
@@ -16,7 +24,7 @@
         "page": "HobbyDogging.html"
     },
     {
-        "title": "Death Debt \u2013 Gain with Gaming",
+        "title": "Death Debt – Gain with Gaming",
         "description": "Every in-game death becomes a pushup. Track fitness debt, streaks, badges, and leaderboard progress built for gamers.",
         "techStack": "Swift, SwiftUI, HealthKit, GameKit",
         "mediaType": "image",
@@ -33,7 +41,7 @@
     },
     {
         "title": "TextWizard",
-        "description": "A lightweight text toolbox for quick cleanups and transformations \u2014 paste, transform, and copy fast.",
+        "description": "A lightweight text toolbox for quick cleanups and transformations — paste, transform, and copy fast.",
         "techStack": "Swift, SwiftUI",
         "mediaType": "image",
         "mediaSrc": "public/TextWizard/logo.png",

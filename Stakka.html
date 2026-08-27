@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STAKKA – Block Tower</title>
+    <meta name="description"
+        content="STAKKA is a fast, satisfying block-stacking arcade game. Tap to drop the block, land it dead centre for a PERFECT, and climb the tower across four modes with 20 skins and 12 scenes to unlock." />
+    <link rel="icon" href="public/Stakka/icon.png" />
+    <meta property="og:title" content="STAKKA – Block Tower" />
+    <meta property="og:description"
+        content="Tap to drop. Land it centre. Chase perfect. A block-stacking arcade game with four modes, combos, and a shop full of skins and scenes." />
+    <meta property="og:image" content="public/Stakka/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ============================================================
+           STAKKA – BLOCK TOWER LANDING PAGE
+           ============================================================ */
+
+        :root {
+            --bg: #071615;
+            --bg-alt: #0a1b1a;
+            --card: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #eafbf8;
+            --text-muted: #9fc9c3;
+            --accent: #14c7b4;
+            --accent-bright: #2fe1cb;
+            --accent-deep: #0b8a7c;
+            --glow: #22d3ee;
+            --gold: #ffd54f;
+            --block: #ff6b6b;
+            --gradient: linear-gradient(135deg, #2fe1cb 0%, #0b8a7c 100%);
+            --radius: 24px;
+            --radius-lg: 32px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(900px 600px at 80% -5%, rgba(47, 225, 203, 0.16), transparent 65%),
+                radial-gradient(700px 500px at 10% 15%, rgba(34, 211, 238, 0.12), transparent 60%),
+                radial-gradient(600px 600px at 50% 100%, rgba(255, 107, 107, 0.07), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(7, 22, 21, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: #04211e !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            box-shadow: 0 10px 30px rgba(20, 199, 180, 0.28);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(20, 199, 180, 0.42);
+            opacity: 1 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 90px 0 70px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: var(--card);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--glow);
+            box-shadow: 0 0 12px var(--glow);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-left {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 6vw, 4.4rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #2fe1cb 0%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 34px;
+        }
+
+        .hero-right {
+            flex: 0 0 340px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-icon-display {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-icon-display::before {
+            content: "";
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(47, 225, 203, 0.28), transparent 65%);
+            filter: blur(30px);
+        }
+
+        .hero-icon-display img {
+            position: relative;
+            width: 100%;
+            border-radius: 64px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        /* --- App Store badge ----------------------------------- */
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            color: #000;
+            padding: 12px 26px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .badge-text-small {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .badge-text-big {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Stats strip --------------------------------------- */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 70px;
+            padding: 28px 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+        }
+
+        .stat b {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            background: linear-gradient(120deg, #2fe1cb 0%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat span {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Sections ------------------------------------------ */
+        .section {
+            padding: 96px 0;
+        }
+
+        .section--alt {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.9rem, 4vw, 2.9rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin-bottom: 48px;
+        }
+
+        /* --- Features ------------------------------------------ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: transform 0.25s, background 0.25s, border-color 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            background: var(--card-hover);
+            border-color: rgba(47, 225, 203, 0.35);
+        }
+
+        .feature-icon {
+            display: block;
+            font-size: 1.9rem;
+            margin-bottom: 14px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+
+        /* --- Modes --------------------------------------------- */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .mode-card {
+            position: relative;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            overflow: hidden;
+        }
+
+        .mode-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 3px;
+        }
+
+        .mode-card--classic::after {
+            background: linear-gradient(90deg, #2fe1cb, transparent);
+        }
+
+        .mode-card--rush::after {
+            background: linear-gradient(90deg, #ff6b6b, transparent);
+        }
+
+        .mode-card--precision::after {
+            background: linear-gradient(90deg, #22d3ee, transparent);
+        }
+
+        .mode-card--oneway::after {
+            background: linear-gradient(90deg, #ffd54f, transparent);
+        }
+
+        .mode-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .mode-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .mode-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .mode-payout {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 13px;
+            border-radius: 50px;
+            background: rgba(255, 213, 79, 0.1);
+            border: 1px solid rgba(255, 213, 79, 0.28);
+            color: var(--gold);
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        /* --- How it works -------------------------------------- */
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .how-card {
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+        }
+
+        .how-step {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 10px;
+        }
+
+        .how-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .how-card p {
+            color: var(--text-muted);
+            font-size: 0.96rem;
+        }
+
+        /* --- Screenshots --------------------------------------- */
+        .shots {
+            display: flex;
+            gap: 22px;
+            overflow-x: auto;
+            padding: 6px 0 26px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .shot {
+            flex: 0 0 246px;
+            scroll-snap-align: start;
+        }
+
+        .shot img {
+            width: 100%;
+            border-radius: 26px;
+            border: 1px solid var(--border);
+            box-shadow: 0 22px 52px rgba(0, 0, 0, 0.5);
+            display: block;
+        }
+
+        .shot span {
+            display: block;
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Highlight ----------------------------------------- */
+        .highlight-row {
+            display: flex;
+            align-items: center;
+            gap: 64px;
+        }
+
+        .highlight-text {
+            flex: 1;
+        }
+
+        .highlight-text h2 {
+            font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .highlight-text p {
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        .highlight-list {
+            list-style: none;
+        }
+
+        .highlight-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .highlight-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 4px;
+            color: var(--accent-bright);
+            font-weight: 700;
+        }
+
+        .highlight-visual {
+            flex: 0 0 280px;
+        }
+
+        .highlight-visual img {
+            width: 100%;
+            border-radius: 28px;
+            border: 1px solid var(--border);
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            display: block;
+        }
+
+        /* --- Shop band ----------------------------------------- */
+        .rarity-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .rarity {
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            text-align: center;
+        }
+
+        .rarity b {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .rarity span {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .rarity--common b {
+            color: #9fc9c3;
+        }
+
+        .rarity--rare b {
+            color: #22d3ee;
+        }
+
+        .rarity--epic b {
+            color: #7c4dff;
+        }
+
+        .rarity--legendary b {
+            color: #ffd54f;
+        }
+
+        .rarity--mythic b {
+            color: #ff6b6b;
+        }
+
+        /* --- Privacy band -------------------------------------- */
+        .privacy-band {
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            background: var(--card);
+            text-align: center;
+        }
+
+        .privacy-band h2 {
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+
+        .privacy-band p {
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* --- CTA ----------------------------------------------- */
+        .cta-section {
+            padding: 110px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4.6vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            color: var(--text-muted);
+            font-size: 1.08rem;
+            margin-bottom: 34px;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            padding: 44px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-note {
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: rgba(159, 201, 195, 0.6);
+        }
+
+        /* --- Scroll animations --------------------------------- */
+        .animate-in {
+            animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.12s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.24s;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                gap: 40px;
+            }
+
+            .hero-right {
+                flex: none;
+            }
+
+            .hero-icon-display {
+                width: 210px;
+                height: 210px;
+            }
+
+            .highlight-row {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .highlight-visual {
+                flex: none;
+                max-width: 260px;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 56px 0 48px;
+            }
+
+            .section {
+                padding: 68px 0;
+            }
+
+            .privacy-band {
+                padding: 32px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <img src="public/Stakka/icon.png" alt="STAKKA" class="nav-logo" />
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="support.html">Support</a>
+            <a href="https://apps.apple.com/pt/app/stakka-block-tower/id6804299201?l=en-GB" target="_blank"
+                rel="noopener" class="nav-cta">Get STAKKA</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="hero-left animate-in">
+                    <div class="hero-badge"><span class="dot"></span> One-tap arcade · iPhone &amp; iPad</div>
+                    <h1 class="hero-title">Stack blocks.<br /><span>Chase perfect.</span></h1>
+                    <p class="hero-desc">
+                        A block slides across the screen. Tap to drop it. Land it dead centre and the
+                        tower snaps back to full width — miss, and you shave off everything that
+                        hung over the edge. Keep it clean, and the tower keeps climbing.
+                    </p>
+                    <a href="https://apps.apple.com/pt/app/stakka-block-tower/id6804299201?l=en-GB" target="_blank"
+                        rel="noopener" class="app-store-badge">
+                        <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                            <path
+                                d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                        </svg>
+                        <span class="badge-text">
+                            <span class="badge-text-small">Download on the</span>
+                            <span class="badge-text-big">App Store</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="hero-right animate-in delay-1">
+                    <div class="hero-icon-display">
+                        <img src="public/Stakka/icon.png" alt="STAKKA app icon" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-strip animate-in delay-2">
+                <div class="stat">
+                    <b>4</b>
+                    <span>Game modes, from steady Classic to no-bounce One Way</span>
+                </div>
+                <div class="stat">
+                    <b>20</b>
+                    <span>Block skins across five rarity tiers</span>
+                </div>
+                <div class="stat">
+                    <b>12</b>
+                    <span>Scenes to play against, from Deep Ocean to Nebula</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section--alt" id="features">
+        <div class="wrapper">
+            <p class="section-eyebrow">Features</p>
+            <h2 class="section-title">Easy to learn. Brutal to master.</h2>
+            <p class="section-sub">One tap is the whole control scheme. Everything else is about how well you time it.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Perfect Snaps Back</h3>
+                    <p>Land within 8% of centre and it counts as a PERFECT — the block snaps to the full width below
+                        instead of trimming down. Perfect stacks stay wide forever.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔥</span>
+                    <h3>Combos That Pay</h3>
+                    <p>Every clean placement builds the combo, and a PERFECT builds it twice as fast. Every fifth step
+                        drops a bonus straight into your coin pile.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>A Curve, Not A Wall</h3>
+                    <p>The first ten blocks stay slow so the game teaches itself. After that the speed ramps with every
+                        block and every level — capped, so it stays reactable.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3>Skins &amp; Scenes</h3>
+                    <p>Spend coins on twenty block skins and twelve backdrops — wood, neon, ice, lava, gold, prism —
+                        equipped instantly, no run required.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎁</span>
+                    <h3>Daily Rewards</h3>
+                    <p>A seven-day cycle with a chest on day four and a premium drop on day seven. Come back within a
+                        day and the streak carries.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">↩️</span>
+                    <h3>One More Block</h3>
+                    <p>A deep run doesn't have to die on one bad tap. Every run gets a free continue, and coins can buy
+                        another when the tower is worth saving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game modes -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">Modes</p>
+            <h2 class="section-title">Four ways to climb</h2>
+            <p class="section-sub">Same tap, same tower — four very different kinds of pressure. The harder the mode,
+                the more it pays.</p>
+            <div class="modes-grid">
+                <div class="mode-card mode-card--classic">
+                    <span class="mode-tag">Mode 01</span>
+                    <h3>Classic</h3>
+                    <p>The original. The block bounces wall to wall and the speed ramps steadily. This is the one you'll
+                        chase your best score in.</p>
+                    <span class="mode-payout">Standard payout</span>
+                </div>
+                <div class="mode-card mode-card--rush">
+                    <span class="mode-tag">Mode 02</span>
+                    <h3>Rush</h3>
+                    <p>Everything moves faster from the very first block. No warm-up, no easing in — just reflexes from
+                        block one.</p>
+                    <span class="mode-payout">1.5× coins</span>
+                </div>
+                <div class="mode-card mode-card--precision">
+                    <span class="mode-tag">Mode 03</span>
+                    <h3>Precision</h3>
+                    <p>You start on a block half the usual width. There's no margin to trim away, so every placement has
+                        to be near-perfect.</p>
+                    <span class="mode-payout">1.6× coins</span>
+                </div>
+                <div class="mode-card mode-card--oneway">
+                    <span class="mode-tag">Mode 04</span>
+                    <h3>One Way</h3>
+                    <p>One pass per block, no bounce. Let it reach the far wall unplaced and the run is over — slower,
+                        but there's no second chance.</p>
+                    <span class="mode-payout">2× coins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <p class="section-eyebrow">How it works</p>
+            <h2 class="section-title">Three seconds to your first tower</h2>
+            <div class="how-grid">
+                <div class="how-card">
+                    <span class="how-step">Step 01</span>
+                    <h3>Pick a mode</h3>
+                    <p>Classic, Rush, Precision or One Way — each keeps its own best score, so every mode is a fresh
+                        record to break.</p>
+                </div>
+                <div class="how-card">
+                    <span class="how-step">Step 02</span>
+                    <h3>Tap to drop</h3>
+                    <p>Centre it for a PERFECT, close for a GOOD, anything else trims the overhang. Miss the tower
+                        entirely and the run ends.</p>
+                </div>
+                <div class="how-card">
+                    <span class="how-step">Step 03</span>
+                    <h3>Cash in</h3>
+                    <p>Coins land per block, per combo milestone and per level-up, then go straight into the shop for
+                        your next skin or scene.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">Screens</p>
+            <h2 class="section-title">See it in action</h2>
+            <p class="section-sub">Swipe through the game — from the mode picker to a tower two hundred blocks tall.</p>
+            <div class="shots">
+                <div class="shot">
+                    <img src="public/Stakka/iphone_1.png" alt="STAKKA home screen with mode picker and play button"
+                        loading="lazy" />
+                    <span>Pick a mode and go.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_2.png"
+                        alt="STAKKA gameplay showing score 103, level 4 and a combo of 68" loading="lazy" />
+                    <span>Combos stack as fast as the blocks.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_3.png" alt="A narrow STAKKA tower past the previous best score"
+                        loading="lazy" />
+                    <span>Sloppy taps trim the tower thin.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_4.png" alt="STAKKA shop showing block skins and their coin prices"
+                        loading="lazy" />
+                    <span>Twenty skins to unlock.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_5.png" alt="STAKKA gameplay with the wood skin on a teal scene"
+                        loading="lazy" />
+                    <span>Every skin, on every scene.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_6.png" alt="STAKKA shop showing unlockable background scenes"
+                        loading="lazy" />
+                    <span>Twelve scenes to play against.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/Stakka/iphone_7.png" alt="A wide, clean STAKKA tower early in a run"
+                        loading="lazy" />
+                    <span>Keep it centred, keep it wide.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <div class="highlight-row">
+                <div class="highlight-text">
+                    <h2>The whole game is<br />in one tap.</h2>
+                    <p>There's no upgrade tree hiding the difficulty and no timer bailing you out. A run is only ever as
+                        good as your timing, and the tower tells you exactly how you're doing.</p>
+                    <ul class="highlight-list">
+                        <li>PERFECT: within 8% of centre — the block snaps back to full width.</li>
+                        <li>GOOD: close enough to score double, but the tower narrows.</li>
+                        <li>NORMAL: overhang gets sliced off and the next block is smaller.</li>
+                        <li>Miss the tower completely and the run ends there.</li>
+                    </ul>
+                </div>
+                <div class="highlight-visual">
+                    <img src="public/Stakka/iphone_3.png"
+                        alt="A STAKKA tower narrowed by imperfect placements, with a combo of 105" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">Shop</p>
+            <h2 class="section-title">Something to save up for</h2>
+            <p class="section-sub">Thirty-two cosmetics split across five rarity tiers — cheap wins early on, chase
+                items that take a long time to reach.</p>
+            <div class="rarity-row">
+                <div class="rarity rarity--common">
+                    <b>Common</b>
+                    <span>A few runs away</span>
+                </div>
+                <div class="rarity rarity--rare">
+                    <b>Rare</b>
+                    <span>An evening's play</span>
+                </div>
+                <div class="rarity rarity--epic">
+                    <b>Epic</b>
+                    <span>A proper goal</span>
+                </div>
+                <div class="rarity rarity--legendary">
+                    <b>Legendary</b>
+                    <span>A serious grind</span>
+                </div>
+                <div class="rarity rarity--mythic">
+                    <b>Mythic</b>
+                    <span>The one you brag about</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <div class="privacy-band">
+                <h2>🔒 No account. No sign-up.</h2>
+                <p>Your best scores, coins, unlocks and run history are stored on your device — open the app and
+                    play. Nothing to register, nothing to log into.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper">
+            <h2 class="cta-title">How high can<br />you stack it?</h2>
+            <p class="cta-sub">One tap. One tower. One more run.</p>
+            <a href="https://apps.apple.com/pt/app/stakka-block-tower/id6804299201?l=en-GB" target="_blank"
+                rel="noopener" class="app-store-badge">
+                <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                    <path
+                        d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                </svg>
+                <span class="badge-text">
+                    <span class="badge-text-small">Download on the</span>
+                    <span class="badge-text-big">App Store</span>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · STAKKA</p>
+            <p class="footer-note">Free to play, with ads and optional in-app purchases.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.section .section-eyebrow, .section .section-title, .features-grid, .modes-grid, .how-grid, .shots, .highlight-row, .rarity-row, .privacy-band, .cta-section .wrapper').forEach(el => {
+            el.classList.remove('animate-in');
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>

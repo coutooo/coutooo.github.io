@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soul Care – Screen Time Control</title>
+    <meta name="description"
+        content="Soul Care turns screen time into a living companion. Block apps and websites, run focus sessions with real stakes, and watch your Soul grow every time you put the phone down." />
+    <link rel="icon" href="public/SoulCare/icon.png" />
+    <meta property="og:title" content="Soul Care – Screen Time Control" />
+    <meta property="og:description"
+        content="Raise a Soul that thrives when you're present and fades when you doomscroll. App blocking, focus sessions, and mindful unlocks — all on device." />
+    <meta property="og:image" content="public/SoulCare/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ============================================================
+           SOUL CARE – COSMIC LANDING PAGE
+           ============================================================ */
+
+        :root {
+            --bg: #05060f;
+            --bg-alt: #0a0d1e;
+            --card: rgba(255, 255, 255, 0.04);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+            --text-muted: #9aa3bd;
+            --accent: #5b8cff;
+            --accent-deep: #3b5bdb;
+            --glow: #22d3ee;
+            --gradient: linear-gradient(135deg, #5b8cff 0%, #8b5cf6 100%);
+            --radius: 24px;
+            --radius-lg: 32px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Starfield backdrop */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(900px 600px at 80% -5%, rgba(91, 140, 255, 0.18), transparent 65%),
+                radial-gradient(700px 500px at 10% 15%, rgba(139, 92, 246, 0.14), transparent 60%),
+                radial-gradient(600px 600px at 50% 100%, rgba(34, 211, 238, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(5, 6, 15, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 10px 30px rgba(91, 140, 255, 0.28);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(91, 140, 255, 0.4);
+            opacity: 1 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 90px 0 70px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: var(--card);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--glow);
+            box-shadow: 0 0 12px var(--glow);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-left {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 6vw, 4.4rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, #7cc4ff 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 34px;
+        }
+
+        .hero-right {
+            flex: 0 0 340px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-icon-display {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 60px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 90px rgba(59, 91, 219, 0.45);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-icon-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        /* --- App Store badge ----------------------------------- */
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            color: #05060f;
+            padding: 13px 26px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 40px rgba(255, 255, 255, 0.16);
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .badge-text-small {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .badge-text-big {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- Stats strip --------------------------------------- */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 34px 0 90px;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px 24px;
+            text-align: center;
+        }
+
+        .stat b {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Sections ------------------------------------------ */
+        .section {
+            padding: 90px 0;
+        }
+
+        .section--alt {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto 56px;
+            font-size: 1.05rem;
+        }
+
+        /* --- Features ------------------------------------------ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: background 0.25s, transform 0.25s, border-color 0.25s;
+        }
+
+        .feature-card:hover {
+            background: var(--card-hover);
+            border-color: rgba(91, 140, 255, 0.45);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 1.9rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Blocking modes ------------------------------------ */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .mode-card {
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .mode-card--hard {
+            background: linear-gradient(160deg, rgba(91, 140, 255, 0.18), rgba(255, 255, 255, 0.03));
+            border-color: rgba(91, 140, 255, 0.35);
+        }
+
+        .mode-card--soft {
+            background: linear-gradient(160deg, rgba(139, 92, 246, 0.16), rgba(255, 255, 255, 0.03));
+            border-color: rgba(139, 92, 246, 0.32);
+        }
+
+        .mode-card--delay {
+            background: linear-gradient(160deg, rgba(34, 211, 238, 0.14), rgba(255, 255, 255, 0.03));
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .mode-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .mode-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .mode-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- How it works -------------------------------------- */
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .how-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 34px 30px;
+        }
+
+        .how-step {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .how-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .how-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Screenshots --------------------------------------- */
+        .shots {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 8px 4px 26px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .shot {
+            flex: 0 0 260px;
+            scroll-snap-align: center;
+        }
+
+        .shot img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: #fff;
+            display: block;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .shot span {
+            display: block;
+            margin-top: 14px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .shots::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .shots::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+
+        /* --- Highlight ----------------------------------------- */
+        .highlight-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .highlight-text {
+            flex: 1;
+        }
+
+        .highlight-text h2 {
+            font-size: clamp(1.9rem, 4vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .highlight-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
+
+        .highlight-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .highlight-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .highlight-list li::before {
+            content: "✦";
+            color: var(--glow);
+            flex: none;
+        }
+
+        .highlight-visual {
+            flex: 0 0 300px;
+        }
+
+        .highlight-visual img {
+            width: 100%;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            background: #fff;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+            display: block;
+        }
+
+        /* --- Privacy band -------------------------------------- */
+        .privacy-band {
+            background: linear-gradient(140deg, rgba(91, 140, 255, 0.14), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 54px 44px;
+            text-align: center;
+        }
+
+        .privacy-band h2 {
+            font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+
+        .privacy-band p {
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* --- CTA ----------------------------------------------- */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            color: var(--text-muted);
+            font-size: 1.08rem;
+            margin-bottom: 32px;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-note {
+            color: rgba(154, 163, 189, 0.6);
+            font-size: 0.78rem;
+            margin-top: 10px;
+        }
+
+        /* --- Animations ---------------------------------------- */
+        .animate-in {
+            animation: fadeUp 0.7s ease-out both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.12s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.24s;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .animate-in,
+            .hero-icon-display {
+                animation: none;
+            }
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-right {
+                flex: none;
+            }
+
+            .highlight-row {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .highlight-list li {
+                justify-content: center;
+                text-align: left;
+            }
+
+            .highlight-visual {
+                flex: none;
+                max-width: 260px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 56px 0 40px;
+            }
+
+            .section {
+                padding: 64px 0;
+            }
+
+            .hero-icon-display {
+                width: 220px;
+                height: 220px;
+                border-radius: 46px;
+            }
+
+            .privacy-band {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <img src="public/SoulCare/icon.png" alt="Soul Care" class="nav-logo" />
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="support.html">Support</a>
+            <a href="https://apps.apple.com/pt/app/soul-care-screen-time-control/id6802470904?l=en-GB" target="_blank"
+                rel="noopener" class="nav-cta">Get Soul Care</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="hero-left animate-in">
+                    <div class="hero-badge"><span class="dot"></span> Built on Apple's Screen Time API</div>
+                    <h1 class="hero-title">Stop doomscrolling.<br /><span>Start living.</span></h1>
+                    <p class="hero-desc">
+                        Soul Care turns your screen time into a living companion. Raise a Soul that
+                        thrives when you're present and fades when you scroll — then block the apps
+                        draining it, on your own schedule.
+                    </p>
+                    <a href="https://apps.apple.com/pt/app/soul-care-screen-time-control/id6802470904?l=en-GB"
+                        target="_blank" rel="noopener" class="app-store-badge">
+                        <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                            <path
+                                d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                        </svg>
+                        <span class="badge-text">
+                            <span class="badge-text-small">Download on the</span>
+                            <span class="badge-text-big">App Store</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="hero-right animate-in delay-1">
+                    <div class="hero-icon-display">
+                        <img src="public/SoulCare/icon.png" alt="Soul Care app icon" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-strip animate-in delay-2">
+                <div class="stat">
+                    <b>6</b>
+                    <span>Soul stages, from Tiny Spark to Celestial</span>
+                </div>
+                <div class="stat">
+                    <b>3</b>
+                    <span>Blocking modes: hard, soft, and delayed</span>
+                </div>
+                <div class="stat">
+                    <b>100%</b>
+                    <span>On-device — no accounts, no cloud</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section--alt" id="features">
+        <div class="wrapper">
+            <p class="section-eyebrow">Features</p>
+            <h2 class="section-title">A screen time app you'll actually keep</h2>
+            <p class="section-sub">Not another cold timer. Every minute off distracting apps feeds something you can
+                see.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">👻</span>
+                    <h3>Your Soul, Your Mirror</h3>
+                    <p>An evolving sprite that grows through six stages. Its vitality rises when you're present and
+                        drains when you doomscroll — in real time.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>App &amp; Website Blocking</h3>
+                    <p>Shield any app or website with rules for Bedtime, Mindful Morning, Work Focus, Weekend Detox, or
+                        a fully custom per-day schedule.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⏳</span>
+                    <h3>Focus Timer With Stakes</h3>
+                    <p>Set focus and break lengths, pick the apps to block, and your Soul meditates alongside you.
+                        Finish a cycle, earn vitality and Soul Points.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌬️</span>
+                    <h3>Mindful Unlocks</h3>
+                    <p>Open a blocked app and Soul Care asks the honest question first — with a breathing circle and a
+                        five-second pause before you decide.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">✨</span>
+                    <h3>Soul Market</h3>
+                    <p>Spend earned points on particle effects and colours that surround your Soul. Particles decay
+                        daily, so a dense aura is a living trophy.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Insights &amp; Calendar</h3>
+                    <p>Real screen time, pickups, and worst-offender apps at a glance, plus a calendar tracking your
+                        Soul's health day after day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blocking modes -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">Blocking</p>
+            <h2 class="section-title">Three ways to say no</h2>
+            <p class="section-sub">Because a wall doesn't fit every moment — pick the friction that matches the habit.
+            </p>
+            <div class="modes-grid">
+                <div class="mode-card mode-card--hard">
+                    <span class="mode-tag">Mode 01</span>
+                    <h3>Hard Block</h3>
+                    <p>A full shield with no bypass. Soul Care walks you through a breathing exercise and asks why
+                        you're reaching for it. Resist, and your Soul is rewarded.</p>
+                </div>
+                <div class="mode-card mode-card--soft">
+                    <span class="mode-tag">Mode 02</span>
+                    <h3>Soft Warning</h3>
+                    <p>A gentle nudge that still lets you choose — building awareness without locking you out of your
+                        own phone.</p>
+                </div>
+                <div class="mode-card mode-card--delay">
+                    <span class="mode-tag">Mode 03</span>
+                    <h3>Delayed Block</h3>
+                    <p>Fifteen minutes of grace before the shield comes down, for the times you genuinely just need to
+                        finish one thing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <p class="section-eyebrow">How it works</p>
+            <h2 class="section-title">Three steps to a stronger Soul</h2>
+            <div class="how-grid">
+                <div class="how-card">
+                    <span class="how-step">Step 01</span>
+                    <h3>Pick your drains</h3>
+                    <p>Select the apps and websites that eat your day and choose a blocking mode and schedule for each.
+                    </p>
+                </div>
+                <div class="how-card">
+                    <span class="how-step">Step 02</span>
+                    <h3>Focus, or breathe</h3>
+                    <p>Start a focus session with your blocks active — or, when the urge hits, ride it out through the
+                        detox flow.</p>
+                </div>
+                <div class="how-card">
+                    <span class="how-step">Step 03</span>
+                    <h3>Watch it grow</h3>
+                    <p>Earn vitality and Soul Points, spend them on your aura, and see the reclaimed hours stack up on
+                        your calendar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">Screens</p>
+            <h2 class="section-title">See it in action</h2>
+            <p class="section-sub">Swipe through the app — from your Soul's dashboard to the moment it talks you out of
+                a scroll.</p>
+            <div class="shots">
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_3.png"
+                        alt="Soul Care dashboard showing a radiant soul and spirit vitality" loading="lazy" />
+                    <span>Your Soul mirrors your screen time.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_1.png" alt="Focus session countdown with a meditating soul"
+                        loading="lazy" />
+                    <span>Deep focus in one tap.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_4.png" alt="Focus settings with focus and break durations"
+                        loading="lazy" />
+                    <span>Stay locked in, cycle after cycle.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_5.png" alt="Blocking rules list with schedules and toggles"
+                        loading="lazy" />
+                    <span>Block distractions on your schedule.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_2.png" alt="Breathing screen shown when opening a blocked app"
+                        loading="lazy" />
+                    <span>Restore your soul, stop scrolling.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_6.png" alt="Suggestion to hydrate instead of doomscrolling"
+                        loading="lazy" />
+                    <span>Think twice before scrolling.</span>
+                </div>
+                <div class="shot">
+                    <img src="public/SoulCare/iphone_7.png" alt="Soul Care calendar with a monthly rot summary"
+                        loading="lazy" />
+                    <span>Watch the good days add up.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlight -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <div class="highlight-row">
+                <div class="highlight-text">
+                    <h2>The pause that<br />changes the habit.</h2>
+                    <p>Soul Care's detox flow is built on urge surfing — the idea that a craving passes if you let it.
+                        Instead of a flat "no," a hard-blocked app opens a short, honest ritual.</p>
+                    <ul class="highlight-list">
+                        <li>Breathe while a circle expands and a five-second timer runs.</li>
+                        <li>Name what's pulling you back — bored, habit, or avoiding something.</li>
+                        <li>Make a conscious choice, and earn vitality for riding it out.</li>
+                        <li>Still need in? Unlock for fifteen minutes. No guilt, no judgment.</li>
+                    </ul>
+                </div>
+                <div class="highlight-visual">
+                    <img src="public/SoulCare/iphone_2.png" alt="Soul Care breathing prompt on a blocked app" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy -->
+    <section class="section">
+        <div class="wrapper">
+            <div class="privacy-band">
+                <h2>🔒 Private by design</h2>
+                <p>Soul Care uses Apple's Screen Time API, so all monitoring and blocking happens entirely on your
+                    device. Your data never leaves your phone. No accounts, no cloud, no tracking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper">
+            <h2 class="cta-title">Your time back,<br />one breath at a time.</h2>
+            <p class="cta-sub">Raise your Soul and see what the hours were hiding.</p>
+            <a href="https://apps.apple.com/pt/app/soul-care-screen-time-control/id6802470904?l=en-GB" target="_blank"
+                rel="noopener" class="app-store-badge">
+                <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor">
+                    <path
+                        d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                </svg>
+                <span class="badge-text">
+                    <span class="badge-text-small">Download on the</span>
+                    <span class="badge-text-big">App Store</span>
+                </span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · Soul Care</p>
+            <p class="footer-note">All features require a subscription.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.section .section-eyebrow, .section .section-title, .features-grid, .modes-grid, .how-grid, .shots, .highlight-row, .privacy-band, .cta-section .wrapper').forEach(el => {
+            el.classList.remove('animate-in');
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>

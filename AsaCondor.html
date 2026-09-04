@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASA Condor – Apple Search Ads on Autopilot</title>
+    <meta name="description"
+        content="ASA Condor builds and runs Apple Search Ads campaigns for indie iOS developers. It works out what a new user is actually worth to you, and tells you the one thing worth doing next — every day." />
+    <link rel="icon" href="public/AsaCondor/logo.png" />
+    <meta property="og:title" content="ASA Condor – Apple Search Ads on Autopilot" />
+    <meta property="og:description"
+        content="Apple Search Ads on autopilot, for developers who don't do marketing. Currently in early access — waitlist open." />
+    <meta property="og:image" content="public/AsaCondor/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ============================================================
+           ASA CONDOR – CASE STUDY PAGE
+           Palette lifted from asacondor.com
+           ============================================================ */
+
+        :root {
+            --bg: #141715;
+            --bg-alt: #191d1b;
+            --surface: #1e2320;
+            --surface-green: #1b2a25;
+            --card: rgba(255, 255, 255, 0.035);
+            --card-hover: rgba(255, 255, 255, 0.065);
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #edefec;
+            --text-body: #b0b8b3;
+            --text-muted: #7d857f;
+            --accent: #6dbba2;
+            --accent-bright: #8ad2ba;
+            --accent-deep: #3f8d74;
+            --radius: 20px;
+            --radius-lg: 28px;
+            --font: 'Archivo', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-body);
+            line-height: 1.65;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(900px 620px at 78% -8%, rgba(109, 187, 162, 0.13), transparent 65%),
+                radial-gradient(700px 520px at 8% 12%, rgba(109, 187, 162, 0.07), transparent 62%);
+            pointer-events: none;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 40px;
+            background: rgba(20, 23, 21, 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-mark {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-mark em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #0f1512 !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            box-shadow: 0 10px 28px rgba(109, 187, 162, 0.22);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 38px rgba(109, 187, 162, 0.34);
+            color: #0f1512 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 90px 0 70px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            background: var(--card);
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+        }
+
+        .hero-badge span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-left {
+            flex: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5.6vw, 4.1rem);
+            font-weight: 800;
+            line-height: 1.04;
+            letter-spacing: -0.045em;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1.12rem;
+            max-width: 530px;
+            margin-bottom: 34px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #0f1512;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 14px 34px rgba(109, 187, 162, 0.26);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 44px rgba(109, 187, 162, 0.38);
+        }
+
+        .btn-ghost {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: var(--accent);
+        }
+
+        /* --- Hero wordmark panel ------------------------------- */
+        .hero-right {
+            flex: 0 0 380px;
+        }
+
+        .mark-panel {
+            position: relative;
+            padding: 54px 34px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .mark-panel::before {
+            content: "";
+            position: absolute;
+            inset: -40% -10% auto -10%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(109, 187, 162, 0.16), transparent 70%);
+            filter: blur(26px);
+        }
+
+        .mark-word {
+            position: relative;
+            font-size: clamp(2rem, 4.4vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.045em;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .mark-word em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .mark-tag {
+            position: relative;
+            margin-top: 14px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Sections ------------------------------------------ */
+        .section {
+            padding: 92px 0;
+        }
+
+        .section--alt {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .section-sub {
+            font-size: 1.04rem;
+            max-width: 660px;
+            margin-bottom: 48px;
+        }
+
+        /* --- Why band ------------------------------------------ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .why-card {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+        }
+
+        .why-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            font-size: 0.95rem;
+        }
+
+        .why-card--hero {
+            background: var(--surface-green);
+            border-color: rgba(109, 187, 162, 0.28);
+        }
+
+        .why-card--hero h3 {
+            color: var(--accent-bright);
+        }
+
+        /* --- Steps --------------------------------------------- */
+        .steps {
+            display: grid;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 26px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: background 0.25s, border-color 0.25s, transform 0.25s;
+        }
+
+        .step:hover {
+            background: var(--card-hover);
+            border-color: rgba(109, 187, 162, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .step-num {
+            flex: 0 0 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: var(--surface-green);
+            border: 1px solid rgba(109, 187, 162, 0.28);
+            color: var(--accent);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .step-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .step-body p {
+            font-size: 0.99rem;
+        }
+
+        /* --- Guardrails ---------------------------------------- */
+        .guard-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+        }
+
+        .guard-text {
+            flex: 1;
+        }
+
+        .guard-text h2 {
+            font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .guard-text p {
+            margin-bottom: 22px;
+        }
+
+        .guard-list {
+            list-style: none;
+        }
+
+        .guard-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 13px;
+        }
+
+        .guard-list li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 0.68em;
+            width: 9px;
+            height: 9px;
+            border-radius: 3px;
+            background: var(--accent);
+        }
+
+        .guard-aside {
+            flex: 0 0 320px;
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(109, 187, 162, 0.26);
+            background: var(--surface-green);
+        }
+
+        .guard-aside h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-bright);
+            margin-bottom: 12px;
+        }
+
+        .guard-aside p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* --- Status band --------------------------------------- */
+        .status-band {
+            padding: 46px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .status-band h2 {
+            font-size: clamp(1.4rem, 2.8vw, 1.95rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .status-band p {
+            max-width: 720px;
+        }
+
+        .status-band p + p {
+            margin-top: 14px;
+        }
+
+        /* --- CTA ----------------------------------------------- */
+        .cta-section {
+            padding: 108px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(1.9rem, 4.4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            font-size: 1.05rem;
+            margin-bottom: 34px;
+        }
+
+        .cta-section .btn-primary {
+            margin: 0 auto;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            padding: 44px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-note {
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: rgba(125, 133, 127, 0.75);
+        }
+
+        /* --- Animations ---------------------------------------- */
+        .animate-in {
+            animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.12s;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                align-items: stretch;
+                gap: 40px;
+            }
+
+            .hero-right {
+                flex: none;
+            }
+
+            .guard-row {
+                flex-direction: column;
+                gap: 34px;
+            }
+
+            .guard-aside {
+                flex: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 54px 0 46px;
+            }
+
+            .section {
+                padding: 66px 0;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 18px;
+                padding: 26px;
+            }
+
+            .status-band {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="https://asacondor.com/" target="_blank" rel="noopener" class="nav-mark"><em>asa</em>condor</a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="support.html">Support</a>
+            <a href="https://asacondor.com/" target="_blank" rel="noopener" class="nav-cta">Visit the site</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="hero-left animate-in">
+                    <div class="hero-badge"><span class="dot"></span> Early access · waitlist open</div>
+                    <h1 class="hero-title">Apple Search Ads<br /><span>on autopilot.</span></h1>
+                    <p class="hero-desc">
+                        Built for developers who don't do marketing. ASA Condor sets up your campaigns,
+                        works out what a new user is genuinely worth to you, and every day tells you the
+                        one thing worth doing next — with the numbers behind it.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://asacondor.com/" target="_blank" rel="noopener" class="btn-primary">
+                            Join the waitlist
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 8h10M9 4l4 4-4 4" />
+                            </svg>
+                        </a>
+                        <a href="https://asacondor.com/" target="_blank" rel="noopener" class="btn-ghost">
+                            asacondor.com ↗
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-right animate-in delay-1">
+                    <div class="mark-panel">
+                        <div class="mark-word"><em>asa</em>condor</div>
+                        <p class="mark-tag">Apple Search Ads, run for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ASA -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <p class="section-eyebrow">The idea</p>
+            <h2 class="section-title">The one channel an indie can actually run alone</h2>
+            <p class="section-sub">Every other ad platform asks for something a solo developer doesn't have — a
+                video pipeline, a posting schedule, or months spent learning the platform itself.</p>
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>TikTok and Meta want content</h3>
+                    <p>A constant stream of video, filmed and edited and posted on a schedule you have to keep up
+                        with. That's a second job, not a marketing channel.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Google wants you to learn Google</h3>
+                    <p>An expert system that rewards expertise. Getting competent takes long enough that most
+                        developers never get there.</p>
+                </div>
+                <div class="why-card why-card--hero">
+                    <h3>Apple Search Ads wants neither</h3>
+                    <p>Your App Store page <em>is</em> the ad — nothing to film, nothing to edit. And everyone who
+                        sees it was already searching for an app like yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What it does -->
+    <section class="section">
+        <div class="wrapper">
+            <p class="section-eyebrow">What it does</p>
+            <h2 class="section-title">Setup was never the hard part</h2>
+            <p class="section-sub">The hard part is knowing what a user is worth to you, and whether today went well
+                or badly. That's the part ASA Condor takes over.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h3>It builds your campaigns for you</h3>
+                        <p>Say which app you want promoted and which countries you want it shown in. It picks the
+                            search terms people would actually use to find an app like yours, builds the campaigns
+                            around them, and shows you the whole plan before a single euro is spent.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h3>It works out what one new user is worth</h3>
+                        <p>Connect your App Store revenue and it calculates what an average user actually brings in
+                            — after Apple's cut, not before. That figure is the ceiling on what you can afford to pay
+                            for one. Almost nobody knows theirs, which is why so much app advertising is guesswork.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h3>Every day it tells you the best next move</h3>
+                        <p>It reviews the whole account — every campaign, every word you're paying for, every search
+                            that cost money and returned nothing. Not a backlog of forty tasks: the handful that
+                            matter right now, ranked, each with the numbers behind it and a plain explanation. You
+                            press yes or no.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h3>And when you trust it, it does the work itself</h3>
+                        <p>Switch autopilot on and it stops asking about the small stuff — nudging bids up or down,
+                            pausing the terms that only ever cost money. Anything significant still waits for your
+                            call.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guardrails -->
+    <section class="section section--alt">
+        <div class="wrapper">
+            <div class="guard-row">
+                <div class="guard-text">
+                    <h2>Autopilot with the<br />brakes still fitted.</h2>
+                    <p>Handing an algorithm your ad budget is only reasonable if you can bound what it's allowed to
+                        do. So the automation is opt-in, scoped, capped and logged.</p>
+                    <ul class="guard-list">
+                        <li>Off until you turn it on — one app at a time, never account-wide by default.</li>
+                        <li>A daily spending ceiling that you set.</li>
+                        <li>Small adjustments run themselves; anything big still waits for you.</li>
+                        <li>Every change it makes is written down.</li>
+                    </ul>
+                </div>
+                <div class="guard-aside">
+                    <h4>The week-one problem</h4>
+                    <p>New campaigns lose money at first — that's how they find what works. A naive optimiser reads
+                        those first days as failure and shuts everything down before it has learned anything. ASA
+                        Condor knows to sit through it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status -->
+    <section class="section">
+        <div class="wrapper">
+            <div class="status-band">
+                <h2>Where it is right now</h2>
+                <p>ASA Condor already runs real campaigns, with real money, on real Apple Search Ads accounts. What
+                    it doesn't have yet is sign-ups — it's being turned from a tool built for one developer's own
+                    apps into something anyone can connect their account to.</p>
+                <p>The waitlist is open. If you've never run an ad before, that's fine — the first campaigns get set
+                    up with you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper">
+            <h2 class="cta-title">Want in early?</h2>
+            <p class="cta-sub">Leave an email and you'll hear when it opens — with an honest account of what works
+                and what doesn't.</p>
+            <a href="https://asacondor.com/" target="_blank" rel="noopener" class="btn-primary">
+                Join the waitlist
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · ASA Condor</p>
+            <p class="footer-note">Not affiliated with Apple. Apple Search Ads is a trademark of Apple Inc.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.section .section-eyebrow, .section .section-title, .why-grid, .steps, .guard-row, .status-band, .cta-section .wrapper').forEach(el => {
+            el.classList.remove('animate-in');
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -121,22 +121,32 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://coutooo.github.io/blog/</loc>
+    <loc>https://coutooo.github.io/lensesbuddy/blog/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://coutooo.github.io/blog/how-often-replace-contact-lenses.html</loc>
+    <loc>https://coutooo.github.io/lensesbuddy/blog/how-often-replace-contact-lenses.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://coutooo.github.io/blog/where-should-we-eat.html</loc>
+    <loc>https://coutooo.github.io/dinner/blog/where-should-we-eat.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://coutooo.github.io/blog/never-forget-a-birthday-iphone.html</loc>
+    <loc>https://coutooo.github.io/bdaywidget/blog/never-forget-a-birthday-iphone.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://coutooo.github.io/dinner/blog/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://coutooo.github.io/bdaywidget/blog/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

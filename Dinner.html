@@ -1,90 +1,1668 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dinner - Meal Planning Companion</title>
-    <meta name="description" content="Dinner helps you decide what to eat faster with simple planning, saved ideas, and practical weekly flow." />
-    <link rel="stylesheet" href="app-page.css" />
+    <title>Dinner – Swipe to Decide Where to Eat</title>
+    <meta name="description"
+        content="Dinner ends the 'where should we eat?' debate. Swipe through nearby restaurants alone or with friends, filter by rating, price and cuisine, and match on the place everyone wants." />
+    <meta property="og:title" content="Dinner – Swipe to Decide Where to Eat" />
+    <meta property="og:description"
+        content="Swipe through nearby restaurants with friends. When everyone swipes right, dinner is decided." />
+    <meta property="og:image" content="https://coutooo.github.io/public/Dinner/red_logo.png" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="public/Dinner/red_logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Dinner: where to eat",
+        "operatingSystem": "iOS",
+        "applicationCategory": "LifestyleApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "url": "https://apps.apple.com/pt/app/dinner-swipe-to-eat/id6761313943"
+    }
+    </script>
     <style>
+        /* ============================================================
+           DINNER – LANDING PAGE
+           ============================================================ */
+
         :root {
-            --accent: #ef4444;
-            --accent-gradient: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+            --bg: #fdf6ee;
+            --bg-alt: #fbeadb;
+            --text-dark: #1c1210;
+            --text-muted: #77655d;
+            --accent: #e8473b;
+            --accent-deep: #c2321f;
+            --accent-soft: #fde2d6;
+            --green: #16a34a;
+            --card-dark: #1f1512;
+            --radius: 24px;
+            --radius-lg: 32px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 40px;
+            background: rgba(253, 246, 238, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(28, 18, 16, 0.06);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--text-dark) !important;
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            opacity: 1 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 64px 0 40px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 56px;
+        }
+
+        .hero-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid rgba(28, 18, 16, 0.08);
+            padding: 6px 14px 6px 8px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-pill-stars {
+            background: var(--accent-soft);
+            color: var(--accent-deep);
+            padding: 2px 10px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            font-weight: 900;
+            line-height: 1.03;
+            letter-spacing: -0.035em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            padding: 40px 24px 28px;
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.4), transparent 45%),
+                linear-gradient(155deg, #fb923c 0%, #ef4444 55%, #be123c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-hint {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        /* --- Phone mockup -------------------------------------- */
+        .phone {
+            width: 300px;
+            height: 610px;
+            border-radius: 48px;
+            background: #111;
+            padding: 11px;
+            box-shadow: 0 30px 70px rgba(80, 10, 10, 0.4), inset 0 0 0 2px #333;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .phone::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 26px;
+            background: #111;
+            border-radius: 20px;
+            z-index: 5;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 38px;
+            background: var(--bg);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-head {
+            padding: 56px 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .screen-head strong {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .screen-head small {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: block;
+            font-weight: 500;
+        }
+
+        .avatars {
+            display: flex;
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            margin-left: -8px;
+        }
+
+        .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .av-1 {
+            background: #f97316;
+        }
+
+        .av-2 {
+            background: #8b5cf6;
+        }
+
+        .av-3 {
+            background: #0ea5e9;
+        }
+
+        .av-4 {
+            background: #16a34a;
+        }
+
+        /* --- Swipe deck ---------------------------------------- */
+        .deck {
+            position: relative;
+            flex: 1;
+            margin: 0 14px;
+        }
+
+        .r-card {
+            position: absolute;
+            inset: 0;
+            border-radius: 26px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(28, 18, 16, 0.14);
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            will-change: transform;
+        }
+
+        .r-card:nth-last-child(2) {
+            transform: scale(0.95) translateY(10px);
+        }
+
+        .r-card:nth-last-child(3) {
+            transform: scale(0.9) translateY(20px);
+        }
+
+        .r-card.is-top {
+            cursor: grab;
+        }
+
+        .r-card.is-dragging {
+            transition: none;
+            cursor: grabbing;
+        }
+
+        .r-photo {
+            height: 66%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.5rem;
+            position: relative;
+        }
+
+        .r-photo::after {
+            content: '';
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.28));
+        }
+
+        .r-dots {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .r-dots span {
+            flex: 1;
+            height: 3px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .r-dots span:first-child {
+            background: #fff;
+        }
+
+        .r-info {
+            padding: 14px 16px;
+        }
+
+        .r-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .r-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .r-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .r-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 50px;
+            background: var(--bg-alt);
+        }
+
+        .r-tag--open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .stamp {
+            position: absolute;
+            top: 28px;
+            padding: 4px 12px;
+            border: 3px solid;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 0.06em;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .stamp--yes {
+            left: 18px;
+            color: var(--green);
+            transform: rotate(-14deg);
+        }
+
+        .stamp--no {
+            right: 18px;
+            color: var(--accent);
+            transform: rotate(14deg);
+        }
+
+        .deck-empty {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 20px;
+        }
+
+        .deck-empty button {
+            font: inherit;
+            font-weight: 700;
+            background: var(--text-dark);
+            color: #fff;
+            border: 0;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            padding: 16px 0 22px;
+        }
+
+        .ctrl {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 0;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(28, 18, 16, 0.12);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: transform 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ctrl:hover {
+            transform: scale(1.08);
+        }
+
+        .ctrl:active {
+            transform: scale(0.95);
+        }
+
+        .ctrl--no {
+            color: var(--accent);
+        }
+
+        .ctrl--yes {
+            color: var(--green);
+        }
+
+        .ctrl:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        /* Match overlay */
+        .match {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            background: linear-gradient(160deg, rgba(239, 68, 68, 0.96), rgba(190, 18, 60, 0.97));
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            gap: 14px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .match.is-on {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .match-title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .match-emoji {
+            font-size: 4rem;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .match p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .match .avatars .avatar {
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .match button {
+            font: inherit;
+            font-weight: 700;
+            background: #fff;
+            color: var(--accent-deep);
+            border: 0;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        /* --- App Store badge ----------------------------------- */
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #000;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-store-badge svg {
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .badge-text-small {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-text-big {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- Strip --------------------------------------------- */
+        .strip {
+            padding: 24px 0 40px;
+        }
+
+        .strip-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            list-style: none;
+        }
+
+        .strip-list li {
+            background: #fff;
+            border: 1px solid rgba(28, 18, 16, 0.06);
+            border-radius: 18px;
+            padding: 18px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strip-list span {
+            font-size: 1.3rem;
+        }
+
+        /* --- How it works -------------------------------------- */
+        .how-section {
+            padding: 64px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 48px;
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .how-card {
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            background: #fff;
+            border: 1px solid rgba(28, 18, 16, 0.06);
+            min-height: 260px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .how-card--red {
+            background: var(--accent);
+            color: #fff;
+            border: 0;
+        }
+
+        .how-card--dark {
+            background: var(--card-dark);
+            color: #fff;
+            border: 0;
+        }
+
+        .how-num {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            margin-bottom: auto;
+        }
+
+        .how-emoji {
+            font-size: 2.2rem;
+            margin: 28px 0 14px;
+        }
+
+        .how-card h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .how-card p {
+            opacity: 0.75;
+            font-size: 0.98rem;
+        }
+
+        /* --- Showcase Sections --------------------------------- */
+        .showcase {
+            padding: 32px 0;
+        }
+
+        .showcase-row {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            min-height: 500px;
+        }
+
+        .showcase-row--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-text-card {
+            flex: 1;
+            background: var(--card-dark);
+            border-radius: var(--radius-lg);
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .showcase-kicker {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fdba74;
+            margin-bottom: auto;
+        }
+
+        .showcase-text-card h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            margin-top: 32px;
+        }
+
+        .showcase-text-card p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.62);
+            margin-top: 16px;
+        }
+
+        .showcase-text-card--accent {
+            background: linear-gradient(160deg, #f97316 0%, #e8473b 100%);
+        }
+
+        .showcase-text-card--accent .showcase-kicker {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .showcase-text-card--accent p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .showcase-visual {
+            flex: 1;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            overflow: hidden;
+        }
+
+        .showcase-visual--peach {
+            background: linear-gradient(160deg, #fed7aa 0%, #fb923c 100%);
+        }
+
+        .showcase-visual--rose {
+            background: linear-gradient(160deg, #fecdd3 0%, #fb7185 100%);
+        }
+
+        .showcase-visual--cream {
+            background: linear-gradient(160deg, #fef3c7 0%, #fbbf24 100%);
+        }
+
+        /* Mini UI panels used inside showcases */
+        .panel {
+            width: 100%;
+            max-width: 340px;
+            background: #fff;
+            border-radius: 28px;
+            padding: 26px;
+            box-shadow: 0 24px 50px rgba(80, 20, 10, 0.2);
+        }
+
+        .panel-title {
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .panel-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .qr {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 18px;
+            display: grid;
+            grid-template-columns: repeat(15, 1fr);
+            gap: 1px;
+            padding: 10px;
+            border-radius: 18px;
+            background: var(--bg);
+        }
+
+        .qr i {
+            border-radius: 2px;
+            background: var(--text-dark);
+        }
+
+        .qr i.o {
+            background: transparent;
+        }
+
+        .joined {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .joined-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .joined-row .avatar {
+            margin: 0;
+            border: 0;
+        }
+
+        .joined-row em {
+            margin-left: auto;
+            font-style: normal;
+            font-size: 0.75rem;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 50px;
+            background: var(--bg);
+            border: 1.5px solid rgba(28, 18, 16, 0.08);
+        }
+
+        .chip.on {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .panel-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 16px 0 8px;
+        }
+
+        .panel-label:first-of-type {
+            margin-top: 0;
+        }
+
+        .photo-strip {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            height: 220px;
+            margin-bottom: 16px;
+        }
+
+        .photo-strip div {
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .photo-strip div:first-child {
+            grid-row: span 2;
+            font-size: 4rem;
+        }
+
+        /* --- FAQ ----------------------------------------------- */
+        .faq-section {
+            padding: 64px 0;
+        }
+
+        .faq-list {
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid rgba(28, 18, 16, 0.06);
+            border-radius: 20px;
+            padding: 0 28px;
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 22px 0;
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            transition: transform 0.25s;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            padding-bottom: 22px;
+        }
+
+        /* --- CTA Section --------------------------------------- */
+        .cta-section {
+            padding: 64px 0 80px;
+        }
+
+        .cta-card {
+            text-align: center;
+            border-radius: var(--radius-lg);
+            padding: 80px 32px;
+            background:
+                radial-gradient(circle at 85% 0%, rgba(251, 146, 60, 0.5), transparent 50%),
+                radial-gradient(circle at 10% 100%, rgba(232, 71, 59, 0.45), transparent 50%),
+                var(--card-dark);
+            color: #fff;
+        }
+
+        .cta-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
+            margin: 0 auto 28px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .cta-title {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 40px;
+        }
+
+        .cta-card .app-store-badge {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            border-top: 1px solid rgba(28, 18, 16, 0.08);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Animations ---------------------------------------- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .reveal {
+            opacity: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .animate-in,
+            .reveal {
+                animation: none;
+                opacity: 1;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 12px 20px;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 40px 0 24px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hero-right {
+                width: 100%;
+            }
+
+            .strip-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .how-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-card {
+                min-height: auto;
+            }
+
+            .showcase {
+                padding: 12px 0;
+            }
+
+            .showcase-row,
+            .showcase-row--reverse {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .showcase-text-card {
+                padding: 36px 28px;
+                min-height: 260px;
+            }
+
+            .cta-card {
+                padding: 56px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-desc {
+                font-size: 1.05rem;
+            }
+
+            .phone {
+                width: 270px;
+                height: 560px;
+            }
+
+            .strip-list li {
+                font-size: 0.85rem;
+                padding: 14px;
+            }
+
+            .showcase-text-card h2 {
+                font-size: 1.7rem;
+            }
+
+            .showcase-visual {
+                padding: 28px 16px;
+            }
+
+            .faq-item {
+                padding: 0 20px;
+            }
         }
     </style>
+    <noscript>
+        <style>
+            .reveal {
+                opacity: 1
+            }
+        </style>
+    </noscript>
 </head>
+
 <body>
-    <div class="app-container">
-        <a href="index.html" class="back-link">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            Back to Portfolio
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#top" class="nav-brand">
+            <img src="public/Dinner/red_logo.png" alt="" class="nav-logo" />
+            Dinner
         </a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="#how">How it works</a>
+            <a href="https://apps.apple.com/pt/app/dinner-swipe-to-eat/id6761313943?l=en-GB" target="_blank"
+                rel="noopener" class="nav-cta">Get the app</a>
+        </div>
+    </nav>
 
-        <header class="app-hero">
-            <img src="public/Dinner/red_logo.png" alt="Dinner App Icon" class="app-icon" />
-            <h1 class="app-title">Dinner</h1>
-            <p class="app-subtitle">
-                Answering the daily "what should we eat?" question with zero stress. 
-                Save ideas, plan your week, and build routines that stick.
-            </p>
-            <a href="https://apps.apple.com/pt/app/dinner-swipe-to-eat/id6761313943?l=en-GB" class="cta-button" target="_blank" rel="noopener">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.77-3.26.82-1.33.05-2.33-1.32-3.17-2.54C4.19 17.06 3 12.39 3 9.49c0-2.85 1.85-4.36 3.65-4.39 1.54-.03 2.65.93 3.59.93.95 0 2.22-1.15 4.02-1.01 1.05.04 2.87.41 3.96 1.87-.08.05-1.94 1.13-1.91 3.39.04 2.72 2.36 3.64 2.39 3.65-.03.07-.37 1.26-1.19 2.44v.13zM14.5 2c.02.01.03.01.05.01 1.29.13 2.15 1.34 2.06 2.56-.01.12-.03.24-.07.35-1.11.13-2.18-.84-2.28-2.06-.02-.14-.01-.29.02-.42.08-.14.16-.29.22-.44z"/></svg>
-                Download on the App Store
-            </a>
-        </header>
+    <!-- Hero -->
+    <header class="hero" id="top">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="hero-left animate-in delay-1">
+                    <div class="hero-pill">
+                        <span class="hero-pill-stars">★★★★★</span>
+                        5.0 on the App Store
+                    </div>
+                    <h1 class="hero-title">"Where should we eat?" <em>Swipe.</em> Done.</h1>
+                    <p class="hero-desc">
+                        Dinner shows you restaurants nearby, one card at a time. Swipe alone or with friends — when
+                        everyone swipes right on the same place, dinner is decided.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://apps.apple.com/pt/app/dinner-swipe-to-eat/id6761313943?l=en-GB"
+                            target="_blank" rel="noopener" class="app-store-badge">
+                            <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                            </svg>
+                            <span class="badge-text">
+                                <span class="badge-text-small">Download on the</span>
+                                <span class="badge-text-big">App Store</span>
+                            </span>
+                        </a>
+                        <span class="hero-note">Free download · iPhone & iPad</span>
+                    </div>
+                </div>
 
-        <section>
-            <h2 class="section-title">Why use Dinner?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🍽️</span>
-                    <h3 class="feature-title">Saved meal ideas</h3>
-                    <p class="feature-desc">Keep your favorite meal options in one place so choices are always ready when you are.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🗓️</span>
-                    <h3 class="feature-title">Weekly planning</h3>
-                    <p class="feature-desc">Build a full week plan in minutes to reduce daily decision fatigue and last-minute stress.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🛒</span>
-                    <h3 class="feature-title">Shopping-friendly</h3>
-                    <p class="feature-desc">Plan meals in a way that makes grocery prep simpler, faster, and more organized.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">❤️</span>
-                    <h3 class="feature-title">Household ready</h3>
-                    <p class="feature-desc">A practical flow for couples, families, or anyone who wants easier evening meals.</p>
+                <div class="hero-right animate-in delay-2">
+                    <div class="phone">
+                        <div class="screen">
+                            <div class="screen-head">
+                                <div>
+                                    <small>Friday night · 4 people</small>
+                                    <strong>Near you</strong>
+                                </div>
+                                <div class="avatars" aria-hidden="true">
+                                    <span class="avatar av-1">M</span>
+                                    <span class="avatar av-2">A</span>
+                                    <span class="avatar av-3">J</span>
+                                    <span class="avatar av-4">R</span>
+                                </div>
+                            </div>
+                            <div class="deck" id="deck" aria-live="polite"></div>
+                            <div class="controls">
+                                <button type="button" class="ctrl ctrl--no" id="btn-no"
+                                    aria-label="Skip this restaurant">✕</button>
+                                <button type="button" class="ctrl ctrl--yes" id="btn-yes"
+                                    aria-label="Like this restaurant">♥</button>
+                            </div>
+                            <div class="match" id="match" role="dialog" aria-label="It's a match">
+                                <div class="match-title">It's a match!</div>
+                                <div class="match-emoji" id="match-emoji"></div>
+                                <p id="match-text"></p>
+                                <div class="avatars" aria-hidden="true">
+                                    <span class="avatar av-1">M</span>
+                                    <span class="avatar av-2">A</span>
+                                    <span class="avatar av-3">J</span>
+                                    <span class="avatar av-4">R</span>
+                                </div>
+                                <button type="button" id="match-close">Keep swiping</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="hero-hint">👆 Try it — drag a card or tap ✕ / ♥</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section class="steps-container">
-            <h2 class="section-title">How it fits your week</h2>
-            <div class="steps-grid">
-                <div class="step-item">
-                    <h4>01 - Save ideas</h4>
-                    <p>Add simple meal options you actually enjoy.</p>
+    <!-- Strip -->
+    <section class="strip">
+        <div class="wrapper">
+            <ul class="strip-list reveal">
+                <li><span>📍</span> Restaurants near you</li>
+                <li><span>👯</span> Solo or group swiping</li>
+                <li><span>📲</span> Invite by link or QR</li>
+                <li><span>🎛️</span> Rating, price & cuisine</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-section" id="how">
+        <div class="wrapper">
+            <h2 class="section-title reveal">Decided in three swipes</h2>
+            <p class="section-sub reveal">No endless lists. No group-chat debates.</p>
+            <div class="how-grid reveal">
+                <div class="how-card">
+                    <span class="how-num">01</span>
+                    <div class="how-emoji">🍽️</div>
+                    <h3>Start a session</h3>
+                    <p>Go solo, or invite your partner and friends with a link or a QR code.</p>
                 </div>
-                <div class="step-item">
-                    <h4>02 - Plan quickly</h4>
-                    <p>Set your week with a lightweight routine.</p>
+                <div class="how-card how-card--red">
+                    <span class="how-num">02</span>
+                    <div class="how-emoji">👉</div>
+                    <h3>Swipe on places</h3>
+                    <p>Right if it sounds good, left if it doesn't. Tap the photo to see more.</p>
                 </div>
-                <div class="step-item">
-                    <h4>03 - Cook & Enjoy</h4>
-                    <p>Know what's for dinner ahead of time.</p>
+                <div class="how-card how-card--dark">
+                    <span class="how-num">03</span>
+                    <div class="how-emoji">🎉</div>
+                    <h3>It's a match</h3>
+                    <p>When everyone likes the same restaurant, you'll know straight away. Go eat.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="app-footer">
+    <!-- Showcase 1: Group -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row reveal">
+                <div class="showcase-text-card">
+                    <span class="showcase-kicker">Swipe together</span>
+                    <h2>Couples, flatmates, the whole squad.</h2>
+                    <p>Share a session with a link or let friends scan your QR code at the table. Everyone swipes on
+                        their own phone — Dinner finds the overlap.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--peach">
+                    <div class="panel" aria-hidden="true">
+                        <div class="panel-title">Friday dinner</div>
+                        <div class="panel-sub">Scan to join the session</div>
+                        <div class="qr" id="qr"></div>
+                        <div class="joined">
+                            <div class="joined-row"><span class="avatar av-1">M</span> Manuel <em>Host</em></div>
+                            <div class="joined-row"><span class="avatar av-2">A</span> Ana <em>Joined</em></div>
+                            <div class="joined-row"><span class="avatar av-3">J</span> João <em>Joined</em></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 2: Filters -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row showcase-row--reverse reveal">
+                <div class="showcase-text-card showcase-text-card--accent">
+                    <span class="showcase-kicker">Smart filters</span>
+                    <h2>Only places you'd actually go.</h2>
+                    <p>Filter by rating, price and cuisine, and hide anywhere that's closed. Craving sushi under
+                        €€? Done.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--cream">
+                    <div class="panel" aria-hidden="true">
+                        <div class="panel-label">Open</div>
+                        <div class="chips"><span class="chip on">Open now</span></div>
+                        <div class="panel-label">Rating</div>
+                        <div class="chips">
+                            <span class="chip">Any</span>
+                            <span class="chip">4.0+</span>
+                            <span class="chip on">4.5+</span>
+                        </div>
+                        <div class="panel-label">Price</div>
+                        <div class="chips">
+                            <span class="chip on">€</span>
+                            <span class="chip on">€€</span>
+                            <span class="chip">€€€</span>
+                            <span class="chip">€€€€</span>
+                        </div>
+                        <div class="panel-label">Cuisine</div>
+                        <div class="chips">
+                            <span class="chip on">🍣 Sushi</span>
+                            <span class="chip">🍕 Pizza</span>
+                            <span class="chip on">🌮 Mexican</span>
+                            <span class="chip">🍔 Burgers</span>
+                            <span class="chip">🍜 Ramen</span>
+                            <span class="chip">🥗 Healthy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 3: Photos -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row reveal">
+                <div class="showcase-text-card">
+                    <span class="showcase-kicker">See before you go</span>
+                    <h2>Tap through photos. Judge the vibe.</h2>
+                    <p>Every card shows the rating, price level and distance. Tap the side of the image to flip
+                        through more photos before you decide.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--rose">
+                    <div class="panel" aria-hidden="true">
+                        <div class="photo-strip">
+                            <div style="background:linear-gradient(150deg,#fecaca,#f87171)">🍝</div>
+                            <div style="background:linear-gradient(150deg,#fde68a,#f59e0b)">🍷</div>
+                            <div style="background:linear-gradient(150deg,#bbf7d0,#4ade80)">🥗</div>
+                        </div>
+                        <div class="r-name">Trattoria Nonna</div>
+                        <div class="r-meta">Italian · €€ · ★ 4.7 · 0.6 km</div>
+                        <div class="r-tags">
+                            <span class="r-tag r-tag--open">Open now</span>
+                            <span class="r-tag">Pasta</span>
+                            <span class="r-tag">Wine bar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="wrapper">
+            <h2 class="section-title reveal">Questions</h2>
+            <p class="section-sub reveal">The short version.</p>
+            <div class="faq-list reveal">
+                <details class="faq-item">
+                    <summary>Can I use Dinner on my own?</summary>
+                    <p>Yes. Solo mode is a quick way to browse what's nearby and shortlist places you like.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How do friends join my session?</summary>
+                    <p>Share the session link, or show your QR code and let them scan it. Everyone swipes on their
+                        own phone at the same time.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I filter the restaurants?</summary>
+                    <p>Filter by rating, price level, cuisine and whether a place is open right now.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Dinner free?</summary>
+                    <p>Dinner is free to download, with an optional premium subscription inside the app.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper">
+            <div class="cta-card reveal">
+                <img src="public/Dinner/red_logo.png" alt="Dinner app icon" class="cta-icon" />
+                <h2 class="cta-title">Tonight's dinner, decided.</h2>
+                <p class="cta-sub">Less arguing, more eating.</p>
+                <a href="https://apps.apple.com/pt/app/dinner-swipe-to-eat/id6761313943?l=en-GB" target="_blank"
+                    rel="noopener" class="app-store-badge">
+                    <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                    </svg>
+                    <span class="badge-text">
+                        <span class="badge-text-small">Download on the</span>
+                        <span class="badge-text-big">App Store</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
             <div class="footer-links">
                 <a href="policy.html">Privacy Policy</a>
                 <a href="support.html">Support</a>
                 <a href="index.html">Portfolio</a>
             </div>
-            <p>&copy; 2026 Manuel Couto · Dinner</p>
-        </footer>
-    </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · Dinner</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Decorative QR pattern
+        const QR = 15;
+        const finder = (x, y) => {
+            for (const [fx, fy] of [[0, 0], [QR - 7, 0], [0, QR - 7]]) {
+                const dx = x - fx, dy = y - fy;
+                if (dx >= 0 && dx < 7 && dy >= 0 && dy < 7) {
+                    const ring = Math.min(dx, dy, 6 - dx, 6 - dy);
+                    return ring !== 1;
+                }
+                if (dx >= -1 && dx <= 7 && dy >= -1 && dy <= 7) return false;
+            }
+            return null;
+        };
+        let qrHTML = '';
+        for (let y = 0; y < QR; y++) {
+            for (let x = 0; x < QR; x++) {
+                const f = finder(x, y);
+                const on = f === null ? ((x * 7 + y * 13 + x * y) % 5 < 2) : f;
+                qrHTML += on ? '<i></i>' : '<i class="o"></i>';
+            }
+        }
+        document.getElementById('qr').innerHTML = qrHTML;
+
+        // Swipe demo
+        const restaurants = [
+            { name: 'Sakura Sushi Bar', meta: 'Japanese · €€ · ★ 4.8 · 0.4 km', tags: ['Sushi', 'Omakase'], emoji: '🍣', bg: 'linear-gradient(150deg,#fecdd3,#fb7185)', group: true },
+            { name: 'Forno Napoletano', meta: 'Pizza · € · ★ 4.6 · 0.9 km', tags: ['Wood-fired', 'Vegan options'], emoji: '🍕', bg: 'linear-gradient(150deg,#fde68a,#f97316)', group: false },
+            { name: 'La Taquería', meta: 'Mexican · € · ★ 4.5 · 1.2 km', tags: ['Tacos', 'Margaritas'], emoji: '🌮', bg: 'linear-gradient(150deg,#bbf7d0,#22c55e)', group: true },
+            { name: 'Smash & Co.', meta: 'Burgers · €€ · ★ 4.4 · 0.7 km', tags: ['Smash burgers', 'Late night'], emoji: '🍔', bg: 'linear-gradient(150deg,#fed7aa,#ea580c)', group: false },
+            { name: 'Ramen Ichi', meta: 'Ramen · €€ · ★ 4.7 · 1.5 km', tags: ['Tonkotsu', 'Cosy'], emoji: '🍜', bg: 'linear-gradient(150deg,#e9d5ff,#a855f7)', group: true }
+        ];
+
+        const deck = document.getElementById('deck');
+        const match = document.getElementById('match');
+        let queue = [];
+
+        function cardHTML(r) {
+            return `
+                <span class="stamp stamp--yes">YUM</span>
+                <span class="stamp stamp--no">NOPE</span>
+                <div class="r-photo" style="background:${r.bg}">
+                    <div class="r-dots"><span></span><span></span><span></span></div>
+                    ${r.emoji}
+                </div>
+                <div class="r-info">
+                    <div class="r-name">${r.name}</div>
+                    <div class="r-meta">${r.meta}</div>
+                    <div class="r-tags"><span class="r-tag r-tag--open">Open now</span>${r.tags.map(t => `<span class="r-tag">${t}</span>`).join('')}</div>
+                </div>`;
+        }
+
+        function render() {
+            deck.innerHTML = '';
+            if (!queue.length) {
+                deck.innerHTML = '<div class="deck-empty"><div style="font-size:2.5rem">🍽️</div>That\'s everywhere nearby for now.<button type="button" id="deck-reset">Start again</button></div>';
+                document.getElementById('deck-reset').addEventListener('click', reset);
+                return;
+            }
+            // Render bottom-up so the first restaurant ends up on top
+            queue.slice(0, 3).reverse().forEach((r, i, arr) => {
+                const el = document.createElement('div');
+                el.className = 'r-card';
+                el.innerHTML = cardHTML(r);
+                if (i === arr.length - 1) {
+                    el.classList.add('is-top');
+                    el.setAttribute('aria-label', r.name + ', ' + r.meta);
+                    attachDrag(el);
+                }
+                deck.appendChild(el);
+            });
+        }
+
+        function reset() {
+            queue = restaurants.slice();
+            render();
+        }
+
+        function swipe(liked) {
+            const top = deck.querySelector('.r-card.is-top');
+            if (!top || top.dataset.leaving) return;
+            top.dataset.leaving = '1';
+            const r = queue[0];
+            top.querySelector(liked ? '.stamp--yes' : '.stamp--no').style.opacity = 1;
+            top.style.transform = `translateX(${liked ? 420 : -420}px) rotate(${liked ? 24 : -24}deg)`;
+            top.style.opacity = 0;
+            setTimeout(() => {
+                queue.shift();
+                render();
+                if (liked && r.group) showMatch(r);
+            }, 300);
+        }
+
+        function showMatch(r) {
+            document.getElementById('match-emoji').textContent = r.emoji;
+            document.getElementById('match-text').textContent = 'All 4 of you want ' + r.name + '.';
+            match.classList.add('is-on');
+            document.getElementById('match-close').focus({ preventScroll: true });
+        }
+
+        document.getElementById('match-close').addEventListener('click', () => match.classList.remove('is-on'));
+        document.getElementById('btn-yes').addEventListener('click', () => swipe(true));
+        document.getElementById('btn-no').addEventListener('click', () => swipe(false));
+
+        function attachDrag(el) {
+            let startX = 0, dx = 0, dragging = false;
+            const yes = el.querySelector('.stamp--yes');
+            const no = el.querySelector('.stamp--no');
+
+            el.addEventListener('pointerdown', e => {
+                dragging = true;
+                startX = e.clientX;
+                dx = 0;
+                el.setPointerCapture(e.pointerId);
+                el.classList.add('is-dragging');
+            });
+            el.addEventListener('pointermove', e => {
+                if (!dragging) return;
+                dx = e.clientX - startX;
+                el.style.transform = `translateX(${dx}px) rotate(${dx / 14}deg)`;
+                yes.style.opacity = Math.min(Math.max(dx / 90, 0), 1);
+                no.style.opacity = Math.min(Math.max(-dx / 90, 0), 1);
+            });
+            const end = () => {
+                if (!dragging) return;
+                dragging = false;
+                el.classList.remove('is-dragging');
+                if (Math.abs(dx) > 90) {
+                    swipe(dx > 0);
+                } else {
+                    el.style.transform = '';
+                    yes.style.opacity = no.style.opacity = 0;
+                }
+            };
+            el.addEventListener('pointerup', end);
+            el.addEventListener('pointercancel', end);
+        }
+
+        reset();
+    </script>
+
 </body>
+
 </html>

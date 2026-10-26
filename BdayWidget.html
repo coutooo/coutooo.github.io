@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B-day Widget – Birthday Reminders & Countdown Widget</title>
+    <meta name="description"
+        content="B-day Widget keeps every birthday and anniversary in one place. Home-screen countdown widgets, custom reminders, gift ideas, one-tap wishes, zodiac insights and import from Contacts." />
+    <meta property="og:title" content="B-day Widget – Never Miss a Birthday" />
+    <meta property="og:description"
+        content="Birthday countdowns on your home screen, reminders when you need them, and gift ideas ready to go." />
+    <meta property="og:image" content="https://coutooo.github.io/public/bdaywidget.png" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="public/BdayWidget/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "B-day Widget",
+        "operatingSystem": "iOS",
+        "applicationCategory": "ProductivityApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+        "url": "https://apps.apple.com/gb/app/b-day-widget/id6737482867"
+    }
+    </script>
+    <style>
+        /* ============================================================
+           B-DAY WIDGET – LANDING PAGE
+           ============================================================ */
+
+        :root {
+            --bg: #f3f7fc;
+            --bg-alt: #e6effa;
+            --text-dark: #10151d;
+            --text-muted: #5f6b7c;
+            --accent: #1683f5;
+            --accent-deep: #0b5fc0;
+            --accent-soft: #dbeafe;
+            --cyan: #22c3e6;
+            --card-dark: #17191d;
+            --card-dark-alt: #23262c;
+            --radius: 24px;
+            --radius-lg: 32px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+        }
+
+        /* --- Nav ----------------------------------------------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 40px;
+            background: rgba(243, 247, 252, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(16, 21, 29, 0.06);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            object-fit: cover;
+            box-shadow: 0 0 0 1px rgba(16, 21, 29, 0.08);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-cta {
+            background: var(--text-dark) !important;
+            color: #fff !important;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            opacity: 1 !important;
+        }
+
+        /* --- Wrapper ------------------------------------------ */
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* --- Hero ---------------------------------------------- */
+        .hero {
+            padding: 64px 0 40px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 56px;
+        }
+
+        .hero-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid rgba(16, 21, 29, 0.08);
+            padding: 6px 14px 6px 8px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-pill-tag {
+            background: var(--accent-soft);
+            color: var(--accent-deep);
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            font-weight: 900;
+            line-height: 1.03;
+            letter-spacing: -0.035em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            background: linear-gradient(120deg, #1683f5 0%, #22c3e6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 48px 24px;
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at 50% 40%, #33373e 0%, #17191d 70%);
+            position: relative;
+            overflow: hidden;
+            min-height: 580px;
+        }
+
+        /* Confetti, echoing the launch artwork */
+        .confetti {
+            position: absolute;
+            width: 46px;
+            height: 34px;
+            border-radius: 12px 4px 14px 6px;
+            opacity: 0.95;
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .confetti--1 {
+            top: 8%;
+            left: 10%;
+            background: #7dd3fc;
+            transform: rotate(32deg);
+        }
+
+        .confetti--2 {
+            top: 14%;
+            right: 12%;
+            background: #1683f5;
+            transform: rotate(-24deg);
+            animation-delay: -2s;
+        }
+
+        .confetti--3 {
+            bottom: 18%;
+            left: 6%;
+            background: #22c3e6;
+            transform: rotate(60deg);
+            animation-delay: -4s;
+        }
+
+        .confetti--4 {
+            bottom: 8%;
+            right: 8%;
+            background: #2563eb;
+            transform: rotate(-50deg);
+            animation-delay: -1s;
+        }
+
+        .confetti--5 {
+            top: 48%;
+            right: 4%;
+            width: 30px;
+            height: 22px;
+            background: #38bdf8;
+            transform: rotate(15deg);
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                translate: 0 0;
+            }
+
+            50% {
+                translate: 0 -14px;
+            }
+        }
+
+        /* --- Phone + home screen mockup ------------------------- */
+        .phone {
+            width: 290px;
+            height: 600px;
+            border-radius: 48px;
+            background: #0b0c0e;
+            padding: 11px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 0 0 2px #3a3d44;
+            position: relative;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .phone::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88px;
+            height: 26px;
+            background: #0b0c0e;
+            border-radius: 20px;
+            z-index: 5;
+        }
+
+        .home {
+            width: 100%;
+            height: 100%;
+            border-radius: 38px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 10%, #60a5fa 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, #22d3ee 0%, transparent 40%),
+                linear-gradient(170deg, #1e3a8a 0%, #0f172a 100%);
+            padding: 58px 16px 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 58px;
+            gap: 16px 14px;
+            align-content: start;
+        }
+
+        .w {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-dark);
+            padding: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .w--small {
+            grid-column: span 2;
+            grid-row: span 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .w--medium {
+            grid-column: span 4;
+            grid-row: span 2;
+        }
+
+        .w--dark {
+            background: rgba(23, 25, 29, 0.92);
+            color: #fff;
+        }
+
+        .w-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .w--dark .w-label {
+            color: #7dd3fc;
+        }
+
+        .w-big {
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-top: auto;
+        }
+
+        .w-big small {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0;
+            opacity: 0.6;
+            margin-left: 3px;
+        }
+
+        .w-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .w-emoji {
+            font-size: 1.4rem;
+            line-height: 1;
+            margin: 6px 0 0;
+        }
+
+        .w-list {
+            list-style: none;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .w-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.74rem;
+            font-weight: 600;
+        }
+
+        .w-list .dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .w-list em {
+            margin-left: auto;
+            font-style: normal;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        .w-list li:first-child em {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .app {
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            background: rgba(255, 255, 255, 0.16);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .app--bday {
+            background: #fff url('public/BdayWidget/icon.png') center / cover no-repeat;
+        }
+
+        /* --- App Store badge ----------------------------------- */
+        .app-store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #000;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-store-badge svg {
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .badge-text-small {
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-text-big {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- Strip --------------------------------------------- */
+        .strip {
+            padding: 24px 0 40px;
+        }
+
+        .strip-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            list-style: none;
+        }
+
+        .strip-list li {
+            background: #fff;
+            border: 1px solid rgba(16, 21, 29, 0.06);
+            border-radius: 18px;
+            padding: 18px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strip-list span {
+            font-size: 1.3rem;
+        }
+
+        /* --- Showcase Sections --------------------------------- */
+        .showcase {
+            padding: 32px 0;
+        }
+
+        .showcase-row {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            min-height: 500px;
+        }
+
+        .showcase-row--reverse {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-text-card {
+            flex: 1;
+            background: var(--card-dark);
+            border-radius: var(--radius-lg);
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .showcase-kicker {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #7dd3fc;
+            margin-bottom: auto;
+        }
+
+        .showcase-text-card h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.12;
+            letter-spacing: -0.025em;
+            margin-top: 32px;
+        }
+
+        .showcase-text-card p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.62);
+            margin-top: 16px;
+        }
+
+        .showcase-text-card--accent {
+            background: linear-gradient(160deg, #22c3e6 0%, #1683f5 100%);
+        }
+
+        .showcase-text-card--accent .showcase-kicker {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .showcase-text-card--accent p {
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .showcase-visual {
+            flex: 1;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            overflow: hidden;
+        }
+
+        .showcase-visual--sky {
+            background: linear-gradient(160deg, #bae6fd 0%, #38bdf8 100%);
+        }
+
+        .showcase-visual--blue {
+            background: linear-gradient(160deg, #bfdbfe 0%, #3b82f6 100%);
+        }
+
+        .showcase-visual--ice {
+            background: linear-gradient(160deg, #e0f2fe 0%, #7dd3fc 100%);
+        }
+
+        .panel {
+            width: 100%;
+            max-width: 340px;
+            background: #fff;
+            border-radius: 28px;
+            padding: 26px;
+            box-shadow: 0 24px 50px rgba(11, 60, 120, 0.22);
+        }
+
+        .person {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .person-avatar {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f472b6, #8b5cf6);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .person strong {
+            display: block;
+            font-size: 1.1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .person small {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .countdown div {
+            background: var(--bg);
+            border-radius: 14px;
+            padding: 10px 4px;
+            text-align: center;
+        }
+
+        .countdown b {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.1;
+        }
+
+        .countdown span {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .panel-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .gifts {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gifts li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: var(--bg);
+        }
+
+        .gifts li.done {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .wish-bubble {
+            background: var(--bg);
+            border-radius: 18px 18px 18px 6px;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+        }
+
+        .wish-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .wish-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .wb-wa {
+            background: #22c55e;
+        }
+
+        .wb-msg {
+            background: #1683f5;
+        }
+
+        .wb-mail {
+            background: #64748b;
+        }
+
+        .wb-call {
+            background: #10151d;
+        }
+
+        .signs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .sign {
+            border-radius: 18px;
+            padding: 16px;
+            background: var(--bg);
+        }
+
+        .sign i {
+            font-style: normal;
+            font-size: 1.8rem;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .sign strong {
+            display: block;
+            font-size: 1rem;
+        }
+
+        .sign small {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .facts {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .facts li {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 2px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(16, 21, 29, 0.06);
+        }
+
+        .facts li:last-child {
+            border-bottom: 0;
+        }
+
+        .facts span {
+            color: var(--text-muted);
+        }
+
+        .facts b {
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+        }
+
+        /* --- Your birthday (interactive) ----------------------- */
+        .yours-section {
+            padding: 64px 0;
+        }
+
+        .yours {
+            background: var(--card-dark);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: 56px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .yours h2 {
+            font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.12;
+            margin-bottom: 12px;
+        }
+
+        .yours-intro {
+            color: rgba(255, 255, 255, 0.62);
+            margin-bottom: 28px;
+        }
+
+        .yours label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 10px;
+        }
+
+        .yours input {
+            font: inherit;
+            font-size: 1.05rem;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.16);
+            background: var(--card-dark-alt);
+            color: #fff;
+            width: 100%;
+            max-width: 280px;
+            color-scheme: dark;
+        }
+
+        .yours input:focus {
+            outline: 3px solid rgba(34, 195, 230, 0.4);
+            outline-offset: 1px;
+        }
+
+        .yours-result {
+            background: var(--card-dark-alt);
+            border-radius: 26px;
+            padding: 28px;
+        }
+
+        .yours-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .yours-head strong {
+            font-size: 1.15rem;
+        }
+
+        .yours-head span {
+            font-size: 0.85rem;
+            color: #7dd3fc;
+            font-weight: 600;
+        }
+
+        .yours .countdown div {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .yours .countdown span {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .yours .signs .sign {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .yours .sign small {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .yours .facts li {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .yours .facts span {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* --- Features ------------------------------------------ */
+        .features-section {
+            padding: 64px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 48px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: #fff;
+            border: 1px solid rgba(16, 21, 29, 0.06);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(22, 131, 245, 0.1);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* --- FAQ ----------------------------------------------- */
+        .faq-section {
+            padding: 64px 0;
+        }
+
+        .faq-list {
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid rgba(16, 21, 29, 0.06);
+            border-radius: 20px;
+            padding: 0 28px;
+        }
+
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 22px 0;
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent);
+            transition: transform 0.25s;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            padding-bottom: 22px;
+        }
+
+        /* --- CTA Section --------------------------------------- */
+        .cta-section {
+            padding: 64px 0 80px;
+        }
+
+        .cta-card {
+            text-align: center;
+            border-radius: var(--radius-lg);
+            padding: 80px 32px;
+            background:
+                radial-gradient(circle at 85% 0%, rgba(34, 195, 230, 0.45), transparent 50%),
+                radial-gradient(circle at 10% 100%, rgba(22, 131, 245, 0.45), transparent 50%),
+                var(--card-dark);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 24px;
+            margin: 0 auto 28px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .cta-title {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .cta-sub {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 40px;
+        }
+
+        .cta-card .app-store-badge {
+            background: #fff;
+            color: #000;
+        }
+
+        /* --- Footer -------------------------------------------- */
+        .site-footer {
+            border-top: 1px solid rgba(16, 21, 29, 0.08);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Animations ---------------------------------------- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeUp 0.8s ease-out both;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .reveal {
+            opacity: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .animate-in,
+            .reveal,
+            .confetti {
+                animation: none;
+                opacity: 1;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* --- Responsive ---------------------------------------- */
+        @media (max-width: 900px) {
+            .nav {
+                padding: 12px 20px;
+            }
+
+            .wrapper {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 40px 0 24px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hero-right {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .strip-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .showcase {
+                padding: 12px 0;
+            }
+
+            .showcase-row,
+            .showcase-row--reverse {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .showcase-text-card {
+                padding: 36px 28px;
+                min-height: 260px;
+            }
+
+            .yours {
+                grid-template-columns: 1fr;
+                padding: 36px 24px;
+                gap: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-card {
+                padding: 56px 24px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-desc {
+                font-size: 1.05rem;
+            }
+
+            .hero-right {
+                padding: 36px 16px;
+            }
+
+            .phone {
+                width: 270px;
+                height: 560px;
+            }
+
+            .strip-list li {
+                font-size: 0.85rem;
+                padding: 14px;
+            }
+
+            .showcase-text-card h2 {
+                font-size: 1.7rem;
+            }
+
+            .showcase-visual {
+                padding: 28px 16px;
+            }
+
+            .yours-result {
+                padding: 20px;
+            }
+
+            .countdown b {
+                font-size: 1.25rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-item {
+                padding: 0 20px;
+            }
+        }
+    </style>
+    <noscript>
+        <style>
+            .reveal {
+                opacity: 1
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#top" class="nav-brand">
+            <img src="public/BdayWidget/icon.png" alt="" class="nav-logo" />
+            B-day Widget
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867" target="_blank" rel="noopener"
+                class="nav-cta">Get the app</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="hero-left animate-in delay-1">
+                    <div class="hero-pill">
+                        <span class="hero-pill-tag">🎂 Free</span>
+                        iPhone · iPad · Mac
+                    </div>
+                    <h1 class="hero-title">Never miss <em>a birthday</em> again.</h1>
+                    <p class="hero-desc">
+                        B-day Widget puts every birthday and anniversary on your home screen, counts down to the big
+                        day, and reminds you in time to grab a gift.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867" target="_blank"
+                            rel="noopener" class="app-store-badge">
+                            <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                            </svg>
+                            <span class="badge-text">
+                                <span class="badge-text-small">Download on the</span>
+                                <span class="badge-text-big">App Store</span>
+                            </span>
+                        </a>
+                        <span class="hero-note">Import from Contacts in one tap</span>
+                    </div>
+                </div>
+
+                <div class="hero-right animate-in delay-2">
+                    <span class="confetti confetti--1"></span>
+                    <span class="confetti confetti--2"></span>
+                    <span class="confetti confetti--3"></span>
+                    <span class="confetti confetti--4"></span>
+                    <span class="confetti confetti--5"></span>
+                    <div class="phone" role="img"
+                        aria-label="iPhone home screen with B-day Widget widgets showing upcoming birthdays">
+                        <div class="home">
+                            <div class="w w--small">
+                                <span class="w-label">Next up</span>
+                                <span class="w-emoji">🎂</span>
+                                <span class="w-big"><span id="hero-days">3</span><small>days</small></span>
+                                <span class="w-name">Ana turns 29</span>
+                            </div>
+                            <div class="app">📷</div>
+                            <div class="app">☀️</div>
+                            <div class="app">🎵</div>
+                            <div class="app app--bday"></div>
+                            <div class="w w--medium w--dark">
+                                <span class="w-label">Upcoming birthdays</span>
+                                <ul class="w-list">
+                                    <li><span class="dot" style="background:#ec4899">A</span> Ana Silva
+                                        <em>in 3 days</em>
+                                    </li>
+                                    <li><span class="dot" style="background:#8b5cf6">J</span> João & Rita · 💍
+                                        <em>12 Nov</em>
+                                    </li>
+                                    <li><span class="dot" style="background:#0ea5e9">T</span> Tiago <em>28 Nov</em>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="app">💬</div>
+                            <div class="app">🗺️</div>
+                            <div class="app">📅</div>
+                            <div class="app">⚙️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Strip -->
+    <section class="strip">
+        <div class="wrapper">
+            <ul class="strip-list reveal">
+                <li><span>📱</span> Home-screen widgets</li>
+                <li><span>⏳</span> Live countdowns</li>
+                <li><span>🎁</span> Gift ideas per person</li>
+                <li><span>📇</span> Import from Contacts</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Showcase 1: Countdown + gifts -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row reveal">
+                <div class="showcase-text-card">
+                    <span class="showcase-kicker">Count down & plan</span>
+                    <h2>See it coming. Have the gift ready.</h2>
+                    <p>Every person gets a live countdown and a gift list. Jot ideas down whenever inspiration
+                        strikes — they even show up on your widget when the day gets close.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--sky">
+                    <div class="panel" aria-hidden="true">
+                        <div class="person">
+                            <div class="person-avatar">A</div>
+                            <div>
+                                <strong>Ana Silva</strong>
+                                <small>Turns 29 · Thursday</small>
+                            </div>
+                        </div>
+                        <div class="countdown" id="demo-countdown">
+                            <div><b>03</b><span>days</span></div>
+                            <div><b>14</b><span>hrs</span></div>
+                            <div><b>22</b><span>min</span></div>
+                            <div><b>10</b><span>sec</span></div>
+                        </div>
+                        <div class="panel-label">Gift ideas</div>
+                        <ul class="gifts">
+                            <li class="done">📚 That novel she mentioned</li>
+                            <li>🪴 Monstera for the new flat</li>
+                            <li>🎟️ Concert tickets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 2: Wishes -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row showcase-row--reverse reveal">
+                <div class="showcase-text-card showcase-text-card--accent">
+                    <span class="showcase-kicker">One-tap wishes</span>
+                    <h2>Say happy birthday before anyone else.</h2>
+                    <p>When the reminder fires, send your wishes straight from the app — WhatsApp, Messages, email
+                        or a quick call. Choose exactly when each alert goes off.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--blue">
+                    <div class="panel" aria-hidden="true">
+                        <div class="person">
+                            <div class="person-avatar" style="background:linear-gradient(135deg,#38bdf8,#1683f5)">T
+                            </div>
+                            <div>
+                                <strong>Tiago Costa</strong>
+                                <small>🎉 Birthday today</small>
+                            </div>
+                        </div>
+                        <div class="wish-bubble">Happy birthday Tiago! 🎂 Hope it's a great one — drinks on me this
+                            weekend 🍻</div>
+                        <div class="wish-actions">
+                            <span class="wish-btn wb-wa">💬 WhatsApp</span>
+                            <span class="wish-btn wb-msg">✉️ Message</span>
+                            <span class="wish-btn wb-mail">📧 Email</span>
+                            <span class="wish-btn wb-call">📞 Call</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase 3: Zodiac -->
+    <section class="showcase">
+        <div class="wrapper">
+            <div class="showcase-row reveal">
+                <div class="showcase-text-card">
+                    <span class="showcase-kicker">Birthday insights</span>
+                    <h2>Star signs, ages and fun facts.</h2>
+                    <p>Western and Chinese zodiac, the exact age they're turning, and little details that make a
+                        card feel personal.</p>
+                </div>
+                <div class="showcase-visual showcase-visual--ice">
+                    <div class="panel" aria-hidden="true">
+                        <div class="signs">
+                            <div class="sign"><i>♏</i><strong>Scorpio</strong><small>Western</small></div>
+                            <div class="sign"><i>🐂</i><strong>Ox</strong><small>Chinese</small></div>
+                        </div>
+                        <ul class="facts">
+                            <li><span>Turning</span><b>29</b></li>
+                            <li><span>Born on a</span><b>Wednesday</b></li>
+                            <li><span>Days on Earth</span><b>10,592</b></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive: your birthday -->
+    <section class="yours-section">
+        <div class="wrapper">
+            <div class="yours reveal">
+                <div>
+                    <h2>How long until <em style="font-style:normal;color:#7dd3fc">your</em> birthday?</h2>
+                    <p class="yours-intro">Pop in your date of birth and see the kind of countdown B-day Widget
+                        keeps for everyone you care about. Nothing leaves your browser.</p>
+                    <label for="dob">Your birthday</label>
+                    <input type="date" id="dob" value="1997-11-05" />
+                </div>
+                <div class="yours-result" aria-live="polite">
+                    <div class="yours-head">
+                        <strong id="y-title">You turn –</strong>
+                        <span id="y-date">–</span>
+                    </div>
+                    <div class="countdown" id="y-countdown">
+                        <div><b>–</b><span>days</span></div>
+                        <div><b>–</b><span>hrs</span></div>
+                        <div><b>–</b><span>min</span></div>
+                        <div><b>–</b><span>sec</span></div>
+                    </div>
+                    <div class="signs">
+                        <div class="sign"><i id="y-west-i">–</i><strong id="y-west">–</strong><small>Western</small>
+                        </div>
+                        <div class="sign"><i id="y-cn-i">–</i><strong id="y-cn">–</strong><small>Chinese</small></div>
+                    </div>
+                    <ul class="facts">
+                        <li><span>Born on a</span><b id="y-weekday">–</b></li>
+                        <li><span>Days on Earth</span><b id="y-alive">–</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="wrapper">
+            <h2 class="section-title reveal">Every celebration, one app</h2>
+            <p class="section-sub reveal">Birthdays and anniversaries, without juggling calendars.</p>
+            <div class="features-grid reveal">
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Reminders your way</h3>
+                    <p>On the day, a day before or a week ahead — set the alert timing that works for you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📇</div>
+                    <h3>Import in seconds</h3>
+                    <p>Pull birthdays straight from your Contacts and Calendar instead of typing them in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Calendar view & sync</h3>
+                    <p>See the month at a glance and sync events to your calendar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💍</div>
+                    <h3>Anniversaries too</h3>
+                    <p>Weddings, first dates, work milestones — track any date worth celebrating.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Backup & export</h3>
+                    <p>Export your list as JSON, PDF or CSV so it's always safe and portable.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Custom themes</h3>
+                    <p>Make the app and widgets match your home screen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="wrapper">
+            <h2 class="section-title reveal">Questions</h2>
+            <p class="section-sub reveal">Good to know.</p>
+            <div class="faq-list reveal">
+                <details class="faq-item">
+                    <summary>Can I import birthdays I already have?</summary>
+                    <p>Yes — import them from your iPhone Contacts and Calendar, then add anyone missing by hand.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How do I add the widget?</summary>
+                    <p>Long-press your home screen, tap the + button, search for B-day Widget and pick a size. It
+                        updates automatically as dates get closer.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does it work for anniversaries?</summary>
+                    <p>Yes. Track anniversaries alongside birthdays, each with its own countdown and reminders.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is B-day Widget free?</summary>
+                    <p>It's free to download. B-day Plus (monthly or yearly) and an All Themes pack are optional
+                        in-app purchases.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="wrapper">
+            <div class="cta-card reveal">
+                <img src="public/BdayWidget/icon.png" alt="B-day Widget app icon" class="cta-icon" />
+                <h2 class="cta-title">Be the friend who always remembers.</h2>
+                <p class="cta-sub">Set it up in a minute. Look thoughtful all year.</p>
+                <a href="https://apps.apple.com/gb/app/b-day-widget/id6737482867" target="_blank" rel="noopener"
+                    class="app-store-badge">
+                    <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M19.67 23.36c-1.01 1.49-2.06 2.96-3.72 2.99-1.63.03-2.15-.97-4.01-.97-1.86 0-2.43.94-3.97.99-1.6.06-2.82-1.61-3.84-3.09C1.9 20.14.5 14.3.5 10.78c0-3.46 2.24-5.3 4.44-5.33 1.87-.04 3.22 1.13 4.37 1.13 1.15 0 2.7-1.4 4.89-1.23 1.27.05 3.49.5 4.81 2.28-.1.06-2.36 1.37-2.33 4.12.05 3.3 2.87 4.42 2.91 4.44-.04.09-.45 1.53-1.45 2.97l.53.2zM16.11 1C16.13 1.01 16.15 1.01 16.17 1.01c1.57.16 2.61 1.63 2.5 3.11-.01.15-.04.29-.09.43-1.35.16-2.65-1.02-2.77-2.51-.02-.17-.01-.35.02-.51.1-.17.19-.35.28-.53z" />
+                    </svg>
+                    <span class="badge-text">
+                        <span class="badge-text-small">Download on the</span>
+                        <span class="badge-text-big">App Store</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="wrapper">
+            <div class="footer-links">
+                <a href="policy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Portfolio</a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Manuel Couto · B-day Widget</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const pad = n => String(n).padStart(2, '0');
+
+        function setCountdown(el, ms) {
+            const s = Math.max(Math.floor(ms / 1000), 0);
+            const parts = [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60];
+            el.querySelectorAll('b').forEach((b, i) => b.textContent = pad(parts[i]));
+        }
+
+        // Demo countdown: always ~3.6 days away so the mockup feels alive
+        const demoTarget = Date.now() + ((3 * 24 + 14) * 60 + 22) * 60000 + 10000;
+        const demoEl = document.getElementById('demo-countdown');
+
+        // Your-birthday countdown
+        const WEST = [
+            ['Capricorn', '♑', 1, 19], ['Aquarius', '♒', 2, 18], ['Pisces', '♓', 3, 20], ['Aries', '♈', 4, 19],
+            ['Taurus', '♉', 5, 20], ['Gemini', '♊', 6, 20], ['Cancer', '♋', 7, 22], ['Leo', '♌', 8, 22],
+            ['Virgo', '♍', 9, 22], ['Libra', '♎', 10, 22], ['Scorpio', '♏', 11, 21], ['Sagittarius', '♐', 12, 21]
+        ];
+        const CN = [
+            ['Rat', '🐀'], ['Ox', '🐂'], ['Tiger', '🐅'], ['Rabbit', '🐇'], ['Dragon', '🐉'], ['Snake', '🐍'],
+            ['Horse', '🐎'], ['Goat', '🐐'], ['Monkey', '🐒'], ['Rooster', '🐓'], ['Dog', '🐕'], ['Pig', '🐖']
+        ];
+
+        const dobInput = document.getElementById('dob');
+        const yCountdown = document.getElementById('y-countdown');
+        let nextBirthday = null;
+
+        dobInput.max = new Date().toISOString().slice(0, 10);
+
+        function westernSign(m, d) {
+            // Each entry is [name, symbol, month, last day of that sign in that month]
+            const entry = WEST[m - 1];
+            return d <= entry[3] ? entry : WEST[m % 12];
+        }
+
+        function updateDob() {
+            if (!dobInput.value) return;
+            const [y, m, d] = dobInput.value.split('-').map(Number);
+            const now = new Date();
+            let next = new Date(now.getFullYear(), m - 1, d);
+            if (next <= now) next = new Date(now.getFullYear() + 1, m - 1, d);
+            nextBirthday = next;
+
+            const age = next.getFullYear() - y;
+            const sameDay = now.getMonth() === m - 1 && now.getDate() === d;
+            document.getElementById('y-title').textContent = sameDay
+                ? 'Happy birthday! 🎉'
+                : 'You turn ' + age;
+            document.getElementById('y-date').textContent = next.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+
+            const w = westernSign(m, d);
+            document.getElementById('y-west').textContent = w[0];
+            document.getElementById('y-west-i').textContent = w[1];
+            // Approximation: uses the Gregorian year (Chinese New Year falls in Jan/Feb)
+            const c = CN[((y - 4) % 12 + 12) % 12];
+            document.getElementById('y-cn').textContent = c[0];
+            document.getElementById('y-cn-i').textContent = c[1];
+
+            const born = new Date(y, m - 1, d);
+            document.getElementById('y-weekday').textContent = born.toLocaleDateString('en-GB', { weekday: 'long' });
+            document.getElementById('y-alive').textContent = Math.floor((now - born) / 86400000).toLocaleString('en-GB');
+            tick();
+        }
+
+        function tick() {
+            const now = Date.now();
+            setCountdown(demoEl, demoTarget - now);
+            if (nextBirthday) setCountdown(yCountdown, nextBirthday - now);
+        }
+
+        dobInput.addEventListener('input', updateDob);
+        updateDob();
+        setInterval(tick, 1000);
+    </script>
+
+</body>
+
+</html>

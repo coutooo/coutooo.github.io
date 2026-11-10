@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punchie – Stamps Camera: Turn Photos into Stamps & Scrapbook Pages</title>
+    <meta name="description"
+        content="Punchie is a stamps camera for iPhone. Punch any moment into a collectible postage stamp with real serrated edges and a satisfying ka-chunk, then build a photo diary, scrapbook pages and TikTok-ready reels. 100% private, on-device." />
+    <meta property="og:title" content="Punchie – Punch any moment into a stamp" />
+    <meta property="og:description" content="A stamps camera with real serrated edges, a scrapbook editor, a photo diary and one-tap TikTok reels. Private, on your iPhone." />
+    <meta property="og:image" content="https://coutooo.github.io/public/Punchie/shot1.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#24211E" />
+    <link rel="icon" href="public/Punchie/icon.png" />
+    <link rel="apple-touch-icon" href="public/Punchie/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Punchie - Stamps Camera",
+        "operatingSystem": "iOS",
+        "applicationCategory": "PhotographyApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "url": "https://coutooo.github.io/Punchie.html"
+    }
+    </script>
+    <style>
+        :root {
+            --paper: #F8F5EF;
+            --paper-deep: #EFE9DE;
+            --ink: #24211E;
+            --ink-soft: #6F685F;
+            --ink-faint: #A9A196;
+            --accent: #24211E;
+            --accent-deep: #000000;
+            --coral: #3B3733;
+            --rasp: #0E0D0C;
+            --gold: #F2B13A;
+            --line: #E7E1D6;
+            --radius: 26px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            color: var(--ink);
+            background: var(--paper);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .wrap { max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+
+        /* Nav */
+        .nav {
+            position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+            width: min(1100px, calc(100% - 28px)); z-index: 50;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 12px 10px 16px; border-radius: 999px;
+            background: rgba(255, 255, 255, .78); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 8px 30px rgba(36, 33, 30, .08); border: 1px solid rgba(255, 255, 255, .7);
+        }
+        .nav__brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.02em; }
+        .nav__brand img { width: 34px; height: 34px; border-radius: 9px; }
+        .nav__links { display: flex; gap: 22px; font-size: .92rem; color: var(--ink-soft); font-weight: 500; }
+        .nav__links a:hover { color: var(--ink); }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; font-weight: 700;
+            padding: 13px 22px; background: var(--ink); color: #fff; font-size: .95rem;
+            transition: transform .18s cubic-bezier(.3, 1.5, .5, 1), box-shadow .2s;
+            box-shadow: 0 10px 24px rgba(36, 33, 30, .18); border: 0; cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-2px) scale(1.02); }
+        .btn:active { transform: scale(.96); }
+        .btn--light { background: #fff; color: var(--ink); }
+        .btn svg { width: 20px; height: 20px; }
+
+        /* Hero */
+        .hero {
+            position: relative; overflow: hidden;
+            background: linear-gradient(150deg, var(--coral) 0%, #24211E 52%, var(--rasp) 100%);
+            color: #fff; padding: 150px 0 0;
+        }
+        .hero::before {
+            content: ""; position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .14) 2px, transparent 2px);
+            background-size: 34px 34px; pointer-events: none;
+        }
+        .hero__grid { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: end; }
+        .eyebrow {
+            display: inline-flex; gap: 8px; align-items: center; padding: 8px 14px; border-radius: 999px;
+            background: rgba(255, 255, 255, .18); font-weight: 600; font-size: .85rem; margin-bottom: 22px;
+        }
+        .hero h1 { font-size: clamp(2.7rem, 6vw, 4.6rem); line-height: .98; letter-spacing: -.045em; font-weight: 900; }
+        .hero h1 .hand { font-family: 'Caveat', cursive; font-weight: 600; color: #FFE08A; letter-spacing: 0; font-size: 1.12em; }
+        .hero p.lead { font-size: 1.2rem; line-height: 1.55; opacity: .94; margin: 22px 0 30px; max-width: 520px; }
+        .hero__cta { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; padding-bottom: 80px; }
+        .hero__note { font-size: .85rem; opacity: .85; }
+        .hero__phone { position: relative; justify-self: center; width: min(420px, 100%); }
+        .phone { background: #141416; padding: 12px 12px 0; border-radius: 54px 54px 0 0; box-shadow: 0 -10px 60px rgba(0, 0, 0, .45), inset 0 0 0 2px #3A3A3E; }
+        .phone img { border-radius: 43px 43px 0 0; width: 100%; height: 560px; object-fit: cover; object-position: top; }
+
+        .float-stamp {
+            position: absolute; width: 120px; filter: drop-shadow(0 14px 20px rgba(0, 0, 0, .25));
+            animation: bob 5s ease-in-out infinite;
+        }
+        @keyframes bob { 0%, 100% { transform: translateY(0) rotate(var(--r)); } 50% { transform: translateY(-14px) rotate(calc(var(--r) + 3deg)); } }
+
+        /* Punch demo */
+        .demo { padding: 110px 0 90px; text-align: center; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.05; }
+        .section-sub { color: var(--ink-soft); font-size: 1.1rem; margin: 14px auto 0; max-width: 560px; line-height: 1.55; }
+        .punch-stage { position: relative; height: 420px; margin: 50px auto 0; max-width: 520px; }
+        .device {
+            position: absolute; left: 50%; top: 20px; transform: translateX(-50%);
+            width: 250px; height: 320px; border-radius: 52px;
+            background: linear-gradient(145deg, #F1F2F4, #C3C7CC 35%, #E1E3E6 55%, #A6ACB3 80%, #CDD1D5);
+            box-shadow: 0 30px 60px rgba(36, 33, 30, .28), inset 0 2px 0 #fff, inset 0 -2px 0 rgba(0, 0, 0, .15);
+            transition: transform .08s ease-in;
+        }
+        .device.pressed { transform: translateX(-50%) scale(.95); }
+        .device__label { position: absolute; top: 16px; left: 0; right: 0; font-size: 11px; font-weight: 900; letter-spacing: .3em; color: #6B7078; text-shadow: 0 1px 0 #fff; }
+        .device__slot {
+            position: absolute; inset: 40px 28px 28px; border-radius: 18px;
+            background: linear-gradient(#34363B, #141518); box-shadow: inset 0 2px 8px rgba(0, 0, 0, .6);
+            display: grid; place-items: center; overflow: hidden;
+        }
+        .device__window { width: 150px; height: 200px; position: relative; }
+        .device__window img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+        .device__flash { position: absolute; inset: 40px 28px 28px; border-radius: 18px; background: #fff; opacity: 0; pointer-events: none; }
+        .flying {
+            position: absolute; left: 50%; top: 92px; width: 150px; transform: translateX(-50%);
+            filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .25)); pointer-events: none; z-index: 5;
+        }
+        .punch-btn {
+            position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+            width: 96px; height: 96px; border-radius: 50%; border: 0; cursor: pointer;
+            background: linear-gradient(#45403A, var(--accent-deep)); color: #fff; font-weight: 900; letter-spacing: .08em; font-size: .8rem;
+            box-shadow: 0 0 0 10px rgba(36, 33, 30, .14), 0 14px 30px rgba(36, 33, 30, .4);
+            transition: transform .15s cubic-bezier(.3, 1.6, .5, 1);
+        }
+        .punch-btn:active { transform: translateX(-50%) scale(.88); }
+        .counter { margin-top: 18px; color: var(--ink-faint); font-size: .9rem; font-weight: 600; }
+        .tray { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; min-height: 90px; }
+        .tray img { width: 62px; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .15)); animation: land .45s cubic-bezier(.2, 1.4, .4, 1); }
+        @keyframes land { from { transform: scale(1.8) rotate(-12deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
+
+        /* Steps */
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+        .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; text-align: left; box-shadow: 0 12px 30px rgba(36, 33, 30, .05); }
+        .step__n { font-family: 'Caveat', cursive; font-size: 2.2rem; color: var(--accent); line-height: 1; }
+        .step h3 { font-size: 1.25rem; margin: 8px 0 6px; letter-spacing: -.02em; }
+        .step p { color: var(--ink-soft); line-height: 1.5; }
+
+        /* Features */
+        .features { padding: 40px 0 100px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; }
+        .feature { border-radius: var(--radius); padding: 30px; min-height: 230px; position: relative; overflow: hidden; }
+        .feature .emoji { font-size: 2rem; }
+        .feature h3 { font-size: 1.3rem; letter-spacing: -.02em; margin: 16px 0 8px; }
+        .feature p { color: var(--ink-soft); line-height: 1.5; }
+        .f1 { background: #FCE6E9; } .f2 { background: #FCF3CF; } .f3 { background: #E3F0DF; }
+        .f4 { background: #EEE7FA; } .f5 { background: #E2EEF9; } .f6 { background: #FBF6EC; border: 1px solid var(--line); }
+
+        /* Gallery */
+        .gallery { padding: 0 0 110px; }
+        .rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 40px 22px 20px; margin: 0 -22px; scrollbar-width: none; }
+        .rail::-webkit-scrollbar { display: none; }
+        .rail img { width: 260px; flex: none; border-radius: 26px; scroll-snap-align: center; box-shadow: 0 18px 40px rgba(36, 33, 30, .12); }
+
+        /* TikTok band */
+        .band { background: var(--ink); color: #fff; border-radius: 40px; padding: 60px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+        .band h2 { font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -.04em; line-height: 1.05; font-weight: 900; }
+        .band p { color: rgba(255, 255, 255, .75); margin-top: 14px; line-height: 1.6; font-size: 1.05rem; }
+        .band ul { list-style: none; margin-top: 18px; display: grid; gap: 10px; }
+        .band li { display: flex; gap: 10px; align-items: center; }
+        .band img { border-radius: 28px; }
+
+        /* FAQ */
+        .faq { padding: 110px 0; }
+        .faq details { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px 24px; margin-top: 12px; }
+        .faq summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; }
+        .faq summary::after { content: "+"; color: var(--accent); font-size: 1.4rem; line-height: 1; transition: transform .2s; }
+        .faq details[open] summary::after { transform: rotate(45deg); }
+        .faq details p { color: var(--ink-soft); margin-top: 10px; line-height: 1.6; }
+
+        /* CTA + footer */
+        .final { text-align: center; padding: 0 0 110px; }
+        .final .card {
+            background: linear-gradient(150deg, var(--coral), #24211E 55%, var(--rasp)); color: #fff; border-radius: 40px; padding: 70px 30px;
+            position: relative; overflow: hidden;
+        }
+        .final h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; letter-spacing: -.045em; }
+        .final p { opacity: .92; margin: 12px 0 28px; font-size: 1.1rem; }
+        footer { border-top: 1px solid var(--line); padding: 34px 0 50px; color: var(--ink-faint); font-size: .9rem; }
+        footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+        footer nav { display: flex; gap: 20px; }
+        footer a:hover { color: var(--ink); }
+
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .9, .3, 1); }
+        .reveal.in { opacity: 1; transform: none; }
+
+        @media (max-width: 900px) {
+            .nav__links { display: none; }
+            .hero__grid, .band { grid-template-columns: 1fr; }
+            .hero { padding-top: 120px; text-align: center; }
+            .hero p.lead { margin-left: auto; margin-right: auto; }
+            .hero__cta { justify-content: center; padding-bottom: 40px; }
+            .steps, .feature-grid { grid-template-columns: 1fr; }
+            .band { padding: 36px 24px; }
+            .float-stamp { width: 84px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .float-stamp { animation: none; }
+            .reveal { transition: none; opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <a class="nav__brand" href="#top"><img src="public/Punchie/icon.png" alt="Punchie app icon" /> Punchie</a>
+        <nav class="nav__links">
+            <a href="#try">Try the punch</a>
+            <a href="#features">Features</a>
+            <a href="#reels">Reels</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <a class="btn download-link" href="#download">Get the app</a>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="wrap hero__grid">
+            <div>
+                <span class="eyebrow">📮 The stamps camera for iPhone</span>
+                <h1>Punch any moment into a <span class="hand">tiny stamp</span></h1>
+                <p class="lead">Frame the world through a real stamp punch, hear the <em>ka-chunk</em>, and watch your photo pop out with serrated edges. Then turn your stamps into a photo diary, scrapbook pages and TikTok-ready reels.</p>
+                <div class="hero__cta">
+                    <a class="btn btn--light download-link" href="#download" id="download">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.5c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.75.73 1.05 1.6 2.24 2.73 2.2 1.1-.05 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.84-1.22 1.18-2.4 1.2-2.46-.03-.01-2.3-.88-2.29-3.52zM14.2 6.03c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.69-.92 2.68.97.08 1.96-.49 2.56-1.23z"/></svg>
+                        <span class="download-label">Download on the App Store</span>
+                    </a>
+                    <span class="hero__note">Free trial · No account · Works offline</span>
+                </div>
+            </div>
+            <div class="hero__phone">
+                <img class="float-stamp" src="public/Punchie/stamps/r04.png" alt="" style="--r:-12deg; left:-40px; top:60px;" />
+                <img class="float-stamp" src="public/Punchie/stamps/r16.png" alt="" style="--r:10deg; right:-36px; top:220px; animation-delay:-2s;" />
+                <div class="phone"><img src="public/Punchie/hero.jpg" alt="Punchie app: the stamp punch camera" /></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo wrap" id="try">
+        <h2 class="section-title reveal">Go on. Punch it. 🔨</h2>
+        <p class="section-sub reveal">That sound is the whole point. Turn your volume up and tap the button — this is exactly what it feels like in the app (plus haptics).</p>
+        <div class="punch-stage reveal">
+            <div class="device" id="device">
+                <div class="device__label">PUNCHIE</div>
+                <div class="device__slot"><div class="device__window" id="window"></div></div>
+                <div class="device__flash" id="flash"></div>
+            </div>
+            <button class="punch-btn" id="punch" aria-label="Punch a stamp">PUNCH</button>
+        </div>
+        <div class="tray" id="tray" aria-live="polite"></div>
+        <p class="counter" id="counter">0 stamps in your book</p>
+
+        <div class="steps">
+            <div class="step reveal"><div class="step__n">1</div><h3>Frame it</h3><p>See the moment through a stamp-shaped window. Portrait, square or landscape.</p></div>
+            <div class="step reveal"><div class="step__n">2</div><h3>Punch it</h3><p>One tap. Ka-chunk. Your photo is die-cut into a stamp with real perforations.</p></div>
+            <div class="step reveal"><div class="step__n">3</div><h3>Collect it</h3><p>It lands in your book, postmarked with today's date. Your diary builds itself.</p></div>
+        </div>
+    </section>
+
+    <section class="features wrap" id="features">
+        <h2 class="section-title reveal" style="text-align:center">Everything your camera roll isn't</h2>
+        <p class="section-sub reveal" style="text-align:center">Not a filter, not a border — a real, collectible stamp. And a lot more to do with it.</p>
+        <div class="feature-grid">
+            <div class="feature f1 reveal"><div class="emoji">✂️</div><h3>Scrapbook in 60 seconds</h3><p>Stamps, washi tape, stickers, words and papers. Or tap Magic Page and we lay out your week for you.</p></div>
+            <div class="feature f2 reveal"><div class="emoji">🗓️</div><h3>A diary that fills itself</h3><p>Every day you punch shows up on your calendar. Keep a streak and watch a year of tiny moments add up.</p></div>
+            <div class="feature f3 reveal"><div class="emoji">🎞️</div><h3>6 styles, 7 film looks</h3><p>Classic, full-bleed, vintage, airmail, noir and postal stamps — with Sunny, Dreamy, Chrome, Instant and more.</p></div>
+            <div class="feature f4 reveal"><div class="emoji">🪄</div><h3>Stickers from any photo</h3><p>Lift your dog, your coffee or your best friend out of any photo and stick them on your pages.</p></div>
+            <div class="feature f5 reveal"><div class="emoji">📚</div><h3>Collections</h3><p>Trips, pets, coffee diaries, birthdays. Organise stamps into little albums you'll actually revisit.</p></div>
+            <div class="feature f6 reveal"><div class="emoji">🔒</div><h3>Private by design</h3><p>No account, no ads. Your photos and pages never leave your iPhone. Delete means delete.</p></div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="wrap">
+            <h2 class="section-title reveal" style="text-align:center">Take a look inside</h2>
+            <div class="rail">
+                <img src="public/Punchie/shot2.jpg" alt="Your stamp book" loading="lazy" />
+                <img src="public/Punchie/shot3.jpg" alt="Scrapbook pages" loading="lazy" />
+                <img src="public/Punchie/shot4.jpg" alt="Photo diary calendar" loading="lazy" />
+                <img src="public/Punchie/shot5.jpg" alt="TikTok-ready reels" loading="lazy" />
+                <img src="public/Punchie/shot6.jpg" alt="Stamp styles and film looks" loading="lazy" />
+                <img src="public/Punchie/shot7.jpg" alt="Stamp detail" loading="lazy" />
+                <img src="public/Punchie/shot8.jpg" alt="Private, no account" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap" id="reels">
+        <div class="band reveal">
+            <div>
+                <h2>Made for your For You page</h2>
+                <p>Punchie turns your stamps into a 9:16 reel in one tap — every stamp lands on the beat with the punch sound. Post it as-is or drop a trending sound on top.</p>
+                <ul>
+                    <li>🎬 1080×1920 video, ready for TikTok, Reels & Shorts</li>
+                    <li>📐 Story-sized scrapbook pages (9:16, 4:5, 1:1)</li>
+                    <li>🏷️ Transparent stamp stickers for your Stories</li>
+                </ul>
+            </div>
+            <img src="public/Punchie/shot5.jpg" alt="Reel maker in Punchie" loading="lazy" />
+        </div>
+    </section>
+
+    <section class="faq wrap" id="faq">
+        <h2 class="section-title reveal" style="text-align:center">Questions</h2>
+        <details class="reveal"><summary>Is Punchie free?</summary><p>Punchie is a premium app. You can start with a free trial and cancel any time from your Apple ID settings before it ends — we'll even remind you the day before. There's also a one-time lifetime option.</p></details>
+        <details class="reveal"><summary>Do my photos get uploaded anywhere?</summary><p>No. Every stamp, page and reel is created and stored on your iPhone. There's no account and no cloud. If you delete a stamp, it's gone.</p></details>
+        <details class="reveal"><summary>Can I use photos I already have?</summary><p>Yes — tap Upload in the punch, pinch and drag to frame, and punch it. The camera switches off while you do, so it doesn't drain your battery.</p></details>
+        <details class="reveal"><summary>Can I add my own pictures and stickers to scrapbook pages?</summary><p>Yes. Add regular photos, stamps, 100+ stickers in themed packs, washi tapes, words and text — or make a sticker from any photo with Cut-out.</p></details>
+        <details class="reveal"><summary>Which devices are supported?</summary><p>Any iPhone running iOS 17 or later.</p></details>
+    </section>
+
+    <section class="final wrap">
+        <div class="card reveal">
+            <h2>Your camera roll deserves better</h2>
+            <p>Start your stamp book today.</p>
+            <a class="btn btn--light download-link" href="#download"><span class="download-label">Download on the App Store</span></a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <span>© <span id="year"></span> Punchie · Made with love, on-device 📮</span>
+            <nav>
+                <a href="policy.html">Privacy</a>
+                <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">More apps</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        // Set this once the app is live, e.g. "https://apps.apple.com/app/id1234567890"
+        const APP_STORE_URL = "";
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelectorAll('.download-link').forEach(a => {
+            if (APP_STORE_URL) { a.href = APP_STORE_URL; a.target = '_blank'; a.rel = 'noopener'; }
+        });
+        if (!APP_STORE_URL) {
+            document.querySelectorAll('.download-label').forEach(s => s.textContent = 'Coming soon to the App Store');
+        }
+
+        // Reveal on scroll
+        const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // The punch demo
+        const stamps = ['r04', 'r08', 'r01', 'r05', 'r16', 'r09', 'r12', 'r06', 'r10', 'r02', 'r13', 'r17', 'r03', 'r15', 'r18', 'r11', 'r19', 'r07', 'r14'];
+        let i = 0, count = 0, busy = false;
+        const punchSound = new Audio('public/Punchie/punch.mp3');
+        const peelSound = new Audio('public/Punchie/peel.mp3');
+        const device = document.getElementById('device');
+        const flash = document.getElementById('flash');
+        const stage = document.querySelector('.punch-stage');
+        const tray = document.getElementById('tray');
+        const counter = document.getElementById('counter');
+
+        function play(a) { try { a.currentTime = 0; a.play(); } catch (e) { } }
+
+        document.getElementById('punch').addEventListener('click', () => {
+            if (busy) return;
+            busy = true;
+            const src = `public/Punchie/stamps/${stamps[i % stamps.length]}.png`;
+            i++;
+            play(punchSound);
+            if (navigator.vibrate) navigator.vibrate([12, 30, 40]);
+            device.classList.add('pressed');
+            flash.animate([{ opacity: .95 }, { opacity: 0 }], { duration: 380, easing: 'ease-out' });
+            setTimeout(() => device.classList.remove('pressed'), 160);
+
+            const fly = document.createElement('img');
+            fly.src = src; fly.alt = ''; fly.className = 'flying';
+            stage.appendChild(fly);
+            setTimeout(() => play(peelSound), 260);
+            fly.animate([
+                { transform: 'translateX(-50%) scale(1) rotate(0deg)', opacity: 1 },
+                { transform: 'translateX(-50%) translateY(-30px) scale(1.08) rotate(-4deg)', opacity: 1, offset: .35 },
+                { transform: 'translateX(-50%) translateY(260px) scale(.4) rotate(8deg)', opacity: 0 }
+            ], { duration: 950, delay: 260, easing: 'cubic-bezier(.3,.7,.4,1)', fill: 'forwards' });
+
+            setTimeout(() => {
+                fly.remove();
+                const t = document.createElement('img');
+                t.src = src; t.alt = 'stamp';
+                tray.prepend(t);
+                if (tray.children.length > 10) tray.lastChild.remove();
+                count++;
+                counter.textContent = `${count} stamp${count === 1 ? '' : 's'} in your book`;
+                busy = false;
+            }, 1150);
+        });
+    </script>
+</body>
+
+</html>

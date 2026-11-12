@@ -805,3 +805,7 @@ a {
         padding: 24px;
     }
 }
+
+.cover--punchie {
+    background: linear-gradient(150deg, #3a352f 0%, #24211e 60%, #0f0d0b 100%);
+}

@@ -514,6 +514,17 @@
                 font-size: 1.6rem;
             }
         }
+
+        /* --- From the blog ------------------------------------- */
+        .blog-section { padding: 32px 0; }
+        .blog-section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; text-align: center; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .blog-card { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 20px; background: #fff; border: 1px solid rgba(0,0,0,.06); color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+        .blog-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,.12); }
+        .blog-card span { font-size: 2rem; }
+        .blog-card strong { font-size: 1.05rem; line-height: 1.35; }
+        .blog-section-more { text-align: center; margin-top: 18px; }
+        .blog-section-more a { color: var(--accent); font-weight: 600; text-decoration: none; }
     </style>
 </head>
 
@@ -631,6 +642,19 @@
         </div>
     </section>
 
+    <!-- From the blog -->
+    <section class="blog-section">
+        <div class="wrapper">
+            <h2 class="blog-section-title">From the blog</h2>
+            <div class="blog-grid">
+                <a class="blog-card" href="stitchit/blog/turn-photo-into-cross-stitch-pattern.html"><span aria-hidden="true">🧵</span><strong>How to turn a photo into a cross stitch pattern</strong></a>
+                <a class="blog-card" href="stitchit/blog/cross-stitch-for-beginners.html"><span aria-hidden="true">🪡</span><strong>Cross stitch for beginners: everything you need to start</strong></a>
+                <a class="blog-card" href="stitchit/blog/aida-cloth-count-guide.html"><span aria-hidden="true">📏</span><strong>Aida count guide: 11, 14, 16 or 18?</strong></a>
+            </div>
+            <p class="blog-section-more"><a href="stitchit/blog/">All guides →</a></p>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <div class="wrapper animate-in">
@@ -654,6 +678,7 @@
     <footer class="site-footer">
         <div class="wrapper">
             <div class="footer-links">
+                <a href="stitchit/blog/">Blog</a>
                 <a href="policy.html">Privacy Policy</a>
                 <a href="support.html">Support</a>
                 <a href="index.html">Portfolio</a>

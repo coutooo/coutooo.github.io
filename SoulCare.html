@@ -730,6 +730,17 @@
                 padding: 40px 24px;
             }
         }
+
+        /* --- From the blog ------------------------------------- */
+        .blog-section { padding: 32px 0; }
+        .blog-section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; text-align: center; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .blog-card { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--border); color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+        .blog-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,.12); }
+        .blog-card span { font-size: 2rem; }
+        .blog-card strong { font-size: 1.05rem; line-height: 1.35; }
+        .blog-section-more { text-align: center; margin-top: 18px; }
+        .blog-section-more a { color: var(--accent); font-weight: 600; text-decoration: none; }
     </style>
 </head>
 
@@ -980,6 +991,19 @@
         </div>
     </section>
 
+    <!-- From the blog -->
+    <section class="blog-section">
+        <div class="wrapper">
+            <h2 class="blog-section-title">From the blog</h2>
+            <div class="blog-grid">
+                <a class="blog-card" href="soulcare/blog/how-to-stop-doomscrolling.html"><span aria-hidden="true">🌀</span><strong>How to stop doomscrolling: 9 habits that actually work</strong></a>
+                <a class="blog-card" href="soulcare/blog/how-to-block-apps-on-iphone.html"><span aria-hidden="true">🛡️</span><strong>How to block apps on iPhone: Screen Time and better options</strong></a>
+                <a class="blog-card" href="soulcare/blog/digital-detox-plan.html"><span aria-hidden="true">🌿</span><strong>A 7-day digital detox plan you'll actually finish</strong></a>
+            </div>
+            <p class="blog-section-more"><a href="soulcare/blog/">All guides →</a></p>
+        </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta-section">
         <div class="wrapper">
@@ -1003,6 +1027,7 @@
     <footer class="site-footer">
         <div class="wrapper">
             <div class="footer-links">
+                <a href="soulcare/blog/">Blog</a>
                 <a href="policy.html">Privacy Policy</a>
                 <a href="support.html">Support</a>
                 <a href="index.html">Portfolio</a>

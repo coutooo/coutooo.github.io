@@ -1747,6 +1747,26 @@
         reset();
     </script>
 
+    <script>
+        // Links shared from the app (Dinner.html?place=…&name=…): with Dinner
+        // installed iOS opens the app instead of this page. Here, they don't
+        // have it yet, so say which restaurant it's about.
+        (function () {
+            var params = new URLSearchParams(location.search);
+            var name = (params.get('name') || '').trim();
+            if (!params.get('place') || !name) return;
+            var title = document.querySelector('.hero-title');
+            var desc = document.querySelector('.hero-desc');
+            if (params.get('review') === '1') {
+                title.textContent = 'How was your meal at ' + name + '?';
+                desc.textContent = 'Rate it on Dinner. Get the free app, then scan the code again to leave your review.';
+            } else {
+                title.textContent = name + ' on Dinner';
+                desc.textContent = 'Get the free app to see ' + name + ', its photos and what people say, then open the link again.';
+            }
+        })();
+    </script>
+
 </body>
 
 </html>

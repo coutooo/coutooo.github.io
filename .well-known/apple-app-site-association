@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["L5E82XN45N.com.example.restaurantTinder"],
+        "components": [
+          {
+            "/": "/Dinner.html",
+            "?": { "place": "?*" },
+            "comment": "A restaurant shared from Dinner, or its review QR"
+          }
+        ]
+      }
+    ]
+  }
+}
